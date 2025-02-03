@@ -1,7 +1,5 @@
 package com.tismart.apptismart.app
 
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -12,7 +10,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
+import com.tismart.apptismart.auth.presentation.login.LoginScreenRoot
 import com.tismart.apptismart.core.presentation.PoppinsTypography
+import com.tismart.apptismart.home.presentation.HomeScreenRoot
+import com.tismart.apptismart.news.presentation.news_list.NewsListScreenRoot
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -25,16 +26,34 @@ fun App() {
         val navController = rememberNavController()
         NavHost(
             navController = navController,
-            startDestination = Route.HomeGraph
+            startDestination = Route.AuthGraph
         ) {
-            navigation<Route.HomeGraph>(
-                startDestination = Route.NewsList
+            navigation<Route.AuthGraph>(
+                startDestination = Route.Login
             ) {
-                composable<Route.NewsList> {
+                composable<Route.Login> {
 
+                    LoginScreenRoot(
+                        onLoginSuccess = {
+                            navController.navigate(Route.HomeGraph) {
+                                popUpTo(Route.AuthGraph) {
+                                    inclusive = true
+                                }
+                            }
+                        }
+                    )
+                }
+            }
+            navigation<Route.HomeGraph>(
+                startDestination = Route.Home
+            ) {
+                composable<Route.Home> {
+                    HomeScreenRoot()
+                }
+                composable<Route.NewsList> {
+                    NewsListScreenRoot()
                 }
                 composable<Route.NewsDetail> {
-
                 }
             }
         }

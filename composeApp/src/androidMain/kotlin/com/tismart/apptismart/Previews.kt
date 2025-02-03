@@ -11,11 +11,14 @@ import com.tismart.apptismart.auth.presentation.login.LoginState
 import com.tismart.apptismart.core.presentation.PoppinsTypography
 import com.tismart.apptismart.home.presentation.HomeScreen
 import com.tismart.apptismart.home.presentation.HomeState
+import com.tismart.apptismart.home.presentation.components.HomeChatBot
 import com.tismart.apptismart.news.News
 import com.tismart.apptismart.news.presentation.news_detail.NewsDetailScreen
 import com.tismart.apptismart.news.presentation.news_detail.NewsDetailState
 import com.tismart.apptismart.news.presentation.news_list.NewsListScreen
 import com.tismart.apptismart.news.presentation.news_list.NewsListState
+import com.tismart.apptismart.profile.presentation.ProfileScreen
+import com.tismart.apptismart.profile.presentation.ProfileState
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.news_card
 
@@ -100,6 +103,38 @@ private fun NewsDetailScreenPreview() {
                     title = "Teletrabajo del 11 al 13 de noviembre",
                     description = "El Gobierno dispuso este viernes que los trabajadores del sector público de Lima Metropolitana, la provincia de Huaral y la provincia Constitucional del Callao realice teletrabajo los días lunes 11 martes 12 y miércoles 13 de noviembre del 2024.\n\nEllo con motivo de la realización de la Cumbre del Foro de Cooperación Económica Asia-Pacífico (APEC). Al respecto, Franco Muschi, socio del Departamento Laboral de Garrigues, comentó a Gestión sobre las opciones que tienen los empleadores y trabajadores en este contexto."
                 ),
+                onAction = {}
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun HomeChatBotScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            HomeChatBot()
+
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun ProfileScreenPreview() {
+    MaterialTheme {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            ProfileScreen(
+                state = ProfileState(),
                 onAction = {}
             )
         }

@@ -29,3 +29,7 @@ val Amarillo = Color(0xFFFFC300)
 
 // Circle
 val NeutralDark = Color(0xFF3B3C3D)
+
+// Chat
+val PrimarioLightest = Color(0xFFFFF4E8)
+val SecundarioLightest = Color(0xFFE0CFFF)

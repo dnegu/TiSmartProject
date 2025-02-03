@@ -47,11 +47,20 @@ import tismartproject.composeapp.generated.resources.visibility_on
 
 @Composable
 fun LoginScreenRoot(
+    onLoginSuccess: () -> Unit,
     viewModel: LoginViewModel = koinViewModel(),
 ) {
     LoginScreen(
         state = viewModel.state,
-        onAction = viewModel::onAction
+        onAction = { action ->
+            when (action) {
+                LoginAction.OnLoginClick -> {
+                    onLoginSuccess()
+                }
+                else -> Unit
+            }
+            viewModel.onAction(action)
+        }
     )
 }
 
