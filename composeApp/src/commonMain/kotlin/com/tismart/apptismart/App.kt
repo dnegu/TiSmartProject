@@ -1,37 +1,92 @@
 package com.tismart.apptismart
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import org.jetbrains.compose.resources.painterResource
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import org.jetbrains.compose.ui.tooling.preview.Preview
-
-import tismartproject.composeapp.generated.resources.Res
-import tismartproject.composeapp.generated.resources.compose_multiplatform
 
 @Composable
 @Preview
-fun App() {
-    MaterialTheme {
-        var showContent by remember { mutableStateOf(false) }
-        Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-            Button(onClick = { showContent = !showContent }) {
-                Text("Click me!")
+internal fun App() {
+    val navController = rememberNavController()
+    NavHost(navController, startDestination = "login") {
+        composable("login") { LoginScreen(navController) }
+        composable("home") { HomeScreen(navController) }
+    }
+}
+
+@Composable
+fun LoginScreen(navController: NavController) {
+    var dni by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var errorMessage by remember { mutableStateOf("") }
+
+    Column(modifier = Modifier.padding(16.dp)) {
+        Text("Login", style = MaterialTheme.typography.h1)
+        Spacer(modifier = Modifier.height(8.dp))
+
+        OutlinedTextField(
+            value = dni,
+            onValueChange = { dni = it },
+            label = { Text("DNI") },
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        OutlinedTextField(
+            value = password,
+            onValueChange = { password = it },
+            label = { Text("Password") },
+            visualTransformation = PasswordVisualTransformation(),
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        if (errorMessage.isNotEmpty()) {
+            Text(errorMessage, color = MaterialTheme.colors.onError)
+        }
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Button(onClick = {
+            if (dni == "47474747" && password == "Admin123") {
+                navController.navigate("home")
+            } else {
+                errorMessage = "Credenciales incorrectas"
             }
-            AnimatedVisibility(showContent) {
-                val greeting = remember { Greeting().greet() }
-                Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                    Image(painterResource(Res.drawable.compose_multiplatform), null)
-                    Text("Compose: $greeting")
-                }
-            }
+        }, modifier = Modifier.fillMaxWidth()) {
+            Text("Iniciar sesión")
+        }
+    }
+}
+
+@Composable
+fun HomeScreen(navController: NavController) {
+    Column(modifier = Modifier.padding(16.dp)) {
+        Text("Hola David", style = MaterialTheme.typography.h1)
+        Spacer(modifier = Modifier.height(8.dp))
+        Button(onClick = { navController.popBackStack() }) {
+            Text("Volver")
         }
     }
 }
