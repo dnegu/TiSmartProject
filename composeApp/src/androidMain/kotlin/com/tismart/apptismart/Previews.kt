@@ -6,23 +6,25 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.tismart.apptismart.auth.presentation.login.LoginScreen
-import com.tismart.apptismart.auth.presentation.login.LoginState
+import com.tismart.apptismart.features.auth.presentation.login.LoginScreen
+import com.tismart.apptismart.features.auth.presentation.login.LoginState
 import com.tismart.apptismart.core.presentation.PoppinsTypography
-import com.tismart.apptismart.home.presentation.HomeScreen
-import com.tismart.apptismart.home.presentation.HomeState
-import com.tismart.apptismart.home.presentation.components.HomeChatBot
-import com.tismart.apptismart.news.News
-import com.tismart.apptismart.news.presentation.news_detail.NewsDetailScreen
-import com.tismart.apptismart.news.presentation.news_detail.NewsDetailState
-import com.tismart.apptismart.news.presentation.news_list.NewsListScreen
-import com.tismart.apptismart.news.presentation.news_list.NewsListState
-import com.tismart.apptismart.profile.presentation.edit_photo.ProfileEditPhotoScreen
-import com.tismart.apptismart.profile.presentation.home.ProfileScreen
-import com.tismart.apptismart.profile.presentation.home.ProfileState
-import com.tismart.apptismart.profile.presentation.my_data.ProfileMyDataScreen
+import com.tismart.apptismart.features.home.presentation.HomeScreen
+import com.tismart.apptismart.features.home.presentation.HomeState
+import com.tismart.apptismart.features.home.presentation.components.HomeChatBot
+import com.tismart.apptismart.features.home.presentation.components.HomeTiSmartBuddyDialog
+import com.tismart.apptismart.features.news.News
+import com.tismart.apptismart.features.news.presentation.news_detail.NewsDetailScreen
+import com.tismart.apptismart.features.news.presentation.news_detail.NewsDetailState
+import com.tismart.apptismart.features.news.presentation.news_list.NewsListScreen
+import com.tismart.apptismart.features.news.presentation.news_list.NewsListState
+import com.tismart.apptismart.features.profile.presentation.edit_photo.ProfileEditPhotoScreen
+import com.tismart.apptismart.features.profile.presentation.home.ProfileScreen
+import com.tismart.apptismart.features.profile.presentation.home.ProfileState
+import com.tismart.apptismart.features.profile.presentation.my_data.ProfileMyDataScreen
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.news_card
+import tismartproject.composeapp.generated.resources.profile_avatar
 
 private val news = (1..10).map {
     News(
@@ -175,3 +177,22 @@ private fun ProfileEditPhotoScreenPreview() {
     }
 }
 
+@Preview
+@Composable
+private fun HomeTiSmartBuddyDialogPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            HomeScreen(
+                state = HomeState(
+                    showTiSmartBuddyDialog = true
+                ),
+                onAction = {}
+            )
+        }
+    }
+}
