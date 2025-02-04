@@ -1,4 +1,4 @@
-package com.tismart.apptismart.profile.presentation
+package com.tismart.apptismart.profile.presentation.home
 
 import com.tismart.apptismart.core.presentation.UiText
 

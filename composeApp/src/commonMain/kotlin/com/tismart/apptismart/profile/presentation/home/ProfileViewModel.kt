@@ -1,4 +1,4 @@
-package com.tismart.apptismart.profile.presentation
+package com.tismart.apptismart.profile.presentation.home
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

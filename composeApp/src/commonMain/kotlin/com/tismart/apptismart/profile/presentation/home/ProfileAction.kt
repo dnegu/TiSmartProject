@@ -1,4 +1,4 @@
-package com.tismart.apptismart.profile.presentation
+package com.tismart.apptismart.profile.presentation.home
 
 sealed interface ProfileAction {
     data object OnBackClick : ProfileAction

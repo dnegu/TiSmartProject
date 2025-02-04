@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -35,6 +36,7 @@ fun TiSmartTopBar(
         modifier = modifier
             .fillMaxWidth()
             .background(SecundarioDark)
+            .statusBarsPadding()
             .padding(horizontal = 24.dp, vertical = 8.dp)
     ) {
         IconButton(

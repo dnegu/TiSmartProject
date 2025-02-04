@@ -17,8 +17,10 @@ import com.tismart.apptismart.news.presentation.news_detail.NewsDetailScreen
 import com.tismart.apptismart.news.presentation.news_detail.NewsDetailState
 import com.tismart.apptismart.news.presentation.news_list.NewsListScreen
 import com.tismart.apptismart.news.presentation.news_list.NewsListState
-import com.tismart.apptismart.profile.presentation.ProfileScreen
-import com.tismart.apptismart.profile.presentation.ProfileState
+import com.tismart.apptismart.profile.presentation.edit_photo.ProfileEditPhotoScreen
+import com.tismart.apptismart.profile.presentation.home.ProfileScreen
+import com.tismart.apptismart.profile.presentation.home.ProfileState
+import com.tismart.apptismart.profile.presentation.my_data.ProfileMyDataScreen
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.news_card
 
@@ -128,7 +130,9 @@ private fun HomeChatBotScreenPreview() {
 @Preview
 @Composable
 private fun ProfileScreenPreview() {
-    MaterialTheme {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
@@ -140,3 +144,34 @@ private fun ProfileScreenPreview() {
         }
     }
 }
+
+@Preview
+@Composable
+private fun ProfileMyDataScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            ProfileMyDataScreen()
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun ProfileEditPhotoScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            ProfileEditPhotoScreen()
+        }
+    }
+}
+
