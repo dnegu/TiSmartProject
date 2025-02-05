@@ -1,4 +1,4 @@
-package com.tismart.apptismart.features.notifications
+package com.tismart.apptismart.features.notifications.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -10,14 +10,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.tismart.apptismart.core.presentation.components.TiSmartTopBar
-import com.tismart.apptismart.features.notifications.components.NotificationListItem
-import com.tismart.apptismart.features.notifications.components.NotificationsHeader
+import com.tismart.apptismart.features.notifications.presentation.components.NotificationListItem
+import com.tismart.apptismart.features.notifications.presentation.components.NotificationsHeader
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.notifications_icon
 
 @Composable
-fun NotificationsScreen(modifier: Modifier = Modifier) {
+fun NotificationsScreen() {
     Column(
         modifier = Modifier.fillMaxSize()
     ) {

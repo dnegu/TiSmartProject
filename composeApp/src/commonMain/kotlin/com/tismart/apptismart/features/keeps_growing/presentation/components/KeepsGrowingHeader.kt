@@ -1,10 +1,11 @@
-package com.tismart.apptismart.features.notifications.components
+package com.tismart.apptismart.features.keeps_growing.presentation.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -22,8 +23,10 @@ import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.arrow_left
 
 @Composable
-fun NotificationsHeader(
+fun KeepsGrowingHeader(
+    title: String? = null,
     onMenuClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
     onBackClick: () -> Unit
 ) {
     Column(
@@ -32,12 +35,13 @@ fun NotificationsHeader(
             .background(SecundarioDark)
     ) {
         TiSmartTopBar(
-            onMenuClick = onMenuClick
+            onMenuClick = onMenuClick,
+            onNotificationsClick = onNotificationsClick
         )
 
         IconButton(
             onClick = onBackClick,
-            modifier = Modifier.padding(start = 24.dp)
+            modifier = Modifier.padding(start = 18.dp)
         ) {
             Icon(
                 painter = painterResource(Res.drawable.arrow_left),
@@ -45,12 +49,17 @@ fun NotificationsHeader(
                 tint = PrimarioMedium
             )
         }
-        Text(
-            text = "Notificaciones",
-            modifier = Modifier.padding(start = 36.dp, bottom = 16.dp),
-            color = Color.White,
-            fontWeight = FontWeight.Medium,
-            style = MaterialTheme.typography.titleLarge
-        )
+
+        if (title != null) {
+            Text(
+                text = title,
+                modifier = Modifier.padding(start = 30.dp, bottom = 16.dp),
+                color = Color.White,
+                fontWeight = FontWeight.Medium,
+                style = MaterialTheme.typography.titleLarge
+            )
+        } else {
+            Spacer(modifier = Modifier.height(8.dp))
+        }
     }
 }

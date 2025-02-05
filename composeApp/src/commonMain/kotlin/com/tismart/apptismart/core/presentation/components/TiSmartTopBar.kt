@@ -38,7 +38,7 @@ fun TiSmartTopBar(
             .fillMaxWidth()
             .background(SecundarioDark)
             .statusBarsPadding()
-            .padding(horizontal = 24.dp, vertical = 8.dp)
+            .padding(horizontal = 18.dp, vertical = 8.dp)
     ) {
         IconButton(
             onClick = onMenuClick,
@@ -83,7 +83,7 @@ fun TiSmartTopBar(
             .fillMaxWidth()
             .background(SecundarioDark)
             .statusBarsPadding()
-            .padding(horizontal = 24.dp, vertical = 8.dp)
+            .padding(horizontal = 18.dp, vertical = 8.dp)
     ) {
         IconButton(
             onClick = onMenuClick,

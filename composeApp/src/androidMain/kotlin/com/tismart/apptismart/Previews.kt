@@ -12,20 +12,21 @@ import com.tismart.apptismart.core.presentation.PoppinsTypography
 import com.tismart.apptismart.features.home.presentation.HomeScreen
 import com.tismart.apptismart.features.home.presentation.HomeState
 import com.tismart.apptismart.features.home.presentation.components.HomeChatBot
-import com.tismart.apptismart.features.home.presentation.components.HomeTiSmartBuddyDialog
+import com.tismart.apptismart.features.keeps_growing.presentation.celebrate_your_evolution.CelebrateYourEvolutionDetailScreen
+import com.tismart.apptismart.features.keeps_growing.presentation.celebrate_your_evolution.CelebrateYourEvolutionListScreen
+import com.tismart.apptismart.features.keeps_growing.presentation.home.KeepsGrowingScreen
 import com.tismart.apptismart.features.news.News
 import com.tismart.apptismart.features.news.presentation.news_detail.NewsDetailScreen
 import com.tismart.apptismart.features.news.presentation.news_detail.NewsDetailState
 import com.tismart.apptismart.features.news.presentation.news_list.NewsListScreen
 import com.tismart.apptismart.features.news.presentation.news_list.NewsListState
-import com.tismart.apptismart.features.notifications.NotificationsScreen
+import com.tismart.apptismart.features.notifications.presentation.NotificationsScreen
 import com.tismart.apptismart.features.profile.presentation.edit_photo.ProfileEditPhotoScreen
 import com.tismart.apptismart.features.profile.presentation.home.ProfileScreen
 import com.tismart.apptismart.features.profile.presentation.home.ProfileState
 import com.tismart.apptismart.features.profile.presentation.my_data.ProfileMyDataScreen
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.news_card
-import tismartproject.composeapp.generated.resources.profile_avatar
 
 private val news = (1..10).map {
     News(
@@ -209,6 +210,51 @@ private fun NotificationsScreenPreview() {
             color = MaterialTheme.colorScheme.background
         ) {
             NotificationsScreen()
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun KeepsGrowingScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            KeepsGrowingScreen()
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun CelebrateYourEvolutionListScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            CelebrateYourEvolutionListScreen()
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun CelebrateYourEvolutionDetailScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            CelebrateYourEvolutionDetailScreen()
         }
     }
 }

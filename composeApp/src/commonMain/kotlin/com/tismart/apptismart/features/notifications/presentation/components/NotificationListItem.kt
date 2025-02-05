@@ -1,4 +1,4 @@
-package com.tismart.apptismart.features.notifications.components
+package com.tismart.apptismart.features.notifications.presentation.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row

@@ -16,6 +16,7 @@ val NeutralLight = Color(0xFFEFF0F0)
 val NeutralDarkMedium = Color(0xFF9C9C9C)
 val PrimarioMedium = Color(0xFFFD8200)
 val SecundarioMedium = Color(0xFF4103BA)
+val CriticalMedium = Color(0xFFE5050D)
 
 // TextField
 val NeutralMedium = Color(0xFFCFCFD0)
