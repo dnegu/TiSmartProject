@@ -3,6 +3,7 @@ package com.tismart.apptismart.core.presentation.components
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -26,7 +27,7 @@ import tismartproject.composeapp.generated.resources.logo_topbar
 
 @Composable
 fun TiSmartTopBar(
-    onBackClick: () -> Unit,
+    onMenuClick: () -> Unit,
     onNotificationsClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -40,7 +41,7 @@ fun TiSmartTopBar(
             .padding(horizontal = 24.dp, vertical = 8.dp)
     ) {
         IconButton(
-            onClick = onBackClick,
+            onClick = onMenuClick,
         ) {
             Icon(
                 painter = painterResource(resource = Res.drawable.ic_menu),
@@ -67,5 +68,41 @@ fun TiSmartTopBar(
                 modifier = Modifier.size(24.dp)
             )
         }
+    }
+}
+
+@Composable
+fun TiSmartTopBar(
+    onMenuClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween,
+        modifier = modifier
+            .fillMaxWidth()
+            .background(SecundarioDark)
+            .statusBarsPadding()
+            .padding(horizontal = 24.dp, vertical = 8.dp)
+    ) {
+        IconButton(
+            onClick = onMenuClick,
+        ) {
+            Icon(
+                painter = painterResource(resource = Res.drawable.ic_menu),
+                contentDescription = "Back",
+                tint = Color.White,
+                modifier = Modifier.size(24.dp)
+            )
+        }
+
+        Image(
+            painter = painterResource(resource = Res.drawable.logo_topbar),
+            contentDescription = null,
+            contentScale = ContentScale.FillWidth,
+            modifier = Modifier.width(100.dp)
+        )
+
+        Box(modifier = Modifier.size(24.dp))
     }
 }

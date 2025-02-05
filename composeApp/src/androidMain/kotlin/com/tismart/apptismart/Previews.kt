@@ -18,6 +18,7 @@ import com.tismart.apptismart.features.news.presentation.news_detail.NewsDetailS
 import com.tismart.apptismart.features.news.presentation.news_detail.NewsDetailState
 import com.tismart.apptismart.features.news.presentation.news_list.NewsListScreen
 import com.tismart.apptismart.features.news.presentation.news_list.NewsListState
+import com.tismart.apptismart.features.notifications.NotificationsScreen
 import com.tismart.apptismart.features.profile.presentation.edit_photo.ProfileEditPhotoScreen
 import com.tismart.apptismart.features.profile.presentation.home.ProfileScreen
 import com.tismart.apptismart.features.profile.presentation.home.ProfileState
@@ -193,6 +194,21 @@ private fun HomeTiSmartBuddyDialogPreview() {
                 ),
                 onAction = {}
             )
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun NotificationsScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            NotificationsScreen()
         }
     }
 }

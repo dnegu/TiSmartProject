@@ -40,7 +40,7 @@ fun NewsListScreen(
             .background(Color.White)
     ) {
         TiSmartTopBar(
-            onBackClick = { onAction(NewsListAction.OnBackClick) },
+            onMenuClick = { onAction(NewsListAction.OnBackClick) },
             onNotificationsClick = { onAction(NewsListAction.OnNotificationsClick) }
         )
         NewsListHeader(

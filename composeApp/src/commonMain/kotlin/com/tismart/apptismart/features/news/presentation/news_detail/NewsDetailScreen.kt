@@ -1,15 +1,12 @@
 package com.tismart.apptismart.features.news.presentation.news_detail
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,8 +21,6 @@ import com.tismart.apptismart.core.presentation.components.TiSmartTopBar
 import com.tismart.apptismart.features.news.presentation.news_detail.components.NewsDetailHeader
 import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.viewmodel.koinViewModel
-import tismartproject.composeapp.generated.resources.Res
-import tismartproject.composeapp.generated.resources.arrow_left
 
 @Composable
 fun NewsDetailScreenRoot(
@@ -46,7 +41,7 @@ fun NewsDetailScreen(
         modifier = Modifier.fillMaxSize()
     ) {
         TiSmartTopBar(
-            onBackClick = { onAction(NewsDetailAction.OnBackClick) },
+            onMenuClick = { onAction(NewsDetailAction.OnBackClick) },
             onNotificationsClick = { onAction(NewsDetailAction.OnNotificationsClick) }
         )
 

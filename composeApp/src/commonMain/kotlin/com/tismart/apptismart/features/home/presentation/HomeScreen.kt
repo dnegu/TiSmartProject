@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -15,8 +16,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material3.ButtonDefaults
@@ -40,6 +43,7 @@ import com.tismart.apptismart.core.presentation.PrimarioMedium
 import com.tismart.apptismart.core.presentation.SecundarioMedium
 import com.tismart.apptismart.core.presentation.components.TiSmartTopBar
 import com.tismart.apptismart.features.home.presentation.components.HomeCard
+import com.tismart.apptismart.features.home.presentation.components.HomeGridWithCards
 import com.tismart.apptismart.features.home.presentation.components.HomePager
 import com.tismart.apptismart.features.home.presentation.components.HomeTiSmartBuddyDialog
 import org.jetbrains.compose.resources.painterResource
@@ -73,10 +77,12 @@ fun HomeScreen(
         modifier = Modifier.fillMaxSize()
     ) {
         Column(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
         ) {
             TiSmartTopBar(
-                onBackClick = { onAction(HomeAction.OnBackClick) },
+                onMenuClick = { onAction(HomeAction.OnBackClick) },
                 onNotificationsClick = { onAction(HomeAction.OnNotificationsClick) }
             )
 
@@ -108,7 +114,6 @@ fun HomeScreen(
                 modifier = Modifier
                     .padding(top = 24.dp)
                     .fillMaxWidth()
-                    .weight(1f)
                     .background(HomeBackground)
                     .padding(top = 30.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -146,44 +151,12 @@ fun HomeScreen(
                     )
                 }
 
-                LazyVerticalGrid(
-                    columns = GridCells.Fixed(2),
-                    contentPadding = PaddingValues(
-                        horizontal = 18.dp,
-                        vertical = 16.dp
-                    ),
-                    horizontalArrangement = Arrangement.spacedBy(12.dp),
-                    verticalArrangement = Arrangement.spacedBy(12.dp),
-                ) {
-                    item {
-                        HomeCard(
-                            title = "Seguir creciendo",
-                            image = Res.drawable.star_badge,
-                            onClick = {}
-                        )
-                    }
-                    item {
-                        HomeCard(
-                            title = "Potenciar mi aprendizaje",
-                            image = Res.drawable.graduation_hat,
-                            onClick = {}
-                        )
-                    }
-                    item {
-                        HomeCard(
-                            title = "Buscar nuevas vacantes",
-                            image = Res.drawable.check_profile,
-                            onClick = {}
-                        )
-                    }
-                    item {
-                        HomeCard(
-                            title = "Descubrir mis beneficios",
-                            image = Res.drawable.gift_box,
-                            onClick = {}
-                        )
-                    }
-                }
+                HomeGridWithCards(
+                    onKeepGrowingClick = { onAction(HomeAction.OnKeepGrowingClick) },
+                    onEnhanceLearningClick = { onAction(HomeAction.OnEnhanceLearningClick) },
+                    onDiscoverNewVacanciesClick = { onAction(HomeAction.OnDiscoverNewVacanciesClick) },
+                    onDiscoverMyBenefitsClick = { onAction(HomeAction.OnDiscoverMyBenefitsClick) }
+                )
 
             }
         }
