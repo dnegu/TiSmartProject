@@ -7,14 +7,12 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.tismart.apptismart.features.keeps_growing.presentation.components.CelebrateYourEvolutionListCard
-import com.tismart.apptismart.features.keeps_growing.presentation.components.KeepsGrowingHeader
+import com.tismart.apptismart.core.presentation.components.TiSmartHeader
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.keeps_growing_card
 
@@ -25,7 +23,7 @@ fun CelebrateYourEvolutionListScreen() {
             .fillMaxSize()
             .background(Color.White)
     ) {
-        KeepsGrowingHeader(
+        TiSmartHeader(
             title = "Celebramos tu evolución \uD83C\uDF89",
             onMenuClick = {},
             onNotificationsClick = {},

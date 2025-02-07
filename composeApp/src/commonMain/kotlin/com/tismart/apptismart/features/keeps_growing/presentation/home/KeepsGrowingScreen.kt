@@ -19,7 +19,7 @@ import com.tismart.apptismart.core.presentation.HomeBackground
 import com.tismart.apptismart.core.presentation.NeutralDark
 import com.tismart.apptismart.core.presentation.SecundarioDark
 import com.tismart.apptismart.features.keeps_growing.presentation.components.KeepsGrowingCard
-import com.tismart.apptismart.features.keeps_growing.presentation.components.KeepsGrowingHeader
+import com.tismart.apptismart.core.presentation.components.TiSmartHeader
 import com.tismart.apptismart.features.keeps_growing.presentation.components.KeepsGrowingPager
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.keeps_growing_card1
@@ -34,7 +34,7 @@ fun KeepsGrowingScreen() {
             .background(Color.White)
             .verticalScroll(rememberScrollState())
     ) {
-        KeepsGrowingHeader(
+        TiSmartHeader(
             title = "Sigue creciendo",
             onMenuClick = {},
             onNotificationsClick = {},

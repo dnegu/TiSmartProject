@@ -11,7 +11,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.tismart.apptismart.features.keeps_growing.presentation.components.KeepsGrowingHeader
+import com.tismart.apptismart.core.presentation.components.TiSmartHeader
+import com.tismart.apptismart.features.keeps_growing.presentation.components.OurMentorsListCard
+import tismartproject.composeapp.generated.resources.Res
+import tismartproject.composeapp.generated.resources.explore_mentors_card
 
 @Composable
 fun OurMentorsListScreen() {
@@ -20,7 +23,7 @@ fun OurMentorsListScreen() {
             .fillMaxSize()
             .background(Color.White)
     ) {
-        KeepsGrowingHeader(
+        TiSmartHeader(
             title = "Nuestros mentores",
             onMenuClick = {},
             onNotificationsClick = {},
@@ -32,7 +35,12 @@ fun OurMentorsListScreen() {
             contentPadding = PaddingValues(horizontal = 30.dp, vertical = 24.dp),
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
-
+            items(10) {
+                OurMentorsListCard(
+                    image = Res.drawable.explore_mentors_card,
+                    onCardClick = {}
+                )
+            }
         }
     }
 }

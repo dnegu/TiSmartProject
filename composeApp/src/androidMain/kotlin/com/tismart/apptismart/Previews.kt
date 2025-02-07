@@ -9,12 +9,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.tismart.apptismart.features.auth.presentation.login.LoginScreen
 import com.tismart.apptismart.features.auth.presentation.login.LoginState
 import com.tismart.apptismart.core.presentation.PoppinsTypography
+import com.tismart.apptismart.features.discover_benefits.DiscoverNewBenefitsScreen
+import com.tismart.apptismart.features.discover_benefits.DiscoverYourBenefitsScreen
 import com.tismart.apptismart.features.home.presentation.HomeScreen
 import com.tismart.apptismart.features.home.presentation.HomeState
 import com.tismart.apptismart.features.home.presentation.components.HomeChatBot
 import com.tismart.apptismart.features.keeps_growing.presentation.celebrate_your_evolution.CelebrateYourEvolutionDetailScreen
 import com.tismart.apptismart.features.keeps_growing.presentation.celebrate_your_evolution.CelebrateYourEvolutionListScreen
+import com.tismart.apptismart.features.keeps_growing.presentation.explore_mentors.ApplicationFormScreen
 import com.tismart.apptismart.features.keeps_growing.presentation.explore_mentors.ExploreMentorsScreen
+import com.tismart.apptismart.features.keeps_growing.presentation.explore_mentors.OurMentorsDetailScreen
 import com.tismart.apptismart.features.keeps_growing.presentation.explore_mentors.OurMentorsListScreen
 import com.tismart.apptismart.features.keeps_growing.presentation.growth_path.GrowthPath
 import com.tismart.apptismart.features.keeps_growing.presentation.growth_path.GrowthPathDetailScreen
@@ -363,3 +367,47 @@ private fun OurMentorsScreenPreview() {
     }
 }
 
+@Preview
+@Composable
+private fun OurMentorsDetailScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            OurMentorsDetailScreen()
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun ApplicationFormScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            ApplicationFormScreen()
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun DiscoverNewBenefitsScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            DiscoverNewBenefitsScreen()
+        }
+    }
+}

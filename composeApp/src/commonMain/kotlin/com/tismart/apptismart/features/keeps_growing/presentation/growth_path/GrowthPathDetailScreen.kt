@@ -15,7 +15,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -30,7 +29,7 @@ import com.tismart.apptismart.core.presentation.NeutralDarkest
 import com.tismart.apptismart.core.presentation.PrimarioMedium
 import com.tismart.apptismart.core.presentation.SecundarioDark
 import com.tismart.apptismart.features.keeps_growing.presentation.components.GrowthPathDetailMesh
-import com.tismart.apptismart.features.keeps_growing.presentation.components.KeepsGrowingHeader
+import com.tismart.apptismart.core.presentation.components.TiSmartHeader
 import org.jetbrains.compose.resources.painterResource
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.growth_path_flag
@@ -48,7 +47,7 @@ fun GrowthPathDetailScreen(
             .background(Color.White)
             .verticalScroll(rememberScrollState())
     ) {
-        KeepsGrowingHeader(
+        TiSmartHeader(
             title = growthPath.title,
             onMenuClick = {},
             onNotificationsClick = {},

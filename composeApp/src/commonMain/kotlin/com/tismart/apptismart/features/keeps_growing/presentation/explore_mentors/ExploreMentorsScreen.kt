@@ -26,7 +26,7 @@ import com.tismart.apptismart.core.presentation.HomeBackground
 import com.tismart.apptismart.core.presentation.NeutralDarkest
 import com.tismart.apptismart.core.presentation.components.TISmartActionButton
 import com.tismart.apptismart.features.keeps_growing.presentation.components.ExploreMentorsPager
-import com.tismart.apptismart.features.keeps_growing.presentation.components.KeepsGrowingHeader
+import com.tismart.apptismart.core.presentation.components.TiSmartHeader
 import org.jetbrains.compose.resources.painterResource
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.business_man
@@ -39,7 +39,7 @@ fun ExploreMentorsScreen() {
             .background(Color.White)
             .verticalScroll(rememberScrollState())
     ) {
-        KeepsGrowingHeader(
+        TiSmartHeader(
             title = "Explora mentores",
             onMenuClick = {},
             onNotificationsClick = {},

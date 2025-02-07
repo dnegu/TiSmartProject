@@ -41,7 +41,7 @@ import tismartproject.composeapp.generated.resources.keeps_growing_card
 fun CelebrateYourEvolutionDetailPager() {
     Column(
         modifier = Modifier.background(HomeBackground).padding(vertical = 30.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
         Text(
             text = "Descubre los logros de tus compañeros",
@@ -54,7 +54,7 @@ fun CelebrateYourEvolutionDetailPager() {
         LazyRow(
             modifier = Modifier
                 .fillMaxWidth(),
-            contentPadding = PaddingValues(start = 30.dp),
+            contentPadding = PaddingValues(start = 30.dp, bottom = 30.dp),
             horizontalArrangement = Arrangement.spacedBy(20.dp)
         ) {
             items(5) {
@@ -123,5 +123,4 @@ fun CelebrateYourEvolutionDetailPager() {
             }
         }
     }
-
 }

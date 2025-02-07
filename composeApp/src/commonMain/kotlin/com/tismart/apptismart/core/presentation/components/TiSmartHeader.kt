@@ -1,4 +1,4 @@
-package com.tismart.apptismart.features.keeps_growing.presentation.components
+package com.tismart.apptismart.core.presentation.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -17,13 +17,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.tismart.apptismart.core.presentation.PrimarioMedium
 import com.tismart.apptismart.core.presentation.SecundarioDark
-import com.tismart.apptismart.core.presentation.components.TiSmartTopBar
 import org.jetbrains.compose.resources.painterResource
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.arrow_left
 
 @Composable
-fun KeepsGrowingHeader(
+fun TiSmartHeader(
     title: String? = null,
     onMenuClick: () -> Unit,
     onNotificationsClick: () -> Unit,

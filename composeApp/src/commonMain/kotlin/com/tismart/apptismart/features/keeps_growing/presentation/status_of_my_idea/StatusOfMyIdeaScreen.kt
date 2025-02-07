@@ -1,7 +1,6 @@
 package com.tismart.apptismart.features.keeps_growing.presentation.status_of_my_idea
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,7 +22,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.tismart.apptismart.core.presentation.HomeBackground
 import com.tismart.apptismart.core.presentation.NeutralDark
-import com.tismart.apptismart.features.keeps_growing.presentation.components.KeepsGrowingHeader
+import com.tismart.apptismart.core.presentation.NeutralDarkest
+import com.tismart.apptismart.core.presentation.components.TiSmartHeader
 import com.tismart.apptismart.features.keeps_growing.presentation.components.StatusOfMyIdeaTracking
 import com.tismart.apptismart.features.keeps_growing.presentation.innovate_and_transform.ProposalStatus
 import org.jetbrains.compose.resources.painterResource
@@ -39,7 +39,7 @@ fun StatusOfMyIdeaScreen(
             .background(Color.White)
             .verticalScroll(rememberScrollState())
     ) {
-        KeepsGrowingHeader(
+        TiSmartHeader(
             title = "Estado de mi idea",
             onMenuClick = {},
             onNotificationsClick = {},
@@ -53,6 +53,7 @@ fun StatusOfMyIdeaScreen(
         ) {
             Text(
                 text = "¡Aquí puedes ver el progreso de tu idea de innovación y transformación! \uD83D\uDE80",
+                color = NeutralDarkest,
                 style = MaterialTheme.typography.bodyMedium
             )
 

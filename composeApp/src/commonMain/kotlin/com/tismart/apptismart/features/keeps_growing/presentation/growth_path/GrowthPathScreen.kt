@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.tismart.apptismart.core.presentation.SecundarioDark
 import com.tismart.apptismart.features.keeps_growing.presentation.components.GrowthPathMap
 import com.tismart.apptismart.features.keeps_growing.presentation.components.GrowthPathMesh
-import com.tismart.apptismart.features.keeps_growing.presentation.components.KeepsGrowingHeader
+import com.tismart.apptismart.core.presentation.components.TiSmartHeader
 
 @Composable
 fun GrowthPathScreen() {
@@ -25,7 +25,7 @@ fun GrowthPathScreen() {
             .background(SecundarioDark)
             .verticalScroll(rememberScrollState())
     ) {
-        KeepsGrowingHeader(
+        TiSmartHeader(
             title = "Tu ruta de crecimiento",
             onMenuClick = {},
             onNotificationsClick = {},

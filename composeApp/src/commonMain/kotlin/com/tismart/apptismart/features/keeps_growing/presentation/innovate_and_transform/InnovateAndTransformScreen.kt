@@ -32,7 +32,7 @@ import com.tismart.apptismart.core.presentation.NeutralDarkest
 import com.tismart.apptismart.core.presentation.PrimarioMedium
 import com.tismart.apptismart.features.keeps_growing.presentation.components.InnovateAndTransformProposalSentDialog
 import com.tismart.apptismart.features.keeps_growing.presentation.components.InnovateAndTransformTab
-import com.tismart.apptismart.features.keeps_growing.presentation.components.KeepsGrowingHeader
+import com.tismart.apptismart.core.presentation.components.TiSmartHeader
 import org.jetbrains.compose.resources.painterResource
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.download
@@ -48,7 +48,7 @@ fun InnovateAndTransformScreen() {
             .background(Color.White)
             .verticalScroll(rememberScrollState())
     ) {
-        KeepsGrowingHeader(
+        TiSmartHeader(
             title = "Innova y transforma",
             onMenuClick = {},
             onNotificationsClick = {},
@@ -61,6 +61,7 @@ fun InnovateAndTransformScreen() {
         ) {
             Text(
                 text = "¿Tienes una idea que puede transformar la empresa? \uD83D\uDCA1",
+                color = NeutralDarkest,
                 style = MaterialTheme.typography.bodyMedium
             )
 
