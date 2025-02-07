@@ -14,7 +14,15 @@ import com.tismart.apptismart.features.home.presentation.HomeState
 import com.tismart.apptismart.features.home.presentation.components.HomeChatBot
 import com.tismart.apptismart.features.keeps_growing.presentation.celebrate_your_evolution.CelebrateYourEvolutionDetailScreen
 import com.tismart.apptismart.features.keeps_growing.presentation.celebrate_your_evolution.CelebrateYourEvolutionListScreen
+import com.tismart.apptismart.features.keeps_growing.presentation.explore_mentors.ExploreMentorsScreen
+import com.tismart.apptismart.features.keeps_growing.presentation.explore_mentors.OurMentorsListScreen
+import com.tismart.apptismart.features.keeps_growing.presentation.growth_path.GrowthPath
+import com.tismart.apptismart.features.keeps_growing.presentation.growth_path.GrowthPathDetailScreen
+import com.tismart.apptismart.features.keeps_growing.presentation.growth_path.GrowthPathScreen
 import com.tismart.apptismart.features.keeps_growing.presentation.home.KeepsGrowingScreen
+import com.tismart.apptismart.features.keeps_growing.presentation.innovate_and_transform.InnovateAndTransformScreen
+import com.tismart.apptismart.features.keeps_growing.presentation.innovate_and_transform.ProposalStatus
+import com.tismart.apptismart.features.keeps_growing.presentation.status_of_my_idea.StatusOfMyIdeaScreen
 import com.tismart.apptismart.features.news.News
 import com.tismart.apptismart.features.news.presentation.news_detail.NewsDetailScreen
 import com.tismart.apptismart.features.news.presentation.news_detail.NewsDetailState
@@ -258,3 +266,100 @@ private fun CelebrateYourEvolutionDetailScreenPreview() {
         }
     }
 }
+
+@Preview
+@Composable
+private fun GrowthPathScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            GrowthPathScreen()
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun GrowthPathDetailScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            GrowthPathDetailScreen(
+                isAMan = true,
+                growthPath = GrowthPath.SemiSenior
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun InnovateAndTransformScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            InnovateAndTransformScreen()
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun StatusOfMyIdeaScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            StatusOfMyIdeaScreen(
+                projectName = "Mi proyecto",
+                status = ProposalStatus.UNDER_REVIEW
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun ExploreMentorsScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            ExploreMentorsScreen()
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun OurMentorsScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            OurMentorsListScreen()
+        }
+    }
+}
+

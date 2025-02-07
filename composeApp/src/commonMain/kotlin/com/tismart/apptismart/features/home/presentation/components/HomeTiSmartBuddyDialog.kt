@@ -106,7 +106,7 @@ fun HomeTiSmartBuddyDialog(
                     )
 
                     Button(
-                        onClick = { onCommunicateClick() },
+                        onClick = onCommunicateClick,
                         modifier = Modifier.fillMaxWidth().padding(top = 18.dp, bottom = 36.dp),
                         shape = MaterialTheme.shapes.extraSmall,
                         colors = ButtonDefaults.buttonColors(

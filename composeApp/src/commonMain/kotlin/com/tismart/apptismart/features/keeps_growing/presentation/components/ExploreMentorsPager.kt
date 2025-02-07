@@ -33,17 +33,19 @@ import androidx.compose.ui.unit.sp
 import com.tismart.apptismart.core.presentation.NeutralDark
 import com.tismart.apptismart.core.presentation.NeutralDarkest
 import com.tismart.apptismart.core.presentation.PrimarioMedium
+import com.tismart.apptismart.core.presentation.SecundarioDark
 import com.tismart.apptismart.core.presentation.SecundarioLightest
 import com.tismart.apptismart.core.presentation.SecundarioMedium
 import org.jetbrains.compose.resources.painterResource
 import tismartproject.composeapp.generated.resources.Res
+import tismartproject.composeapp.generated.resources.explore_mentors_card
 import tismartproject.composeapp.generated.resources.keeps_growing_card
 
 @Composable
-fun KeepsGrowingPager(
+fun ExploreMentorsPager(
     onSeeAllClick: () -> Unit
 ) {
-    KeepsGrowingPagerHeader(
+    ExploreMentorsPagerHeader(
         onSeeAllClick = onSeeAllClick
     )
 
@@ -66,7 +68,7 @@ fun KeepsGrowingPager(
                 )
             ) {
                 Image(
-                    painter = painterResource(Res.drawable.keeps_growing_card),
+                    painter = painterResource(Res.drawable.explore_mentors_card),
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
                     modifier = Modifier.fillMaxWidth().height(106.dp)
@@ -76,21 +78,19 @@ fun KeepsGrowingPager(
                     modifier = Modifier.padding(start = 10.dp, top = 10.dp, end = 10.dp, bottom = 14.dp),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(12.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.FavoriteBorder,
-                            contentDescription = null,
-                            tint = NeutralDarkest
-                        )
-                        Text(
-                            text = "10",
-                            color = NeutralDarkest,
-                            style = MaterialTheme.typography.labelLarge
-                        )
-                    }
+                    Text(
+                        text = "Angela Ramos",
+                        color = NeutralDarkest,
+                        fontWeight = FontWeight.SemiBold,
+                        style = MaterialTheme.typography.titleSmall
+                    )
+                    Text(
+                        text = "Experiencia de 3 años en UX, Angular e inteligencia.",
+                        color = NeutralDark,
+                        maxLines = 3,
+                        overflow = TextOverflow.Ellipsis,
+                        style = MaterialTheme.typography.bodySmall
+                    )
                     Text(
                         text = "UX Designer",
                         modifier = Modifier
@@ -101,19 +101,6 @@ fun KeepsGrowingPager(
                         fontWeight = FontWeight.SemiBold,
                         style = MaterialTheme.typography.labelSmall
                     )
-                    Text(
-                        text = "Carlina del Pilar",
-                        color = NeutralDarkest,
-                        fontWeight = FontWeight.SemiBold,
-                        style = MaterialTheme.typography.titleSmall
-                    )
-                    Text(
-                        text = "Por tu ascenso de Technical Leader a Subllalas blalbl blalsd bbasd vf dsada",
-                        color = NeutralDark,
-                        maxLines = 2,
-                        overflow = TextOverflow.Ellipsis,
-                        style = MaterialTheme.typography.bodySmall
-                    )
                 }
             }
         }
@@ -121,7 +108,7 @@ fun KeepsGrowingPager(
 }
 
 @Composable
-private fun KeepsGrowingPagerHeader(
+private fun ExploreMentorsPagerHeader(
     onSeeAllClick: () -> Unit
 ) {
     Column(
@@ -133,8 +120,8 @@ private fun KeepsGrowingPagerHeader(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "Celebramos tu evolución \uD83C\uDF89",
-                color = NeutralDarkest,
+                text = "Nuestros mentores",
+                color = SecundarioDark,
                 fontWeight = FontWeight.SemiBold,
                 fontSize = 18.sp,
                 style = MaterialTheme.typography.titleMedium
