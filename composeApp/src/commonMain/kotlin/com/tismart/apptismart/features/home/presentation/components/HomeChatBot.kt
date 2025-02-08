@@ -13,17 +13,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.KeyboardArrowDown
-import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -33,7 +29,6 @@ import androidx.compose.ui.unit.dp
 import com.tismart.apptismart.core.presentation.HomeBackground
 import com.tismart.apptismart.core.presentation.PrimarioLightest
 import com.tismart.apptismart.core.presentation.SecundarioDark
-import com.tismart.apptismart.core.presentation.SecundarioLight
 import com.tismart.apptismart.core.presentation.SecundarioLightest
 import org.jetbrains.compose.resources.painterResource
 import tismartproject.composeapp.generated.resources.Res

@@ -10,8 +10,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
-import com.tismart.apptismart.features.auth.presentation.login.LoginScreenRoot
 import com.tismart.apptismart.core.presentation.PoppinsTypography
+import com.tismart.apptismart.features.auth.presentation.login.LoginScreenRoot
 import com.tismart.apptismart.features.home.presentation.HomeScreenRoot
 import com.tismart.apptismart.features.news.presentation.news_list.NewsListScreenRoot
 import org.jetbrains.compose.ui.tooling.preview.Preview

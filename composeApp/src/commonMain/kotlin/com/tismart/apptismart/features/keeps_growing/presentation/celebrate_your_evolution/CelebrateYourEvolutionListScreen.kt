@@ -11,8 +11,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.tismart.apptismart.features.keeps_growing.presentation.components.CelebrateYourEvolutionListCard
 import com.tismart.apptismart.core.presentation.components.TiSmartHeader
+import com.tismart.apptismart.features.keeps_growing.presentation.components.CelebrateYourEvolutionListCard
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.keeps_growing_card
 

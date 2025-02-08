@@ -28,8 +28,8 @@ import com.tismart.apptismart.core.presentation.NeutralDark
 import com.tismart.apptismart.core.presentation.NeutralDarkest
 import com.tismart.apptismart.core.presentation.PrimarioMedium
 import com.tismart.apptismart.core.presentation.SecundarioDark
-import com.tismart.apptismart.features.keeps_growing.presentation.components.GrowthPathDetailMesh
 import com.tismart.apptismart.core.presentation.components.TiSmartHeader
+import com.tismart.apptismart.features.keeps_growing.presentation.components.GrowthPathDetailMesh
 import org.jetbrains.compose.resources.painterResource
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.growth_path_flag

@@ -19,13 +19,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.tismart.apptismart.core.presentation.NeutralDarkest
 import com.tismart.apptismart.core.presentation.components.TISmartActionButton
+import com.tismart.apptismart.core.presentation.components.TiSmartHeader
 import com.tismart.apptismart.features.keeps_growing.presentation.components.ApplicationFormArea
 import com.tismart.apptismart.features.keeps_growing.presentation.components.ApplicationFormAttachCV
 import com.tismart.apptismart.features.keeps_growing.presentation.components.ApplicationFormCurrentPosition
 import com.tismart.apptismart.features.keeps_growing.presentation.components.ApplicationFormMotivation
 import com.tismart.apptismart.features.keeps_growing.presentation.components.ApplicationFormProposalSentDialog
 import com.tismart.apptismart.features.keeps_growing.presentation.components.ApplicationFormYourExperience
-import com.tismart.apptismart.core.presentation.components.TiSmartHeader
 
 @Composable
 fun ApplicationFormScreen() {

@@ -13,10 +13,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.tismart.apptismart.core.presentation.components.TiSmartTopBar
 import com.tismart.apptismart.features.news.presentation.news_list.components.NewsListCard
 import com.tismart.apptismart.features.news.presentation.news_list.components.NewsListFilters
 import com.tismart.apptismart.features.news.presentation.news_list.components.NewsListHeader
-import com.tismart.apptismart.core.presentation.components.TiSmartTopBar
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable

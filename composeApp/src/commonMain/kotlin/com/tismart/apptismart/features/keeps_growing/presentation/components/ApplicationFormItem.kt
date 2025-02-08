@@ -31,8 +31,6 @@ import com.tismart.apptismart.core.presentation.NeutralDarkMedium
 import com.tismart.apptismart.core.presentation.NeutralDarkest
 import com.tismart.apptismart.core.presentation.NeutralMedium
 import com.tismart.apptismart.core.presentation.PrimarioMedium
-import com.tismart.apptismart.core.presentation.SecundarioLight
-import com.tismart.apptismart.core.presentation.SecundarioLightest
 import org.jetbrains.compose.resources.painterResource
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.attach_file

@@ -5,17 +5,13 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -42,19 +38,14 @@ import com.tismart.apptismart.core.presentation.NeutralDarkest
 import com.tismart.apptismart.core.presentation.PrimarioMedium
 import com.tismart.apptismart.core.presentation.SecundarioMedium
 import com.tismart.apptismart.core.presentation.components.TiSmartTopBar
-import com.tismart.apptismart.features.home.presentation.components.HomeCard
 import com.tismart.apptismart.features.home.presentation.components.HomeGridWithCards
 import com.tismart.apptismart.features.home.presentation.components.HomePager
 import com.tismart.apptismart.features.home.presentation.components.HomeTiSmartBuddyDialog
 import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.viewmodel.koinViewModel
 import tismartproject.composeapp.generated.resources.Res
-import tismartproject.composeapp.generated.resources.check_profile
-import tismartproject.composeapp.generated.resources.gift_box
-import tismartproject.composeapp.generated.resources.graduation_hat
 import tismartproject.composeapp.generated.resources.profile_avatar
 import tismartproject.composeapp.generated.resources.robot
-import tismartproject.composeapp.generated.resources.star_badge
 import tismartproject.composeapp.generated.resources.visibility_on
 
 @Composable

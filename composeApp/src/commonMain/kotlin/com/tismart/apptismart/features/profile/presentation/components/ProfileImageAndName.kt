@@ -19,8 +19,6 @@ import androidx.compose.ui.unit.dp
 import com.tismart.apptismart.core.presentation.SecundarioDark
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
-import tismartproject.composeapp.generated.resources.Res
-import tismartproject.composeapp.generated.resources.profile_avatar
 
 @Composable
 fun ProfileImageAndName(

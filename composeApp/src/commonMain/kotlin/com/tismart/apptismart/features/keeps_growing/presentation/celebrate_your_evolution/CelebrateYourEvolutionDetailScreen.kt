@@ -10,9 +10,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import com.tismart.apptismart.core.presentation.components.TiSmartHeader
 import com.tismart.apptismart.features.keeps_growing.presentation.components.CelebrateYourEvolutionDetailHeader
 import com.tismart.apptismart.features.keeps_growing.presentation.components.CelebrateYourEvolutionDetailPager
-import com.tismart.apptismart.core.presentation.components.TiSmartHeader
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.keeps_growing_card
 

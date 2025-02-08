@@ -22,7 +22,6 @@ import org.jetbrains.compose.resources.painterResource
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.graduation_hat
 import tismartproject.composeapp.generated.resources.profile_benefits
-import tismartproject.composeapp.generated.resources.profile_my_data
 import tismartproject.composeapp.generated.resources.profile_new_vancancies
 import tismartproject.composeapp.generated.resources.star_badge
 
