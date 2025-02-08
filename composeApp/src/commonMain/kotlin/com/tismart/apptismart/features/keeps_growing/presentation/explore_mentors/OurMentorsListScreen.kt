@@ -38,6 +38,9 @@ fun OurMentorsListScreen() {
             items(10) {
                 OurMentorsListCard(
                     image = Res.drawable.explore_mentors_card,
+                    name = "Angela Ramos",
+                    description = "Experiencia de 3 años en UX, Angular e inteligencia.",
+                    label = "UX Designer",
                     onCardClick = {}
                 )
             }

@@ -50,7 +50,7 @@ fun CelebrateYourEvolutionDetailHeader(
             contentScale = ContentScale.FillWidth,
             modifier = Modifier.fillMaxWidth()
                 .padding(bottom = 10.dp)
-                .clip(MaterialTheme.shapes.large)
+                .clip(MaterialTheme.shapes.extraLarge)
         )
 
         Row(

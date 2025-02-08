@@ -9,6 +9,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.tismart.apptismart.features.auth.presentation.login.LoginScreen
 import com.tismart.apptismart.features.auth.presentation.login.LoginState
 import com.tismart.apptismart.core.presentation.PoppinsTypography
+import com.tismart.apptismart.features.discover_benefits.DiscoverBenefitsCategoryDetailScreen
+import com.tismart.apptismart.features.discover_benefits.DiscoverBenefitsCategoryListScreen
+import com.tismart.apptismart.features.discover_benefits.DiscoverMyFavoriteBenefitsScreen
 import com.tismart.apptismart.features.discover_benefits.DiscoverNewBenefitsScreen
 import com.tismart.apptismart.features.discover_benefits.DiscoverYourBenefitsScreen
 import com.tismart.apptismart.features.home.presentation.HomeScreen
@@ -393,6 +396,70 @@ private fun ApplicationFormScreenPreview() {
             color = MaterialTheme.colorScheme.background
         ) {
             ApplicationFormScreen()
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun DiscoverYourBenefitsScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            DiscoverYourBenefitsScreen(
+                onSearchBarClick = {}
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun DiscoverBenefitsCategoryListScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            DiscoverBenefitsCategoryListScreen(
+                title = "Finanzas"
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun DiscoverBenefitsCategoryDetailScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            DiscoverBenefitsCategoryDetailScreen()
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun DiscoverMyFavoriteBenefitsScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            DiscoverMyFavoriteBenefitsScreen()
         }
     }
 }

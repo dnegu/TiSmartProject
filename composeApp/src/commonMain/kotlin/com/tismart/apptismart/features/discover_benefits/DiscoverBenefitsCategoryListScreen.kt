@@ -1,4 +1,4 @@
-package com.tismart.apptismart.features.keeps_growing.presentation.celebrate_your_evolution
+package com.tismart.apptismart.features.discover_benefits
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -11,20 +11,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.tismart.apptismart.features.keeps_growing.presentation.components.CelebrateYourEvolutionListCard
 import com.tismart.apptismart.core.presentation.components.TiSmartHeader
+import com.tismart.apptismart.features.discover_benefits.components.DiscoverBenefitsCard
 import tismartproject.composeapp.generated.resources.Res
-import tismartproject.composeapp.generated.resources.keeps_growing_card
+import tismartproject.composeapp.generated.resources.discover_benefits_card
 
 @Composable
-fun CelebrateYourEvolutionListScreen() {
+fun DiscoverBenefitsCategoryListScreen(
+    title: String
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White)
     ) {
         TiSmartHeader(
-            title = "Celebramos tu evolución \uD83C\uDF89",
+            title = title,
             onMenuClick = {},
             onNotificationsClick = {},
             onBackClick = {}
@@ -33,15 +35,14 @@ fun CelebrateYourEvolutionListScreen() {
         LazyColumn(
             modifier = Modifier.fillMaxWidth().weight(1f),
             contentPadding = PaddingValues(horizontal = 30.dp, vertical = 24.dp),
-            verticalArrangement = Arrangement.spacedBy(20.dp)
+            verticalArrangement = Arrangement.spacedBy(24.dp)
         ) {
             items(10) {
-                CelebrateYourEvolutionListCard(
-                    image = Res.drawable.keeps_growing_card,
-                    favoriteCount = 10,
-                    label = "UX Designer",
-                    name = "Carlina del Pilar",
-                    description = "Por haber obtenido un buen rendimiento y haber brindado una buena propuesta, te felicitamos en este ascenso de Technical Leader a Support Analyst.",
+                DiscoverBenefitsCard(
+                    image = Res.drawable.discover_benefits_card,
+                    discount = 50,
+                    name = "La Tarumba",
+                    description = "Aprovecha esta oportunidad única para vivir tus eventos favoritos blab blal blalssls blla lblddldl",
                     onCardClick = {}
                 )
             }

@@ -77,6 +77,7 @@ fun ApplicationFormProposalSentDialog(
                 ) {
                     Text(
                         text = "Entendido",
+                        modifier = Modifier.padding(vertical = 4.dp),
                         style = MaterialTheme.typography.bodyLarge
                     )
                 }

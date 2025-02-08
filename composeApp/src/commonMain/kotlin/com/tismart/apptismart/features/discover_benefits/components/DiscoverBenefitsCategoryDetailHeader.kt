@@ -1,4 +1,4 @@
-package com.tismart.apptismart.features.keeps_growing.presentation.components
+package com.tismart.apptismart.features.discover_benefits.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -15,17 +15,17 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.tismart.apptismart.core.presentation.Amarillo
 import com.tismart.apptismart.core.presentation.NeutralDark
 import com.tismart.apptismart.core.presentation.NeutralDarkest
-import com.tismart.apptismart.core.presentation.SecundarioLightest
-import com.tismart.apptismart.core.presentation.SecundarioMedium
+import com.tismart.apptismart.core.presentation.SecundarioDark
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
-fun OurMentorsDetailHeader(
+fun DiscoverBenefitsCategoryDetailHeader(
     image: DrawableResource,
-    label: String,
+    discount: Int,
     name: String,
     description: String
 ) {
@@ -38,27 +38,32 @@ fun OurMentorsDetailHeader(
             contentDescription = null,
             contentScale = ContentScale.FillWidth,
             modifier = Modifier.fillMaxWidth()
-                .padding(bottom = 10.dp)
+                .padding(bottom = 18.dp)
                 .clip(MaterialTheme.shapes.extraLarge)
         )
 
-        Text(
-            text = label,
-            modifier = Modifier
-                .clip(MaterialTheme.shapes.extraSmall)
-                .background(SecundarioLightest)
-                .padding(horizontal = 10.dp, vertical = 2.dp),
-            color = SecundarioMedium,
-            fontWeight = FontWeight.Bold,
-            fontSize = 9.sp,
-            style = MaterialTheme.typography.labelSmall
-        )
-        Text(
-            text = name,
-            color = NeutralDarkest,
-            fontWeight = FontWeight.Medium,
-            style = MaterialTheme.typography.headlineMedium
-        )
+        Column(
+            verticalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            Text(
+                text = "- $discount%",
+                modifier = Modifier
+                    .clip(MaterialTheme.shapes.extraSmall)
+                    .background(Amarillo)
+                    .padding(horizontal = 10.dp, vertical = 2.dp),
+                color = NeutralDarkest,
+                fontWeight = FontWeight.Bold,
+                fontSize = 12.sp,
+                style = MaterialTheme.typography.labelLarge
+            )
+            Text(
+                text = name,
+                color = SecundarioDark,
+                fontWeight = FontWeight.Medium,
+                style = MaterialTheme.typography.headlineMedium
+            )
+        }
+
         Text(
             text = description,
             color = NeutralDark,

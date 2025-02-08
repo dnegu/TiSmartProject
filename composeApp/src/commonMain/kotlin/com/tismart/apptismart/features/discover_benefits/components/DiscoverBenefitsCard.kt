@@ -1,4 +1,4 @@
-package com.tismart.apptismart.features.keeps_growing.presentation.components
+package com.tismart.apptismart.features.discover_benefits.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -22,6 +22,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.tismart.apptismart.core.presentation.Amarillo
 import com.tismart.apptismart.core.presentation.NeutralDark
 import com.tismart.apptismart.core.presentation.NeutralDarkest
 import com.tismart.apptismart.core.presentation.SecundarioLightest
@@ -30,11 +31,11 @@ import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
-fun OurMentorsListCard(
+fun DiscoverBenefitsCard(
     image: DrawableResource,
+    discount: Int,
     name: String,
     description: String,
-    label: String,
     onCardClick: () -> Unit
 ) {
     ElevatedCard(
@@ -60,8 +61,18 @@ fun OurMentorsListCard(
 
             Column(
                 modifier = Modifier.weight(1f).padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+                verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
+                Text(
+                    text = "- $discount%",
+                    modifier = Modifier
+                        .clip(MaterialTheme.shapes.extraSmall)
+                        .background(Amarillo)
+                        .padding(horizontal = 10.dp, vertical = 2.dp),
+                    color = NeutralDarkest,
+                    fontWeight = FontWeight.SemiBold,
+                    style = MaterialTheme.typography.labelSmall
+                )
                 Text(
                     text = name,
                     color = NeutralDarkest,
@@ -70,21 +81,13 @@ fun OurMentorsListCard(
                 )
                 Text(
                     text = description,
+                    modifier = Modifier.padding(top = 4.dp),
                     color = NeutralDark,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
                     style = MaterialTheme.typography.bodySmall
                 )
-                Text(
-                    text = label,
-                    modifier = Modifier
-                        .clip(MaterialTheme.shapes.extraSmall)
-                        .background(SecundarioLightest)
-                        .padding(horizontal = 10.dp, vertical = 2.dp),
-                    color = SecundarioMedium,
-                    fontWeight = FontWeight.SemiBold,
-                    style = MaterialTheme.typography.labelSmall
-                )
+
             }
         }
     }

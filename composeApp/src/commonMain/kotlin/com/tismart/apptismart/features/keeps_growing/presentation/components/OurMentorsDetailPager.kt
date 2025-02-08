@@ -28,6 +28,7 @@ import com.tismart.apptismart.core.presentation.NeutralDarkest
 import com.tismart.apptismart.core.presentation.SecundarioDark
 import com.tismart.apptismart.core.presentation.SecundarioLightest
 import com.tismart.apptismart.core.presentation.SecundarioMedium
+import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.keeps_growing_card
@@ -54,9 +55,11 @@ fun OurMentorsDetailPager() {
         ) {
             items(5) {
                 OurMentorsDetailPagerItem(
+                    image = Res.drawable.keeps_growing_card,
                     label = "UX Designer",
                     name = "Angela Ramos",
-                    description = "Experiencia de 3 años en UX, Angular e inteligencia."
+                    description = "Experiencia de 3 años en UX, Angular e inteligencia.",
+                    onCardClick = {}
                 )
             }
         }
@@ -65,12 +68,14 @@ fun OurMentorsDetailPager() {
 
 @Composable
 private fun OurMentorsDetailPagerItem(
+    image: DrawableResource,
     label: String,
     name: String,
-    description: String
+    description: String,
+    onCardClick: () -> Unit
 ) {
     ElevatedCard(
-        onClick = {},
+        onClick = onCardClick,
         modifier = Modifier.width(150.dp),
         shape = MaterialTheme.shapes.small,
         colors = CardDefaults.elevatedCardColors(
@@ -81,7 +86,7 @@ private fun OurMentorsDetailPagerItem(
         )
     ) {
         Image(
-            painter = painterResource(Res.drawable.keeps_growing_card),
+            painter = painterResource(image),
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxWidth().height(106.dp)

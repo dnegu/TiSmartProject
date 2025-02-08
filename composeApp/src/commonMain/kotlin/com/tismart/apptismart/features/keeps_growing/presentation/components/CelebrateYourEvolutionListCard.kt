@@ -39,6 +39,10 @@ import org.jetbrains.compose.resources.painterResource
 @Composable
 fun CelebrateYourEvolutionListCard(
     image: DrawableResource,
+    favoriteCount: Int,
+    label: String,
+    name: String,
+    description: String,
     onCardClick: () -> Unit
 ) {
     val (isFavorite, onFavoriteClick) = remember { mutableStateOf(false) }
@@ -82,13 +86,13 @@ fun CelebrateYourEvolutionListCard(
                             tint = if (isFavorite) CriticalMedium else NeutralDarkest
                         )
                         Text(
-                            text = "10",
+                            text = "$favoriteCount",
                             color = NeutralDarkest,
                             style = MaterialTheme.typography.labelLarge
                         )
                     }
                     Text(
-                        text = "UX Designer",
+                        text = label,
                         modifier = Modifier
                             .clip(MaterialTheme.shapes.extraSmall)
                             .background(SecundarioLightest)
@@ -99,13 +103,13 @@ fun CelebrateYourEvolutionListCard(
                     )
                 }
                 Text(
-                    text = "Carlina del Pilar",
+                    text = name,
                     color = NeutralDarkest,
                     fontWeight = FontWeight.SemiBold,
                     style = MaterialTheme.typography.titleMedium
                 )
                 Text(
-                    text = "Por haber obtenido un buen rendimiento y haber brindado una buena propuesta, te felicitamos en este ascenso de Technical Leader a Support Analyst.",
+                    text = description,
                     color = NeutralDark,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
