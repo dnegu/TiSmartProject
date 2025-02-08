@@ -14,6 +14,9 @@ import com.tismart.apptismart.features.discover_benefits.presentation.DiscoverBe
 import com.tismart.apptismart.features.discover_benefits.presentation.DiscoverMyFavoriteBenefitsScreen
 import com.tismart.apptismart.features.discover_benefits.presentation.DiscoverNewBenefitsScreen
 import com.tismart.apptismart.features.discover_benefits.presentation.DiscoverYourBenefitsScreen
+import com.tismart.apptismart.features.enhance_learning.presentation.educational_agreement.ApplicationProgressScreen
+import com.tismart.apptismart.features.enhance_learning.presentation.educational_agreement.EducationalAgreementScreen
+import com.tismart.apptismart.features.enhance_learning.presentation.educational_agreement.RegistrationStatus
 import com.tismart.apptismart.features.home.presentation.HomeScreen
 import com.tismart.apptismart.features.home.presentation.HomeState
 import com.tismart.apptismart.features.home.presentation.components.HomeChatBot
@@ -40,6 +43,7 @@ import com.tismart.apptismart.features.profile.presentation.edit_photo.ProfileEd
 import com.tismart.apptismart.features.profile.presentation.home.ProfileScreen
 import com.tismart.apptismart.features.profile.presentation.home.ProfileState
 import com.tismart.apptismart.features.profile.presentation.my_data.ProfileMyDataScreen
+import com.tismart.apptismart.features.search.presentation.SearchScreen
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.news_card
 
@@ -475,6 +479,56 @@ private fun DiscoverNewBenefitsScreenPreview() {
             color = MaterialTheme.colorScheme.background
         ) {
             DiscoverNewBenefitsScreen()
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun SearchScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            SearchScreen(
+                title = "Descubre tus beneficios"
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun EducationalAgreementScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            EducationalAgreementScreen()
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun ApplicationProgressScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            ApplicationProgressScreen(
+                agreementName = "Interaction Design Foundation",
+                status = RegistrationStatus.UNDER_REVIEW
+            )
         }
     }
 }

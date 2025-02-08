@@ -24,7 +24,7 @@ import com.tismart.apptismart.features.discover_benefits.presentation.components
 
 @Composable
 fun DiscoverYourBenefitsScreen(
-    onSearchBarClick: () -> Unit,
+    onSearchBarClick: () -> Unit
 ) {
     var showLocationDialog by remember { mutableStateOf(true) }
     Column(

@@ -1,22 +1,17 @@
-package com.tismart.apptismart.features.keeps_growing.presentation.components
+package com.tismart.apptismart.features.enhance_learning.presentation.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
@@ -24,28 +19,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
-import androidx.compose.ui.graphics.drawscope.withTransform
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.tismart.apptismart.core.presentation.NeutralDark
 import com.tismart.apptismart.core.presentation.NeutralDarkest
 import com.tismart.apptismart.core.presentation.NeutralMedium
 import com.tismart.apptismart.core.presentation.PrimarioLightest
 import com.tismart.apptismart.core.presentation.PrimarioMedium
-import com.tismart.apptismart.features.keeps_growing.presentation.innovate_and_transform.ProposalStatus
-import org.jetbrains.compose.resources.DrawableResource
-import org.jetbrains.compose.resources.painterResource
+import com.tismart.apptismart.features.enhance_learning.presentation.educational_agreement.RegistrationStatus
 
 @Composable
-fun StatusOfMyIdeaTracking(
-    projectStatus: ProposalStatus
+fun ApplicationProgressTracking(
+    agreementStatus: RegistrationStatus
 ) {
     Box(
         modifier = Modifier
@@ -61,49 +47,44 @@ fun StatusOfMyIdeaTracking(
             modifier = Modifier.fillMaxWidth(),
             verticalArrangement = Arrangement.spacedBy(24.dp)
         ) {
-            StatusOfMyIdeaTrackingItem(
-                projectStatus = projectStatus,
-                status = ProposalStatus.SENT
+            ApplicationProgressTrackingItem(
+                agreementStatus = agreementStatus,
+                status = RegistrationStatus.SENT
             )
 
-            StatusOfMyIdeaTrackingItem(
-                projectStatus = projectStatus,
-                status = ProposalStatus.UNDER_REVIEW
+            ApplicationProgressTrackingItem(
+                agreementStatus = agreementStatus,
+                status = RegistrationStatus.UNDER_REVIEW
             )
 
-            StatusOfMyIdeaTrackingItem(
-                projectStatus = projectStatus,
-                status = ProposalStatus.APPROVED
+            ApplicationProgressTrackingItem(
+                agreementStatus = agreementStatus,
+                status = RegistrationStatus.APPROVED
             )
 
-            StatusOfMyIdeaTrackingItem(
-                projectStatus = projectStatus,
-                status = ProposalStatus.IN_PROGRESS
-            )
-
-            StatusOfMyIdeaTrackingItem(
-                projectStatus = projectStatus,
-                status = ProposalStatus.COMPLETED
+            ApplicationProgressTrackingItem(
+                agreementStatus = agreementStatus,
+                status = RegistrationStatus.NOT_APPROVED
             )
         }
     }
 }
 
 @Composable
-private fun StatusOfMyIdeaTrackingItem(
-    projectStatus: ProposalStatus,
-    status: ProposalStatus
+private fun ApplicationProgressTrackingItem(
+    agreementStatus: RegistrationStatus,
+    status: RegistrationStatus
 ) {
-    val backgroundColor = if (projectStatus == status) {
+    val backgroundColor = if (agreementStatus == status) {
         PrimarioMedium
     } else {
-        if (projectStatus.ordinal > status.ordinal) {
+        if (agreementStatus.ordinal > status.ordinal) {
             PrimarioMedium
         } else {
             PrimarioLightest
         }
     }
-    val bubbleTextColor = if (projectStatus.ordinal >= status.ordinal) {
+    val bubbleTextColor = if (agreementStatus.ordinal >= status.ordinal) {
         Color.White
     } else {
         PrimarioMedium
@@ -132,12 +113,12 @@ private fun StatusOfMyIdeaTrackingItem(
             Text(
                 text = status.title,
                 modifier = Modifier.padding(top = 4.dp),
-                color = if (projectStatus.ordinal >= status.ordinal) NeutralDarkest else NeutralMedium,
+                color = if (agreementStatus.ordinal >= status.ordinal) NeutralDarkest else NeutralMedium,
                 fontWeight = FontWeight.SemiBold,
                 style = MaterialTheme.typography.bodyLarge
             )
 
-            if (projectStatus.ordinal == status.ordinal) {
+            if (agreementStatus.ordinal == status.ordinal) {
                 Text(
                     text = "Tu solicitud se encuentra en revisión. Recibirás una notificación cuando pase a la siguiente etapa.",
                     modifier = Modifier.padding(top = 8.dp),
