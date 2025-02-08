@@ -1,4 +1,4 @@
-package com.tismart.apptismart.features.discover_benefits
+package com.tismart.apptismart.features.discover_benefits.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -12,19 +12,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.tismart.apptismart.core.presentation.components.TiSmartHeader
-import com.tismart.apptismart.features.discover_benefits.components.DiscoverBenefitsCard
+import com.tismart.apptismart.features.discover_benefits.presentation.components.DiscoverBenefitsCard
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.discover_benefits_card
 
 @Composable
-fun DiscoverNewBenefitsScreen() {
+fun DiscoverBenefitsCategoryListScreen(
+    title: String
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White)
     ) {
         TiSmartHeader(
-            title = "Nuevos",
+            title = title,
             onMenuClick = {},
             onNotificationsClick = {},
             onBackClick = {}

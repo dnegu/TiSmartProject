@@ -1,4 +1,4 @@
-package com.tismart.apptismart.features.discover_benefits
+package com.tismart.apptismart.features.discover_benefits.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -13,10 +13,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.tismart.apptismart.core.presentation.components.TiSmartHeader
-import com.tismart.apptismart.features.discover_benefits.components.ClaimBenefitDialog
-import com.tismart.apptismart.features.discover_benefits.components.DiscoverBenefitsCategoryDetailBody
-import com.tismart.apptismart.features.discover_benefits.components.DiscoverBenefitsCategoryDetailHeader
-import com.tismart.apptismart.features.discover_benefits.components.DiscoverBenefitsCategoryDetailPager
+import com.tismart.apptismart.features.discover_benefits.presentation.components.ClaimBenefitDialog
+import com.tismart.apptismart.features.discover_benefits.presentation.components.DiscoverBenefitsCategoryDetailBody
+import com.tismart.apptismart.features.discover_benefits.presentation.components.DiscoverBenefitsCategoryDetailHeader
+import com.tismart.apptismart.features.discover_benefits.presentation.components.DiscoverBenefitsCategoryDetailPager
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.discover_benefits_card
 

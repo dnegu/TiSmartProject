@@ -9,11 +9,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.tismart.apptismart.features.auth.presentation.login.LoginScreen
 import com.tismart.apptismart.features.auth.presentation.login.LoginState
 import com.tismart.apptismart.core.presentation.PoppinsTypography
-import com.tismart.apptismart.features.discover_benefits.DiscoverBenefitsCategoryDetailScreen
-import com.tismart.apptismart.features.discover_benefits.DiscoverBenefitsCategoryListScreen
-import com.tismart.apptismart.features.discover_benefits.DiscoverMyFavoriteBenefitsScreen
-import com.tismart.apptismart.features.discover_benefits.DiscoverNewBenefitsScreen
-import com.tismart.apptismart.features.discover_benefits.DiscoverYourBenefitsScreen
+import com.tismart.apptismart.features.discover_benefits.presentation.DiscoverBenefitsCategoryDetailScreen
+import com.tismart.apptismart.features.discover_benefits.presentation.DiscoverBenefitsCategoryListScreen
+import com.tismart.apptismart.features.discover_benefits.presentation.DiscoverMyFavoriteBenefitsScreen
+import com.tismart.apptismart.features.discover_benefits.presentation.DiscoverNewBenefitsScreen
+import com.tismart.apptismart.features.discover_benefits.presentation.DiscoverYourBenefitsScreen
 import com.tismart.apptismart.features.home.presentation.HomeScreen
 import com.tismart.apptismart.features.home.presentation.HomeState
 import com.tismart.apptismart.features.home.presentation.components.HomeChatBot

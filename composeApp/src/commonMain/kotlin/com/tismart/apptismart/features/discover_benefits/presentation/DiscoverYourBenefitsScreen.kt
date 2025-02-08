@@ -1,4 +1,4 @@
-package com.tismart.apptismart.features.discover_benefits
+package com.tismart.apptismart.features.discover_benefits.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -16,11 +16,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.tismart.apptismart.core.presentation.components.TiSmartHeader
-import com.tismart.apptismart.features.discover_benefits.components.ActivateYourLocationDialog
-import com.tismart.apptismart.features.discover_benefits.components.DiscoverBenefitsSearchBar
-import com.tismart.apptismart.features.discover_benefits.components.DiscoverYourBenefitsCategoryList
-import com.tismart.apptismart.features.discover_benefits.components.DiscoverYourBenefitsDisplayPager
-import com.tismart.apptismart.features.discover_benefits.components.DiscoverYourBenefitsListPager
+import com.tismart.apptismart.features.discover_benefits.presentation.components.ActivateYourLocationDialog
+import com.tismart.apptismart.features.discover_benefits.presentation.components.DiscoverBenefitsSearchBar
+import com.tismart.apptismart.features.discover_benefits.presentation.components.DiscoverYourBenefitsCategoryList
+import com.tismart.apptismart.features.discover_benefits.presentation.components.DiscoverYourBenefitsDisplayPager
+import com.tismart.apptismart.features.discover_benefits.presentation.components.DiscoverYourBenefitsListPager
 
 @Composable
 fun DiscoverYourBenefitsScreen(

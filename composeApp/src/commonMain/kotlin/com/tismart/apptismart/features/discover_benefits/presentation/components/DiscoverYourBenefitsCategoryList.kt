@@ -1,4 +1,4 @@
-package com.tismart.apptismart.features.discover_benefits.components
+package com.tismart.apptismart.features.discover_benefits.presentation.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
