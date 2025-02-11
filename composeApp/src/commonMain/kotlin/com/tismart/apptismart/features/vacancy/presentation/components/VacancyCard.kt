@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowRight
 import androidx.compose.material3.Icon
@@ -62,10 +64,12 @@ fun VacancyCard(
                 Text(
                     text = "Nuevo",
                     modifier = Modifier
-                        .weight(.24f, false)
+                        .wrapContentWidth()
+//                        .width(65.dp)
+//                        .weight(.24f, false)
                         .clip(MaterialTheme.shapes.small)
                         .background(Amarillo)
-                        .padding(horizontal = 10.dp, vertical = 3.dp),
+                        .padding(horizontal = 8.dp, vertical = 3.dp),
                     color = NeutralDarkest,
                     fontWeight = FontWeight.Medium,
                     style = MaterialTheme.typography.labelLarge

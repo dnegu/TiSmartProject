@@ -254,7 +254,7 @@ private fun HistoryTab(
                 status = ProposalStatus.SENT,
                 onItemClick = onItemClick
             )
-            HorizontalDivider()
+            HorizontalDivider(color = NeutralLight)
         }
         item {
             ProposalHistoryItem(
@@ -262,7 +262,7 @@ private fun HistoryTab(
                 status = ProposalStatus.UNDER_REVIEW,
                 onItemClick = onItemClick
             )
-            HorizontalDivider()
+            HorizontalDivider(color = NeutralLight)
         }
         item {
             ProposalHistoryItem(
@@ -270,7 +270,7 @@ private fun HistoryTab(
                 status = ProposalStatus.APPROVED,
                 onItemClick = onItemClick
             )
-            HorizontalDivider()
+            HorizontalDivider(color = NeutralLight)
         }
         item {
             ProposalHistoryItem(
@@ -278,7 +278,7 @@ private fun HistoryTab(
                 status = ProposalStatus.IN_PROGRESS,
                 onItemClick = onItemClick
             )
-            HorizontalDivider()
+            HorizontalDivider(color = NeutralLight)
         }
         item {
             ProposalHistoryItem(

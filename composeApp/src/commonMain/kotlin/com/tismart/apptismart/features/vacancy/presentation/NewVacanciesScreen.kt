@@ -12,6 +12,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.tismart.apptismart.core.presentation.NeutralLight
+import com.tismart.apptismart.core.presentation.NeutralMedium
 import com.tismart.apptismart.core.presentation.components.TiSmartHeader
 import com.tismart.apptismart.features.vacancy.presentation.components.VacancyCard
 
@@ -42,7 +44,7 @@ fun NewVacanciesScreen() {
                     date = "12/04/24",
                     onCardClick = {}
                 )
-                HorizontalDivider()
+                HorizontalDivider(color = NeutralLight)
             }
         }
     }

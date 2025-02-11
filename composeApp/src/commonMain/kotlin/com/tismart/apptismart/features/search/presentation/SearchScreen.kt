@@ -35,6 +35,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.tismart.apptismart.core.presentation.NeutralDarkest
+import com.tismart.apptismart.core.presentation.NeutralLight
 import com.tismart.apptismart.core.presentation.PrimarioMedium
 import com.tismart.apptismart.core.presentation.SecundarioDark
 import com.tismart.apptismart.core.presentation.components.TiSmartHeader
@@ -145,7 +146,7 @@ fun SearchScreen(
                                 fontWeight = FontWeight.Medium
                             )
                         }
-                        HorizontalDivider()
+                        HorizontalDivider(color = Color(0xFFD9DADB))
                     }
                 }
             }
