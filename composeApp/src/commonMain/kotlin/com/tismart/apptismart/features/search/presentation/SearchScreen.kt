@@ -32,6 +32,7 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.traversalIndex
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.tismart.apptismart.core.presentation.NeutralDarkest
 import com.tismart.apptismart.core.presentation.PrimarioMedium
@@ -44,22 +45,35 @@ import tismartproject.composeapp.generated.resources.search
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchScreen(
-    title: String,
+    searchType: SearchType
 ) {
     var text by rememberSaveable { mutableStateOf("") }
     var expanded by rememberSaveable { mutableStateOf(false) }
     val focusRequester = remember { FocusRequester() }
+
+    val isNotFounds: String? = null
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(SecundarioDark)
     ) {
         TiSmartHeader(
-            title = title,
+            title = searchType.title,
             onMenuClick = {},
             onNotificationsClick = {},
             onBackClick = {}
         )
+
+        searchType.description?.let {
+            Text(
+                text = it,
+                modifier = Modifier.background(SecundarioDark).padding(horizontal = 30.dp)
+                    .padding(bottom = 15.dp),
+                color = Color.White,
+                style = MaterialTheme.typography.bodyMedium
+            )
+        }
 
         Box(
             modifier = Modifier
@@ -135,6 +149,16 @@ fun SearchScreen(
                     }
                 }
             }
+        }
+
+        isNotFounds?.let { notFound ->
+            Text(
+                text = "No encontramos resultados para tu búsqueda de “$notFound”.",
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 30.dp),
+                color = Color.White,
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.bodyLarge
+            )
         }
     }
 

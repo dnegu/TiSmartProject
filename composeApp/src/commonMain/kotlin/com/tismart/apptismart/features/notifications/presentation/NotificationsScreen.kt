@@ -25,6 +25,15 @@ fun NotificationsScreen() {
             onBackClick = {}
         )
 
+        // TODO: When notifications are empty, add this:
+        /*Text(
+            text = "Por ahora, no hay notificaciones nuevas. ¡Vuelve pronto para mantenerte al día!",
+            color = NeutralDark,
+            modifier = Modifier.fillMaxWidth().padding(30.dp),
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.bodyMedium
+        )*/
+
         LazyColumn(
             modifier = Modifier.fillMaxWidth().weight(1f).background(Color.White),
             contentPadding = PaddingValues(16.dp)

@@ -11,6 +11,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MenuAnchorType
 import androidx.compose.material3.OutlinedTextField
@@ -27,6 +28,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.tismart.apptismart.core.presentation.CriticalMedium
 import com.tismart.apptismart.core.presentation.NeutralDarkMedium
 import com.tismart.apptismart.core.presentation.NeutralDarkest
 import com.tismart.apptismart.core.presentation.NeutralMedium
@@ -40,6 +42,7 @@ import tismartproject.composeapp.generated.resources.attach_file
 fun ApplicationFormArea(
     area: String,
     options: List<String>,
+    isError: Boolean,
     onAreaChange: (String) -> Unit,
 ) {
     var expanded by remember { mutableStateOf(false) }
@@ -61,9 +64,10 @@ fun ApplicationFormArea(
                 value = area,
                 onValueChange = {},
                 readOnly = true,
-                textStyle = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Medium),
+                textStyle = LocalTextStyle.current.copy(color = NeutralDarkest, fontWeight = FontWeight.Medium),
                 singleLine = true,
-                placeholder = { Text(text = "Seleccionar", color = NeutralDarkMedium) },
+                isError = isError,
+                placeholder = { Text(text = "Seleccionar", color = NeutralDarkMedium, fontWeight = FontWeight.Medium) },
                 trailingIcon = {
                     Icon(
                         imageVector = Icons.Rounded.KeyboardArrowDown,
@@ -72,13 +76,20 @@ fun ApplicationFormArea(
                         tint = PrimarioMedium
                     )
                 },
+                supportingText = if (isError) {
+                    { Text(text = "Debes de elegir una opción", color = CriticalMedium, fontWeight = FontWeight.SemiBold) }
+                } else {
+                    null
+                },
                 colors = ExposedDropdownMenuDefaults.textFieldColors(
                     unfocusedContainerColor = Color.Transparent,
                     focusedContainerColor = Color.Transparent,
                     unfocusedIndicatorColor = NeutralMedium,
                     focusedIndicatorColor = NeutralMedium,
                     focusedTextColor = NeutralDarkest,
-                    unfocusedTextColor = NeutralDarkest
+                    unfocusedTextColor = NeutralDarkest,
+                    errorIndicatorColor = CriticalMedium,
+                    errorContainerColor = Color(0xFFFBFBFB)
                 )
             )
             ExposedDropdownMenu(
@@ -104,6 +115,7 @@ fun ApplicationFormArea(
 @Composable
 fun ApplicationFormCurrentPosition(
     currentPosition: String,
+    isError: Boolean,
     onCurrentPositionChange: (String) -> Unit,
 ) {
     ApplicationFormItem(
@@ -113,15 +125,23 @@ fun ApplicationFormCurrentPosition(
             modifier = Modifier.fillMaxWidth(),
             value = currentPosition,
             onValueChange = onCurrentPositionChange,
-            textStyle = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Medium),
+            textStyle = LocalTextStyle.current.copy(color = NeutralDarkest, fontWeight = FontWeight.Medium),
             singleLine = true,
+            isError = isError,
+            supportingText = if (isError) {
+                { Text(text = "Campo incompleto", color = CriticalMedium, fontWeight = FontWeight.SemiBold) }
+            } else {
+                null
+            },
             colors = OutlinedTextFieldDefaults.colors(
                 unfocusedContainerColor = Color.Transparent,
                 focusedContainerColor = Color.Transparent,
                 unfocusedBorderColor = NeutralMedium,
                 focusedBorderColor = NeutralMedium,
                 unfocusedTextColor = NeutralDarkest,
-                focusedTextColor = NeutralDarkest
+                focusedTextColor = NeutralDarkest,
+                errorBorderColor = CriticalMedium,
+                errorTextColor = NeutralDarkest
             )
         )
     }
@@ -130,6 +150,7 @@ fun ApplicationFormCurrentPosition(
 @Composable
 fun ApplicationFormYourExperience(
     experience: String,
+    isError: Boolean,
     onExperienceChange: (String) -> Unit,
 ) {
     ApplicationFormItem(
@@ -139,15 +160,20 @@ fun ApplicationFormYourExperience(
             modifier = Modifier.fillMaxWidth(),
             value = experience,
             onValueChange = onExperienceChange,
-            textStyle = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Medium),
+            textStyle = LocalTextStyle.current.copy(color = NeutralDarkest, fontWeight = FontWeight.Medium),
+            isError = isError,
             supportingText = {
-                Text(
-                    text = "Max 150 caracteres",
-                    modifier = Modifier.fillMaxWidth(),
-                    textAlign = TextAlign.End,
-                    color = NeutralDarkMedium,
-                    style = MaterialTheme.typography.bodySmall
-                )
+                if (isError) {
+                    Text(text = "Campo incompleto", color = CriticalMedium, fontWeight = FontWeight.SemiBold)
+                } else {
+                    Text(
+                        text = "Max 150 caracteres",
+                        modifier = Modifier.fillMaxWidth(),
+                        textAlign = TextAlign.End,
+                        color = NeutralDarkMedium,
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                }
             },
             minLines = 4,
             colors = OutlinedTextFieldDefaults.colors(
@@ -156,7 +182,9 @@ fun ApplicationFormYourExperience(
                 unfocusedBorderColor = NeutralMedium,
                 focusedBorderColor = NeutralMedium,
                 unfocusedTextColor = NeutralDarkest,
-                focusedTextColor = NeutralDarkest
+                focusedTextColor = NeutralDarkest,
+                errorBorderColor = CriticalMedium,
+                errorTextColor = NeutralDarkest
             )
         )
     }
@@ -165,6 +193,7 @@ fun ApplicationFormYourExperience(
 @Composable
 fun ApplicationFormMotivation(
     motivation: String,
+    isError: Boolean,
     onMotivationChange: (String) -> Unit,
 ) {
     ApplicationFormItem(
@@ -174,15 +203,20 @@ fun ApplicationFormMotivation(
             modifier = Modifier.fillMaxWidth(),
             value = motivation,
             onValueChange = onMotivationChange,
-            textStyle = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Medium),
+            textStyle = LocalTextStyle.current.copy(color = NeutralDarkest, fontWeight = FontWeight.Medium),
+            isError = isError,
             supportingText = {
-                Text(
-                    text = "Max 150 caracteres",
-                    modifier = Modifier.fillMaxWidth(),
-                    textAlign = TextAlign.End,
-                    color = NeutralDarkMedium,
-                    style = MaterialTheme.typography.bodySmall
-                )
+                if (isError) {
+                    Text(text = "Campo incompleto", color = CriticalMedium, fontWeight = FontWeight.SemiBold)
+                } else {
+                    Text(
+                        text = "Max 150 caracteres",
+                        modifier = Modifier.fillMaxWidth(),
+                        textAlign = TextAlign.End,
+                        color = NeutralDarkMedium,
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                }
             },
             minLines = 4,
             colors = OutlinedTextFieldDefaults.colors(
@@ -191,7 +225,9 @@ fun ApplicationFormMotivation(
                 unfocusedBorderColor = NeutralMedium,
                 focusedBorderColor = NeutralMedium,
                 unfocusedTextColor = NeutralDarkest,
-                focusedTextColor = NeutralDarkest
+                focusedTextColor = NeutralDarkest,
+                errorBorderColor = CriticalMedium,
+                errorTextColor = NeutralDarkest
             )
         )
     }
@@ -200,6 +236,7 @@ fun ApplicationFormMotivation(
 @Composable
 fun ApplicationFormAttachCV(
     cv: String,
+    isError: Boolean,
     onAttachCVClick: () -> Unit,
 ) {
     ApplicationFormItem(
@@ -211,20 +248,27 @@ fun ApplicationFormAttachCV(
             onValueChange = {},
             readOnly = true,
             enabled = false,
-            textStyle = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Medium),
+            textStyle = LocalTextStyle.current.copy(fontWeight = FontWeight.Medium),
             singleLine = true,
+            isError = isError,
+            supportingText = if (isError) {
+                { Text(text = "Debe de adjuntar un archivo", color = CriticalMedium, fontWeight = FontWeight.SemiBold) }
+            } else {
+                null
+            },
             trailingIcon = {
                 Icon(
                     painter = painterResource(Res.drawable.attach_file),
                     contentDescription = null,
-                    tint = NeutralMedium
+                    tint = if (isError) CriticalMedium else NeutralMedium
                 )
             },
             colors = OutlinedTextFieldDefaults.colors(
                 disabledTextColor = PrimarioMedium,
                 disabledBorderColor = NeutralMedium,
                 disabledTrailingIconColor = NeutralMedium,
-                disabledContainerColor = Color.Transparent
+                disabledContainerColor = Color.Transparent,
+                errorBorderColor = CriticalMedium
             )
         )
     }

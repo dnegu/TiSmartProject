@@ -26,16 +26,19 @@ import com.tismart.apptismart.features.keeps_growing.presentation.components.App
 import com.tismart.apptismart.features.keeps_growing.presentation.components.ApplicationFormMotivation
 import com.tismart.apptismart.features.keeps_growing.presentation.components.ApplicationFormProposalSentDialog
 import com.tismart.apptismart.features.keeps_growing.presentation.components.ApplicationFormYourExperience
+import com.tismart.apptismart.features.keeps_growing.presentation.innovate_and_transform.ApplicationFormError
 
 @Composable
 fun ApplicationFormScreen() {
     val options = listOf("Cupcake", "Donut", "Eclair", "Froyo", "Gingerbread")
-    var area by remember { mutableStateOf(options[0]) }
+    var area by remember { mutableStateOf("") }
     var currentPosition by remember { mutableStateOf("") }
     var experience by remember { mutableStateOf("") }
     var motivation by remember { mutableStateOf("") }
     var cv by remember { mutableStateOf("") }
     var showProposalSentDialog by remember { mutableStateOf(false) }
+
+    val applicationFormError by remember { mutableStateOf(ApplicationFormError()) }
 
     Column(
         modifier = Modifier
@@ -63,26 +66,31 @@ fun ApplicationFormScreen() {
             ApplicationFormArea(
                 area = area,
                 options = options,
+                isError = applicationFormError.area,
                 onAreaChange = { area = it }
             )
 
             ApplicationFormCurrentPosition(
                 currentPosition = currentPosition,
+                isError = applicationFormError.currentPosition,
                 onCurrentPositionChange = { currentPosition = it }
             )
 
             ApplicationFormYourExperience(
                 experience = experience,
+                isError = applicationFormError.experience,
                 onExperienceChange = { experience = it }
             )
 
             ApplicationFormMotivation(
                 motivation = motivation,
+                isError = applicationFormError.motivation,
                 onMotivationChange = { motivation = it }
             )
 
             ApplicationFormAttachCV(
                 cv = cv,
+                isError = applicationFormError.cv,
                 onAttachCVClick = { cv = "cv.marketing/pdf" }
             )
 

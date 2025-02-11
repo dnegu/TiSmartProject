@@ -5,10 +5,13 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
@@ -59,12 +62,13 @@ fun CelebrateYourEvolutionListCard(
     ) {
         Row(
             modifier = Modifier.fillMaxWidth()
+                .height(IntrinsicSize.Max)
         ) {
             Image(
                 painter = painterResource(image),
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.size(width = 115.dp, height = 130.dp)
+                modifier = Modifier.width(width = 115.dp).fillMaxHeight()
             )
 
             Column(

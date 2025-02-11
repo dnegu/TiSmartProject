@@ -18,7 +18,7 @@ navigationCompose = "2.8.0-alpha12"
 kotlinSerialization = "1.8.0"
 koin = "4.0.2"
 ktor = "3.0.3"
-coil3 = "3.0.4"
+coil3 = "3.1.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }

@@ -42,7 +42,9 @@ fun ProfileMyDataScreen() {
             lastName = "Andia Gamarra",
             email = "ronald.andia@pucp.pe",
             address = "Av. El sol 456 - Chorrillos",
-            phone = "977 876 567"
+            phone = "977 876 567",
+            addressErrorMessage = null,
+            phoneErrorMessage = null
         )
 
         Spacer(modifier = Modifier.height(24.dp))

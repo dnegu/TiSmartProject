@@ -116,7 +116,7 @@ private fun StatusOfMyIdeaTrackingItem(
 
         Column {
             Text(
-                text = status.title,
+                text = status.label,
                 modifier = Modifier.padding(top = 4.dp),
                 color = if (projectStatus.ordinal >= status.ordinal) NeutralDarkest else NeutralMedium,
                 fontWeight = FontWeight.SemiBold,

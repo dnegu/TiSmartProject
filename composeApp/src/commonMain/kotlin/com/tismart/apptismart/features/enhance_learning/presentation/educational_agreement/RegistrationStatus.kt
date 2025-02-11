@@ -12,12 +12,13 @@ import com.tismart.apptismart.core.presentation.VerdeOscuro
 import org.jetbrains.compose.resources.DrawableResource
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.approved_status
+import tismartproject.composeapp.generated.resources.not_approved_status
 import tismartproject.composeapp.generated.resources.sent_status
 import tismartproject.composeapp.generated.resources.under_review_status
 
-enum class RegistrationStatus(val title: String, val icon: DrawableResource, val backgroundColor: Color, val color: Color) {
-    SENT(title = "Enviado", icon = Res.drawable.sent_status, backgroundColor = CelesteClaro, color = CelesteOscuro),
-    UNDER_REVIEW(title = "En revisión", icon = Res.drawable.under_review_status, backgroundColor = AmarilloClaro, color = AmarilloOscuro),
-    APPROVED(title = "Aprobado", icon = Res.drawable.approved_status, backgroundColor = VerdeClaro, color = VerdeOscuro),
-    NOT_APPROVED(title = "No aprobado", icon = Res.drawable.approved_status, backgroundColor = RojoClaro, color = RojoOscuro)
+enum class RegistrationStatus(val label: String, val icon: DrawableResource, val backgroundColor: Color, val textColor: Color) {
+    SENT(label = "Enviado", icon = Res.drawable.sent_status, backgroundColor = CelesteClaro, textColor = CelesteOscuro),
+    UNDER_REVIEW(label = "En revisión", icon = Res.drawable.under_review_status, backgroundColor = AmarilloClaro, textColor = AmarilloOscuro),
+    APPROVED(label = "Aprobado", icon = Res.drawable.approved_status, backgroundColor = VerdeClaro, textColor = VerdeOscuro),
+    NOT_APPROVED(label = "No aprobado", icon = Res.drawable.not_approved_status, backgroundColor = RojoClaro, textColor = RojoOscuro)
 }

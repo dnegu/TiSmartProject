@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
@@ -29,6 +30,8 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.tismart.apptismart.core.presentation.CriticalMedium
+import com.tismart.apptismart.core.presentation.NeutralDarkest
 import com.tismart.apptismart.core.presentation.NeutralMedium
 import com.tismart.apptismart.core.presentation.PrimarioMedium
 import com.tismart.apptismart.core.presentation.SecundarioDark
@@ -110,11 +113,16 @@ fun LoginScreen(
                 value = state.user,
                 onValueChange = { onAction(LoginAction.OnUserChange(it)) },
                 modifier = Modifier.fillMaxWidth(),
+                textStyle = LocalTextStyle.current.copy(color = NeutralDarkest),
+                isError = state.userErrorMessage != null,
                 colors = OutlinedTextFieldDefaults.colors(
                     unfocusedBorderColor = NeutralMedium,
                     focusedBorderColor = PrimarioMedium,
-                    cursorColor = PrimarioMedium
-                )
+                    errorTextColor = NeutralDarkest,
+                    cursorColor = PrimarioMedium,
+                    errorBorderColor = CriticalMedium
+                ),
+                supportingText = state.userErrorMessage?.let { { Text(text = it, color = CriticalMedium, fontWeight = FontWeight.SemiBold) } }
             )
 
             Spacer(modifier = Modifier.height(32.dp))
@@ -128,10 +136,14 @@ fun LoginScreen(
                 value = state.password,
                 onValueChange = { onAction(LoginAction.OnPasswordChange(it)) },
                 modifier = Modifier.fillMaxWidth(),
+                textStyle = LocalTextStyle.current.copy(color = NeutralDarkest),
+                isError = state.passwordErrorMessage != null,
                 colors = OutlinedTextFieldDefaults.colors(
                     unfocusedBorderColor = NeutralMedium,
                     focusedBorderColor = PrimarioMedium,
-                    cursorColor = PrimarioMedium
+                    errorTextColor = NeutralDarkest,
+                    cursorColor = PrimarioMedium,
+                    errorBorderColor = CriticalMedium
                 ),
                 visualTransformation = if (!state.isPasswordVisible) {
                     PasswordVisualTransformation()
@@ -154,7 +166,8 @@ fun LoginScreen(
                             modifier = Modifier.size(24.dp)
                         )
                     }
-                }
+                },
+                supportingText = state.passwordErrorMessage?.let { { Text(text = it, color = CriticalMedium, fontWeight = FontWeight.SemiBold) } }
             )
 
             Spacer(modifier = Modifier.height(32.dp))

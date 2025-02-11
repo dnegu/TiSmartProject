@@ -4,8 +4,10 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CardDefaults
@@ -47,12 +49,13 @@ fun DiscoverBenefitsCard(
     ) {
         Row(
             modifier = Modifier.fillMaxWidth()
+                .height(IntrinsicSize.Max)
         ) {
             Image(
                 painter = painterResource(image),
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.size(width = 115.dp, height = 130.dp)
+                modifier = Modifier.size(width = 115.dp, height = 140.dp)
             )
 
             Column(

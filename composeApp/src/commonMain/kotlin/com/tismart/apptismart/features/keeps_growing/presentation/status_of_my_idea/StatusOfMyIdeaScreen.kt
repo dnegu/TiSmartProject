@@ -85,12 +85,12 @@ fun StatusOfMyIdeaScreen(
                     Icon(
                         painter = painterResource(status.icon),
                         contentDescription = null,
-                        tint = status.color,
+                        tint = status.textColor,
                         modifier = Modifier.size(16.dp)
                     )
                     Text(
-                        text = status.title,
-                        color = status.color,
+                        text = status.label,
+                        color = status.textColor,
                         fontWeight = FontWeight.SemiBold,
                         style = MaterialTheme.typography.labelLarge
                     )

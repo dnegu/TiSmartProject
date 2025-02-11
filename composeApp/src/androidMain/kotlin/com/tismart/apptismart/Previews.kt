@@ -17,6 +17,16 @@ import com.tismart.apptismart.features.discover_benefits.presentation.DiscoverYo
 import com.tismart.apptismart.features.enhance_learning.presentation.educational_agreement.ApplicationProgressScreen
 import com.tismart.apptismart.features.enhance_learning.presentation.educational_agreement.EducationalAgreementScreen
 import com.tismart.apptismart.features.enhance_learning.presentation.educational_agreement.RegistrationStatus
+import com.tismart.apptismart.features.enhance_learning.presentation.event.EventRegistrationFormScreen
+import com.tismart.apptismart.features.enhance_learning.presentation.event.EventRegistrationScreen
+import com.tismart.apptismart.features.enhance_learning.presentation.home.EnhanceYourLearningScreen
+import com.tismart.apptismart.features.enhance_learning.presentation.tismart_university.TiSmartLoversCourseDetailScreen
+import com.tismart.apptismart.features.enhance_learning.presentation.tismart_university.TiSmartLoversCourseListScreen
+import com.tismart.apptismart.features.enhance_learning.presentation.tismart_university.TiSmartUniversityScreen
+import com.tismart.apptismart.features.explore_courses.presentation.ExploreCoursesRecommendedForYouScreen
+import com.tismart.apptismart.features.explore_courses.presentation.ExploreCoursesSkillDetailScreen
+import com.tismart.apptismart.features.explore_courses.presentation.ExploreCoursesSkillsListScreen
+import com.tismart.apptismart.features.explore_courses.presentation.ExploreNewCoursesScreen
 import com.tismart.apptismart.features.home.presentation.HomeScreen
 import com.tismart.apptismart.features.home.presentation.HomeState
 import com.tismart.apptismart.features.home.presentation.components.HomeChatBot
@@ -44,6 +54,13 @@ import com.tismart.apptismart.features.profile.presentation.home.ProfileScreen
 import com.tismart.apptismart.features.profile.presentation.home.ProfileState
 import com.tismart.apptismart.features.profile.presentation.my_data.ProfileMyDataScreen
 import com.tismart.apptismart.features.search.presentation.SearchScreen
+import com.tismart.apptismart.features.search.presentation.SearchType
+import com.tismart.apptismart.features.vacancy.presentation.NewVacanciesScreen
+import com.tismart.apptismart.features.vacancy.presentation.VacanciesRecommendedForYouScreen
+import com.tismart.apptismart.features.vacancy.presentation.VacancyApplicationsScreen
+import com.tismart.apptismart.features.vacancy.presentation.VacancyDashboardScreen
+import com.tismart.apptismart.features.vacancy.presentation.VacancyDetailScreen
+import com.tismart.apptismart.features.vacancy.presentation.VacancyListScreen
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.news_card
 
@@ -406,6 +423,315 @@ private fun ApplicationFormScreenPreview() {
 
 @Preview
 @Composable
+private fun VacancyDashboardScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            VacancyDashboardScreen()
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun VacancyListScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            VacancyListScreen()
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun VacancyDetailScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            VacancyDetailScreen()
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun VacancyApplicationsScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            VacancyApplicationsScreen()
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun NewVacanciesScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            NewVacanciesScreen()
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun VacanciesRecommendedForYouScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            VacanciesRecommendedForYouScreen()
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun SearchVacanciesScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            SearchScreen(
+                searchType = SearchType.VACANCIES
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun EnhanceYourLearningScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            EnhanceYourLearningScreen()
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun ExploreNewCoursesScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            ExploreNewCoursesScreen()
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun ExploreCoursesSkillsListScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            ExploreCoursesSkillsListScreen(
+                title = "Frontend"
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun ExploreCoursesSkillDetailScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            ExploreCoursesSkillDetailScreen()
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun ExploreCoursesRecommendedForYouScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            ExploreCoursesRecommendedForYouScreen()
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun SearchCoursesScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            SearchScreen(
+                searchType = SearchType.COURSES
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun TiSmartUniversityScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            TiSmartUniversityScreen()
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun TiSmartLoversCourseListScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            TiSmartLoversCourseListScreen()
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun TiSmartLoversCourseDetailScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            TiSmartLoversCourseDetailScreen()
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun EventRegistrationScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            EventRegistrationScreen()
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun EventRegistrationFormScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            EventRegistrationFormScreen()
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun EducationalAgreementScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            EducationalAgreementScreen()
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun ApplicationProgressScreenPreview() {
+    MaterialTheme(
+        typography = PoppinsTypography()
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            ApplicationProgressScreen(
+                agreementName = "Interaction Design Foundation",
+                status = RegistrationStatus.UNDER_REVIEW
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
 private fun DiscoverYourBenefitsScreenPreview() {
     MaterialTheme(
         typography = PoppinsTypography()
@@ -485,7 +811,7 @@ private fun DiscoverNewBenefitsScreenPreview() {
 
 @Preview
 @Composable
-private fun SearchScreenPreview() {
+private fun SearchBenefitsScreenPreview() {
     MaterialTheme(
         typography = PoppinsTypography()
     ) {
@@ -494,40 +820,7 @@ private fun SearchScreenPreview() {
             color = MaterialTheme.colorScheme.background
         ) {
             SearchScreen(
-                title = "Descubre tus beneficios"
-            )
-        }
-    }
-}
-
-@Preview
-@Composable
-private fun EducationalAgreementScreenPreview() {
-    MaterialTheme(
-        typography = PoppinsTypography()
-    ) {
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
-        ) {
-            EducationalAgreementScreen()
-        }
-    }
-}
-
-@Preview
-@Composable
-private fun ApplicationProgressScreenPreview() {
-    MaterialTheme(
-        typography = PoppinsTypography()
-    ) {
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
-        ) {
-            ApplicationProgressScreen(
-                agreementName = "Interaction Design Foundation",
-                status = RegistrationStatus.UNDER_REVIEW
+                searchType = SearchType.BENEFITS
             )
         }
     }

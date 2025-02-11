@@ -39,7 +39,7 @@ import tismartproject.composeapp.generated.resources.download
 
 @Composable
 fun InnovateAndTransformScreen() {
-    var isFileUpload by remember { mutableStateOf(false) }
+    var isFileUpload: Boolean? by remember { mutableStateOf(null) }
     var showProposalSentDialog by remember { mutableStateOf(false) }
 
     Column(
@@ -109,8 +109,8 @@ fun InnovateAndTransformScreen() {
 
             InnovateAndTransformTab(
                 isFileUpload = isFileUpload,
-                onFileUploadClick = { isFileUpload = !isFileUpload },
-                onFileDeleteClick = { isFileUpload = !isFileUpload },
+                onFileUploadClick = { isFileUpload = null },
+                onFileDeleteClick = { isFileUpload = null },
                 onProposalSentClick = { showProposalSentDialog = true },
                 onHistoryItemClick = {}
             )

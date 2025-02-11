@@ -5,5 +5,7 @@ data class LoginState(
     val password: String = "",
     val isPasswordVisible: Boolean = false,
     val canLogin: Boolean = false,
-    val isLoggingIn: Boolean = false
+    val isLoggingIn: Boolean = false,
+    val userErrorMessage: String? = null,
+    val passwordErrorMessage: String? = null
 )

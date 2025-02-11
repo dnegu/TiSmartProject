@@ -18,10 +18,10 @@ import tismartproject.composeapp.generated.resources.in_progress_status
 import tismartproject.composeapp.generated.resources.sent_status
 import tismartproject.composeapp.generated.resources.under_review_status
 
-enum class ProposalStatus(val title: String, val icon: DrawableResource, val backgroundColor: Color, val color: Color) {
-    SENT(title = "Enviado", icon = Res.drawable.sent_status, backgroundColor = CelesteClaro, color = CelesteOscuro),
-    UNDER_REVIEW(title = "En revisión", icon = Res.drawable.under_review_status, backgroundColor = AmarilloClaro, color = AmarilloOscuro),
-    APPROVED(title = "Aprobado", icon = Res.drawable.approved_status, backgroundColor = VerdeClaro, color = VerdeOscuro),
-    IN_PROGRESS(title = "En ejecución", icon = Res.drawable.in_progress_status, backgroundColor = MoradoClaro, color = MoradoOscuro),
-    COMPLETED(title = "Finalizado", icon = Res.drawable.approved_status, backgroundColor = TurquesaClaro, color = TurquesaOscuro)
+enum class ProposalStatus(val label: String, val icon: DrawableResource, val backgroundColor: Color, val textColor: Color) {
+    SENT(label = "Enviado", icon = Res.drawable.sent_status, backgroundColor = CelesteClaro, textColor = CelesteOscuro),
+    UNDER_REVIEW(label = "En revisión", icon = Res.drawable.under_review_status, backgroundColor = AmarilloClaro, textColor = AmarilloOscuro),
+    APPROVED(label = "Aprobado", icon = Res.drawable.approved_status, backgroundColor = VerdeClaro, textColor = VerdeOscuro),
+    IN_PROGRESS(label = "En ejecución", icon = Res.drawable.in_progress_status, backgroundColor = MoradoClaro, textColor = MoradoOscuro),
+    COMPLETED(label = "Finalizado", icon = Res.drawable.approved_status, backgroundColor = TurquesaClaro, textColor = TurquesaOscuro)
 }

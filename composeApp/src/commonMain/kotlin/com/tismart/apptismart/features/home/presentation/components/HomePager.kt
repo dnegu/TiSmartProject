@@ -43,9 +43,7 @@ fun HomePager() {
         3
     })
 
-    Box(
-
-    ) {
+    Box {
         HorizontalPager(
             state = pagerState,
             modifier = Modifier

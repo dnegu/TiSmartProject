@@ -9,10 +9,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.tismart.apptismart.core.presentation.NeutralDark
 import com.tismart.apptismart.core.presentation.components.TiSmartTopBar
 import com.tismart.apptismart.features.news.presentation.news_list.components.NewsListCard
 import com.tismart.apptismart.features.news.presentation.news_list.components.NewsListFilters
@@ -51,20 +55,30 @@ fun NewsListScreen(
             onSelectedFilter = { onAction(NewsListAction.OnSelectedFilter(it)) }
         )
 
-        LazyColumn(
-            modifier = Modifier.fillMaxWidth().weight(1f),
-            contentPadding = PaddingValues(12.dp)
-        ) {
-            items(state.news) {
-                NewsListCard(
-                    label = it.label,
-                    title = it.title,
-                    description = it.description,
-                    supporting = it.supporting
-                )
-                HorizontalDivider(
-                    modifier = Modifier.padding(horizontal = 16.dp)
-                )
+        if (state.news.isEmpty()) {
+            Text(
+                text = "Por ahora, no hay noticias nuevas. ¡Vuelve pronto para mantenerte al día!",
+                color = NeutralDark,
+                modifier = Modifier.fillMaxWidth().padding(30.dp),
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.bodyMedium
+            )
+        } else {
+            LazyColumn(
+                modifier = Modifier.fillMaxWidth().weight(1f),
+                contentPadding = PaddingValues(12.dp)
+            ) {
+                items(state.news) {
+                    NewsListCard(
+                        label = it.label,
+                        title = it.title,
+                        description = it.description,
+                        supporting = it.supporting
+                    )
+                    HorizontalDivider(
+                        modifier = Modifier.padding(horizontal = 16.dp)
+                    )
+                }
             }
         }
     }

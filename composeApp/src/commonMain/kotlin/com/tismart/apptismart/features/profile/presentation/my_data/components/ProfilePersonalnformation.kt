@@ -20,7 +20,9 @@ fun ProfilePersonalInformation(
     lastName: String,
     email: String,
     address: String,
-    phone: String
+    phone: String,
+    addressErrorMessage: String?,
+    phoneErrorMessage: String?
 ) {
     Column(
         modifier = Modifier
@@ -54,13 +56,17 @@ fun ProfilePersonalInformation(
         ProfileTextField(
             label = "Dirección",
             value = address,
-            enabled = true
+            enabled = true,
+            errorMessage = addressErrorMessage,
+            onValueChange = {}
         )
 
         ProfileTextField(
             label = "Teléfono",
             value = phone,
-            enabled = true
+            enabled = true,
+            errorMessage = phoneErrorMessage,
+            onValueChange = {}
         )
 
     }

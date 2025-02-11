@@ -111,7 +111,7 @@ private fun ApplicationProgressTrackingItem(
 
         Column {
             Text(
-                text = status.title,
+                text = if (status == RegistrationStatus.SENT) "Solicitud enviada" else status.label,
                 modifier = Modifier.padding(top = 4.dp),
                 color = if (agreementStatus.ordinal >= status.ordinal) NeutralDarkest else NeutralMedium,
                 fontWeight = FontWeight.SemiBold,

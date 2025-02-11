@@ -33,6 +33,7 @@ import com.tismart.apptismart.core.presentation.PrimarioMedium
 import com.tismart.apptismart.core.presentation.SecundarioDark
 import com.tismart.apptismart.core.presentation.SecundarioLightest
 import com.tismart.apptismart.core.presentation.SecundarioMedium
+import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.explore_mentors_card
@@ -52,53 +53,70 @@ fun ExploreMentorsPager(
         horizontalArrangement = Arrangement.spacedBy(20.dp)
     ) {
         items(5) {
-            ElevatedCard(
-                onClick = {},
-                modifier = Modifier.width(150.dp),
-                shape = MaterialTheme.shapes.small,
-                colors = CardDefaults.elevatedCardColors(
-                    containerColor = Color.White
-                ),
-                elevation = CardDefaults.elevatedCardElevation(
-                    defaultElevation = 2.dp
-                )
-            ) {
-                Image(
-                    painter = painterResource(Res.drawable.explore_mentors_card),
-                    contentDescription = null,
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier.fillMaxWidth().height(106.dp)
-                )
+            ExploreMentorsPagerItem(
+                image = Res.drawable.explore_mentors_card,
+                name = "Angela Ramos",
+                description = "Experiencia de 3 años en UX, Angular e inteligencia.",
+                label = "UX Designer",
+                onCardClick = {}
+            )
+        }
+    }
+}
 
-                Column(
-                    modifier = Modifier.padding(start = 10.dp, top = 10.dp, end = 10.dp, bottom = 14.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    Text(
-                        text = "Angela Ramos",
-                        color = NeutralDarkest,
-                        fontWeight = FontWeight.SemiBold,
-                        style = MaterialTheme.typography.titleSmall
-                    )
-                    Text(
-                        text = "Experiencia de 3 años en UX, Angular e inteligencia.",
-                        color = NeutralDark,
-                        maxLines = 3,
-                        overflow = TextOverflow.Ellipsis,
-                        style = MaterialTheme.typography.bodySmall
-                    )
-                    Text(
-                        text = "UX Designer",
-                        modifier = Modifier
-                            .clip(MaterialTheme.shapes.extraSmall)
-                            .background(SecundarioLightest)
-                            .padding(horizontal = 10.dp, vertical = 2.dp),
-                        color = SecundarioMedium,
-                        fontWeight = FontWeight.SemiBold,
-                        style = MaterialTheme.typography.labelSmall
-                    )
-                }
-            }
+@Composable
+private fun ExploreMentorsPagerItem(
+    image: DrawableResource,
+    name: String,
+    description: String,
+    label: String,
+    onCardClick: () -> Unit
+) {
+    ElevatedCard(
+        onClick = onCardClick,
+        modifier = Modifier.width(150.dp),
+        shape = MaterialTheme.shapes.small,
+        colors = CardDefaults.elevatedCardColors(
+            containerColor = Color.White
+        ),
+        elevation = CardDefaults.elevatedCardElevation(
+            defaultElevation = 2.dp
+        )
+    ) {
+        Image(
+            painter = painterResource(image),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.fillMaxWidth().height(106.dp)
+        )
+
+        Column(
+            modifier = Modifier.padding(start = 10.dp, top = 10.dp, end = 10.dp, bottom = 14.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            Text(
+                text = name,
+                color = NeutralDarkest,
+                fontWeight = FontWeight.SemiBold,
+                style = MaterialTheme.typography.titleSmall
+            )
+            Text(
+                text = description,
+                color = NeutralDark,
+                maxLines = 3,
+                overflow = TextOverflow.Ellipsis,
+                style = MaterialTheme.typography.bodySmall
+            )
+            Text(
+                text = label,
+                modifier = Modifier
+                    .clip(MaterialTheme.shapes.extraSmall)
+                    .background(SecundarioLightest)
+                    .padding(horizontal = 10.dp, vertical = 2.dp),
+                color = SecundarioMedium,
+                fontWeight = FontWeight.SemiBold,
+                style = MaterialTheme.typography.labelSmall
+            )
         }
     }
 }

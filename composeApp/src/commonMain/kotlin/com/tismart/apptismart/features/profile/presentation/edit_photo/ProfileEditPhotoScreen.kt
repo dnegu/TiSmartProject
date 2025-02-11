@@ -27,7 +27,7 @@ import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.profile_avatar
 
 @Composable
-fun ProfileEditPhotoScreen(modifier: Modifier = Modifier) {
+fun ProfileEditPhotoScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
