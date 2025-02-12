@@ -21,7 +21,8 @@ import com.tismart.apptismart.core.presentation.SecundarioDark
 
 @Composable
 fun VacancyDashboardRecommendedList(
-    onSeeAllClick: () -> Unit
+    onSeeAllClick: () -> Unit,
+    onCardClick: () -> Unit
 ) {
 
     VacancyDashboardRecommendedListHeader(
@@ -37,7 +38,7 @@ fun VacancyDashboardRecommendedList(
             isNew = false,
             location = "Lima, Perú. (En remoto)",
             date = "12/04/24",
-            onCardClick = {}
+            onCardClick = onCardClick
         )
         HorizontalDivider(color = NeutralLight)
 
@@ -46,7 +47,7 @@ fun VacancyDashboardRecommendedList(
             isNew = false,
             location = "Lima, Perú. (En remoto)",
             date = "12/04/24",
-            onCardClick = {}
+            onCardClick = onCardClick
         )
         HorizontalDivider(color = NeutralLight)
 
@@ -55,7 +56,7 @@ fun VacancyDashboardRecommendedList(
             isNew = true,
             location = "Lima, Perú. (En remoto)",
             date = "12/04/24",
-            onCardClick = {}
+            onCardClick = onCardClick
         )
         HorizontalDivider(color = NeutralLight)
     }
@@ -91,6 +92,5 @@ private fun VacancyDashboardRecommendedListHeader(
                 style = MaterialTheme.typography.titleMedium
             )
         }
-
     }
 }

@@ -26,10 +26,32 @@ import com.tismart.apptismart.features.keeps_growing.presentation.components.App
 import com.tismart.apptismart.features.keeps_growing.presentation.components.ApplicationFormMotivation
 import com.tismart.apptismart.features.keeps_growing.presentation.components.ApplicationFormProposalSentDialog
 import com.tismart.apptismart.features.keeps_growing.presentation.components.ApplicationFormYourExperience
-import com.tismart.apptismart.features.keeps_growing.presentation.innovate_and_transform.ApplicationFormError
+import com.tismart.apptismart.features.keeps_growing.presentation.growth_path.GrowthPathAction
+import com.tismart.apptismart.features.keeps_growing.presentation.growth_path.GrowthPathScreen
 
 @Composable
-fun ApplicationFormScreen() {
+fun MentorApplicationFormScreenRoot(
+    onProfileClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
+    onBackClick: () -> Unit,
+    proposalSent: () -> Unit
+) {
+    MentorApplicationFormScreen(
+        onAction = { action ->
+            when (action) {
+                MentorApplicationFormAction.OnProfileClick -> onProfileClick()
+                MentorApplicationFormAction.OnNotificationsClick -> onNotificationsClick()
+                MentorApplicationFormAction.OnBackClick -> onBackClick()
+                MentorApplicationFormAction.DismissProposalSentDialog -> proposalSent()
+            }
+        }
+    )
+}
+
+@Composable
+fun MentorApplicationFormScreen(
+    onAction: (MentorApplicationFormAction) -> Unit
+) {
     val options = listOf("Cupcake", "Donut", "Eclair", "Froyo", "Gingerbread")
     var area by remember { mutableStateOf("") }
     var currentPosition by remember { mutableStateOf("") }
@@ -38,7 +60,7 @@ fun ApplicationFormScreen() {
     var cv by remember { mutableStateOf("") }
     var showProposalSentDialog by remember { mutableStateOf(false) }
 
-    val applicationFormError by remember { mutableStateOf(ApplicationFormError()) }
+    val mentorApplicationFormError by remember { mutableStateOf(MentorApplicationFormError()) }
 
     Column(
         modifier = Modifier
@@ -48,9 +70,10 @@ fun ApplicationFormScreen() {
     ) {
         TiSmartHeader(
             title = "Formulario de postulación",
-            onMenuClick = {},
-            onNotificationsClick = {},
-            onBackClick = {}
+            notificationCount = 0,
+            onMenuClick = { onAction(MentorApplicationFormAction.OnProfileClick) },
+            onNotificationsClick = { onAction(MentorApplicationFormAction.OnNotificationsClick) },
+            onBackClick = { onAction(MentorApplicationFormAction.OnBackClick) }
         )
 
         Column(
@@ -66,31 +89,31 @@ fun ApplicationFormScreen() {
             ApplicationFormArea(
                 area = area,
                 options = options,
-                isError = applicationFormError.area,
+                isError = mentorApplicationFormError.area,
                 onAreaChange = { area = it }
             )
 
             ApplicationFormCurrentPosition(
                 currentPosition = currentPosition,
-                isError = applicationFormError.currentPosition,
+                isError = mentorApplicationFormError.currentPosition,
                 onCurrentPositionChange = { currentPosition = it }
             )
 
             ApplicationFormYourExperience(
                 experience = experience,
-                isError = applicationFormError.experience,
+                isError = mentorApplicationFormError.experience,
                 onExperienceChange = { experience = it }
             )
 
             ApplicationFormMotivation(
                 motivation = motivation,
-                isError = applicationFormError.motivation,
+                isError = mentorApplicationFormError.motivation,
                 onMotivationChange = { motivation = it }
             )
 
             ApplicationFormAttachCV(
                 cv = cv,
-                isError = applicationFormError.cv,
+                isError = mentorApplicationFormError.cv,
                 onAttachCVClick = { cv = "cv.marketing/pdf" }
             )
 
@@ -105,7 +128,7 @@ fun ApplicationFormScreen() {
 
     ApplicationFormProposalSentDialog(
         showDialog = showProposalSentDialog,
-        onDismiss = { showProposalSentDialog = false },
-        onUnderstoodClick = { showProposalSentDialog = false }
+        onDismiss = { onAction(MentorApplicationFormAction.DismissProposalSentDialog) },
+        onUnderstoodClick = { onAction(MentorApplicationFormAction.DismissProposalSentDialog) }
     )
 }

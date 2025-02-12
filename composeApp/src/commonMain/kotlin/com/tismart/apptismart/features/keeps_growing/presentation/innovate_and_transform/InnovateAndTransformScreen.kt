@@ -38,7 +38,28 @@ import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.download
 
 @Composable
-fun InnovateAndTransformScreen() {
+fun InnovateAndTransformScreenRoot(
+    onProfileClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
+    onBackClick: () -> Unit,
+    onIdeaClick: (String, ProposalStatus) -> Unit
+) {
+    InnovateAndTransformScreen(
+        onAction = { action ->
+            when (action) {
+                InnovateAndTransformAction.OnProfileClick -> onProfileClick()
+                InnovateAndTransformAction.OnNotificationsClick -> onNotificationsClick()
+                InnovateAndTransformAction.OnBackClick -> onBackClick()
+                is InnovateAndTransformAction.OnIdeaClick -> onIdeaClick(action.projectName, action.status)
+            }
+        }
+    )
+}
+
+@Composable
+fun InnovateAndTransformScreen(
+    onAction: (InnovateAndTransformAction) -> Unit
+) {
     var isFileUpload: Boolean? by remember { mutableStateOf(null) }
     var showProposalSentDialog by remember { mutableStateOf(false) }
 
@@ -50,9 +71,10 @@ fun InnovateAndTransformScreen() {
     ) {
         TiSmartHeader(
             title = "Innova y transforma",
-            onMenuClick = {},
-            onNotificationsClick = {},
-            onBackClick = {}
+            notificationCount = 0,
+            onMenuClick = { onAction(InnovateAndTransformAction.OnProfileClick) },
+            onNotificationsClick = { onAction(InnovateAndTransformAction.OnNotificationsClick) },
+            onBackClick = { onAction(InnovateAndTransformAction.OnBackClick) }
         )
 
         Column(
@@ -112,7 +134,9 @@ fun InnovateAndTransformScreen() {
                 onFileUploadClick = { isFileUpload = null },
                 onFileDeleteClick = { isFileUpload = null },
                 onProposalSentClick = { showProposalSentDialog = true },
-                onHistoryItemClick = {}
+                onHistoryItemClick = { projectName, status ->
+                    onAction(InnovateAndTransformAction.OnIdeaClick(projectName, status))
+                }
             )
         }
     }

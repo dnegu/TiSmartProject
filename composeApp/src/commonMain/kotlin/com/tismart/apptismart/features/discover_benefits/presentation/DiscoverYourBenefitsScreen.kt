@@ -21,10 +21,39 @@ import com.tismart.apptismart.features.discover_benefits.presentation.components
 import com.tismart.apptismart.features.discover_benefits.presentation.components.DiscoverYourBenefitsCategoryList
 import com.tismart.apptismart.features.discover_benefits.presentation.components.DiscoverYourBenefitsDisplayPager
 import com.tismart.apptismart.features.discover_benefits.presentation.components.DiscoverYourBenefitsListPager
+import com.tismart.apptismart.features.vacancy.presentation.NewVacanciesScreen
+import com.tismart.apptismart.features.vacancy.presentation.VacancyAction
+
+@Composable
+fun DiscoverYourBenefitsScreenRoot(
+    onProfileClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
+    onBackClick: () -> Unit,
+    onSearchForBenefitsClick: () -> Unit,
+    onCategoryClick: (String) -> Unit,
+    onSeeAllNewBenefitsClick: () -> Unit,
+    onSeeAllMyFavoriteBenefitsClick: () -> Unit,
+    onBenefitCardClick: () -> Unit
+) {
+    DiscoverYourBenefitsScreen(
+        onAction = { action ->
+            when (action) {
+                DiscoverBenefitsAction.OnProfileClick -> onProfileClick()
+                DiscoverBenefitsAction.OnNotificationsClick -> onNotificationsClick()
+                DiscoverBenefitsAction.OnBackClick -> onBackClick()
+                DiscoverBenefitsAction.OnSearchForBenefitsClick -> onSearchForBenefitsClick()
+                is DiscoverBenefitsAction.OnCategoryClick -> onCategoryClick(action.category)
+                DiscoverBenefitsAction.OnSeeAllNewBenefitsClick -> onSeeAllNewBenefitsClick()
+                DiscoverBenefitsAction.OnSeeAllMyFavoriteBenefitsClick -> onSeeAllMyFavoriteBenefitsClick()
+                DiscoverBenefitsAction.OnBenefitCardClick -> onBenefitCardClick()
+            }
+        }
+    )
+}
 
 @Composable
 fun DiscoverYourBenefitsScreen(
-    onSearchBarClick: () -> Unit
+    onAction: (DiscoverBenefitsAction) -> Unit,
 ) {
     var showLocationDialog by remember { mutableStateOf(true) }
     Column(
@@ -35,28 +64,33 @@ fun DiscoverYourBenefitsScreen(
     ) {
         TiSmartHeader(
             title = "Descubre tus beneficios",
-            onMenuClick = {},
-            onNotificationsClick = {},
-            onBackClick = {}
+            notificationCount = 0,
+            onMenuClick = { onAction(DiscoverBenefitsAction.OnProfileClick) },
+            onNotificationsClick = { onAction(DiscoverBenefitsAction.OnNotificationsClick) },
+            onBackClick = { onAction(DiscoverBenefitsAction.OnBackClick) }
         )
 
         DiscoverBenefitsSearchBar(
             text = "Buscar beneficios",
-            onSearchBarClick = onSearchBarClick
+            onSearchBarClick = { onAction(DiscoverBenefitsAction.OnSearchForBenefitsClick) }
         )
 
         DiscoverYourBenefitsDisplayPager()
 
-        DiscoverYourBenefitsCategoryList()
+        DiscoverYourBenefitsCategoryList(
+            onItemClick = { onAction(DiscoverBenefitsAction.OnCategoryClick(it)) }
+        )
 
         DiscoverYourBenefitsListPager(
             title = "Nuevos",
-            onSeeAllClick = {}
+            onSeeAllClick = { onAction(DiscoverBenefitsAction.OnSeeAllNewBenefitsClick) },
+            onCardClick = { onAction(DiscoverBenefitsAction.OnBenefitCardClick) }
         )
 
         DiscoverYourBenefitsListPager(
             title = "Mis favoritos",
-            onSeeAllClick = {}
+            onSeeAllClick = { onAction(DiscoverBenefitsAction.OnSeeAllMyFavoriteBenefitsClick) },
+            onCardClick = { onAction(DiscoverBenefitsAction.OnBenefitCardClick) }
         )
 
         Spacer(modifier = Modifier.height(30.dp))

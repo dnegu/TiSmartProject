@@ -13,6 +13,14 @@ class HomeViewModel(
         private set
 
     fun onAction(action: HomeAction) {
-
+        when (action) {
+            HomeAction.OnTiSmartBuddyClick -> {
+                state = state.copy(showTiSmartBuddyDialog = true)
+            }
+            HomeAction.DismissTiSmartBuddyDialog -> {
+                state = state.copy(showTiSmartBuddyDialog = false)
+            }
+            else -> Unit
+        }
     }
 }

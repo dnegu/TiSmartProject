@@ -19,7 +19,9 @@ import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.discover_benefits_card
 
 @Composable
-fun DiscoverBenefitsCategoryDetailPager() {
+fun DiscoverBenefitsCategoryDetailPager(
+    onCardClick: () -> Unit
+) {
     Column(
         modifier = Modifier.background(HomeBackground).padding(vertical = 30.dp),
         verticalArrangement = Arrangement.spacedBy(20.dp)
@@ -43,7 +45,7 @@ fun DiscoverBenefitsCategoryDetailPager() {
                     image = Res.drawable.discover_benefits_card,
                     discount = 50,
                     name = "Teatro La Plaza",
-                    onCardClick = {}
+                    onCardClick = onCardClick
                 )
             }
         }

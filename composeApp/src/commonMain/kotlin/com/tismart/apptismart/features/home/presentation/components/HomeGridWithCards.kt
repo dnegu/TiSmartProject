@@ -20,8 +20,8 @@ import tismartproject.composeapp.generated.resources.star_badge
 @Composable
 fun HomeGridWithCards(
     onKeepGrowingClick: () -> Unit,
+    onSearchForNewVacanciesClick: () -> Unit,
     onEnhanceLearningClick: () -> Unit,
-    onDiscoverNewVacanciesClick: () -> Unit,
     onDiscoverMyBenefitsClick: () -> Unit
 ) {
     Column(
@@ -54,7 +54,7 @@ fun HomeGridWithCards(
                 modifier = Modifier.weight(1f),
                 title = "Buscar nuevas vacantes",
                 image = Res.drawable.check_profile,
-                onClick = onDiscoverNewVacanciesClick
+                onClick = onSearchForNewVacanciesClick
             )
             HomeCard(
                 modifier = Modifier.weight(1f),

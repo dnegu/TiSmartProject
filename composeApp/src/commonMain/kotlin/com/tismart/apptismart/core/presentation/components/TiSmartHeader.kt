@@ -24,6 +24,7 @@ import tismartproject.composeapp.generated.resources.arrow_left
 @Composable
 fun TiSmartHeader(
     title: String? = null,
+    notificationCount: Int,
     onMenuClick: () -> Unit,
     onNotificationsClick: () -> Unit,
     onBackClick: () -> Unit
@@ -34,6 +35,7 @@ fun TiSmartHeader(
             .background(SecundarioDark)
     ) {
         TiSmartTopBar(
+            notificationCount = notificationCount,
             onMenuClick = onMenuClick,
             onNotificationsClick = onNotificationsClick
         )

@@ -17,7 +17,28 @@ import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.keeps_growing_card
 
 @Composable
-fun CelebrateYourEvolutionDetailScreen() {
+fun CelebrateYourEvolutionDetailScreenRoot(
+    onProfileClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
+    onBackClick: () -> Unit,
+    onColleagueCardClick: () -> Unit
+) {
+    CelebrateYourEvolutionDetailScreen(
+        onAction = { action ->
+            when (action) {
+                CelebrateYourEvolutionAction.OnProfileClick -> onProfileClick()
+                CelebrateYourEvolutionAction.OnNotificationsClick -> onNotificationsClick()
+                CelebrateYourEvolutionAction.OnBackClick -> onBackClick()
+                CelebrateYourEvolutionAction.OnColleagueCardClick -> onColleagueCardClick()
+            }
+        }
+    )
+}
+
+@Composable
+fun CelebrateYourEvolutionDetailScreen(
+    onAction: (CelebrateYourEvolutionAction) -> Unit
+) {
     val (isFavorite, onFavoriteClick) = remember { mutableStateOf(false) }
 
     Column(
@@ -27,9 +48,10 @@ fun CelebrateYourEvolutionDetailScreen() {
             .verticalScroll(rememberScrollState())
     ) {
         TiSmartHeader(
-            onMenuClick = {},
-            onNotificationsClick = {},
-            onBackClick = {}
+            notificationCount = 0,
+            onMenuClick = { onAction(CelebrateYourEvolutionAction.OnProfileClick) },
+            onNotificationsClick = { onAction(CelebrateYourEvolutionAction.OnNotificationsClick) },
+            onBackClick = { onAction(CelebrateYourEvolutionAction.OnBackClick) }
         )
 
         CelebrateYourEvolutionDetailHeader(
@@ -42,6 +64,8 @@ fun CelebrateYourEvolutionDetailScreen() {
             onFavoriteClick = onFavoriteClick
         )
 
-        CelebrateYourEvolutionDetailPager()
+        CelebrateYourEvolutionDetailPager(
+            onCardClick = { onAction(CelebrateYourEvolutionAction.OnColleagueCardClick) }
+        )
     }
 }

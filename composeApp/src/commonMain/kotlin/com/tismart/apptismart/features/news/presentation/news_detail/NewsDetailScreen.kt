@@ -24,11 +24,21 @@ import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun NewsDetailScreenRoot(
+    onProfileClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
+    onBackClick: () -> Unit,
     viewModel: NewsDetailViewModel = koinViewModel(),
 ) {
     NewsDetailScreen(
         state = viewModel.state,
-        onAction = viewModel::onAction
+        onAction = { action ->
+            when (action) {
+                NewsDetailAction.OnProfileClick -> onProfileClick()
+                NewsDetailAction.OnNotificationsClick -> onNotificationsClick()
+                NewsDetailAction.OnBackClick -> onBackClick()
+            }
+            viewModel.onAction(action)
+        }
     )
 }
 
@@ -41,7 +51,8 @@ fun NewsDetailScreen(
         modifier = Modifier.fillMaxSize()
     ) {
         TiSmartTopBar(
-            onMenuClick = { onAction(NewsDetailAction.OnBackClick) },
+            notificationCount = 0,
+            onMenuClick = { onAction(NewsDetailAction.OnProfileClick) },
             onNotificationsClick = { onAction(NewsDetailAction.OnNotificationsClick) }
         )
 

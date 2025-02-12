@@ -14,11 +14,34 @@ import androidx.compose.ui.unit.dp
 import com.tismart.apptismart.core.presentation.components.TiSmartHeader
 import com.tismart.apptismart.features.discover_benefits.presentation.CourseLevel
 import com.tismart.apptismart.features.enhance_learning.presentation.components.TiSmartLoversCourseListCard
+import com.tismart.apptismart.features.vacancy.presentation.NewVacanciesScreen
+import com.tismart.apptismart.features.vacancy.presentation.VacancyAction
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.explore_courses_card
 
 @Composable
-fun ExploreCoursesRecommendedForYouScreen() {
+fun ExploreCoursesRecommendedForYouScreenRoot(
+    onProfileClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
+    onBackClick: () -> Unit,
+    onCourseCardClick: () -> Unit
+) {
+    ExploreCoursesRecommendedForYouScreen(
+        onAction = { action ->
+            when (action) {
+                ExploreCoursesSkillsAction.OnProfileClick -> onProfileClick()
+                ExploreCoursesSkillsAction.OnNotificationsClick -> onNotificationsClick()
+                ExploreCoursesSkillsAction.OnBackClick -> onBackClick()
+                ExploreCoursesSkillsAction.OnCourseCardClick -> onCourseCardClick()
+            }
+        }
+    )
+}
+
+@Composable
+fun ExploreCoursesRecommendedForYouScreen(
+    onAction: (ExploreCoursesSkillsAction) -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -26,9 +49,10 @@ fun ExploreCoursesRecommendedForYouScreen() {
     ) {
         TiSmartHeader(
             title = "Recomendados para ti",
-            onMenuClick = {},
-            onNotificationsClick = {},
-            onBackClick = {}
+            notificationCount = 0,
+            onMenuClick = { onAction(ExploreCoursesSkillsAction.OnProfileClick) },
+            onNotificationsClick = { onAction(ExploreCoursesSkillsAction.OnNotificationsClick) },
+            onBackClick = { onAction(ExploreCoursesSkillsAction.OnBackClick) }
         )
 
         LazyColumn(
@@ -43,7 +67,7 @@ fun ExploreCoursesRecommendedForYouScreen() {
                     description = "Aprende los fundamentos de React Básico: Interfaces interactivas blab blal blalssls blla lblddldl",
                     author = "Duración: 2h",
                     courseLevel = CourseLevel.INTERMEDIATE,
-                    onCardClick = {}
+                    onCardClick = { onAction(ExploreCoursesSkillsAction.OnCourseCardClick) }
                 )
             }
         }

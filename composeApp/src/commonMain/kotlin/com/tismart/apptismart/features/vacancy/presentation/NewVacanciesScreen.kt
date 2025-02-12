@@ -13,12 +13,32 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.tismart.apptismart.core.presentation.NeutralLight
-import com.tismart.apptismart.core.presentation.NeutralMedium
 import com.tismart.apptismart.core.presentation.components.TiSmartHeader
 import com.tismart.apptismart.features.vacancy.presentation.components.VacancyCard
 
 @Composable
-fun NewVacanciesScreen() {
+fun NewVacanciesScreenRoot(
+    onProfileClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
+    onBackClick: () -> Unit,
+    onVacancyCardClick: () -> Unit
+) {
+    NewVacanciesScreen(
+        onAction = { action ->
+            when (action) {
+                VacancyAction.OnProfileClick -> onProfileClick()
+                VacancyAction.OnNotificationsClick -> onNotificationsClick()
+                VacancyAction.OnBackClick -> onBackClick()
+                VacancyAction.OnVacancyCardClick -> onVacancyCardClick()
+            }
+        }
+    )
+}
+
+@Composable
+fun NewVacanciesScreen(
+    onAction: (VacancyAction) -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -26,9 +46,10 @@ fun NewVacanciesScreen() {
     ) {
         TiSmartHeader(
             title = "Nuevas vacantes",
-            onMenuClick = {},
-            onNotificationsClick = {},
-            onBackClick = {}
+            notificationCount = 0,
+            onMenuClick = { onAction(VacancyAction.OnProfileClick) },
+            onNotificationsClick = { onAction(VacancyAction.OnNotificationsClick) },
+            onBackClick = { onAction(VacancyAction.OnBackClick) }
         )
 
         LazyColumn(
@@ -42,7 +63,7 @@ fun NewVacanciesScreen() {
                     isNew = it % 2 == 0,
                     location = "Lima, Perú. (En remoto)",
                     date = "12/04/24",
-                    onCardClick = {}
+                    onCardClick = { onAction(VacancyAction.OnVacancyCardClick) }
                 )
                 HorizontalDivider(color = NeutralLight)
             }

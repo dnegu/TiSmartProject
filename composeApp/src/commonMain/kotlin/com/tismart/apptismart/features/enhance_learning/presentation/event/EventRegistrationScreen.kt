@@ -20,12 +20,35 @@ import com.tismart.apptismart.core.presentation.components.TiSmartHeader
 import com.tismart.apptismart.features.discover_benefits.presentation.CourseLevel
 import com.tismart.apptismart.features.enhance_learning.presentation.components.EventRegistrationBody
 import com.tismart.apptismart.features.enhance_learning.presentation.components.EventRegistrationHeader
+import com.tismart.apptismart.features.vacancy.presentation.NewVacanciesScreen
+import com.tismart.apptismart.features.vacancy.presentation.VacancyAction
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.tismart_university_avatar
 import tismartproject.composeapp.generated.resources.tismart_university_display
 
 @Composable
-fun EventRegistrationScreen() {
+fun EventRegistrationScreenRoot(
+    onProfileClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
+    onBackClick: () -> Unit,
+    onEnrollMeClick: () -> Unit
+) {
+    EventRegistrationScreen(
+        onAction = { action ->
+            when (action) {
+                EventRegistrationAction.OnProfileClick -> onProfileClick()
+                EventRegistrationAction.OnNotificationsClick -> onNotificationsClick()
+                EventRegistrationAction.OnBackClick -> onBackClick()
+                EventRegistrationAction.OnEnrollMeClick -> onEnrollMeClick()
+            }
+        }
+    )
+}
+
+@Composable
+fun EventRegistrationScreen(
+    onAction: (EventRegistrationAction) -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -33,9 +56,10 @@ fun EventRegistrationScreen() {
             .verticalScroll(rememberScrollState())
     ) {
         TiSmartHeader(
-            onMenuClick = {},
-            onNotificationsClick = {},
-            onBackClick = {}
+            notificationCount = 0,
+            onMenuClick = { onAction(EventRegistrationAction.OnProfileClick) },
+            onNotificationsClick = { onAction(EventRegistrationAction.OnNotificationsClick) },
+            onBackClick = { onAction(EventRegistrationAction.OnBackClick) }
         )
 
         EventRegistrationHeader(
@@ -52,7 +76,7 @@ fun EventRegistrationScreen() {
         )
 
         Button(
-            onClick = {},
+            onClick = { onAction(EventRegistrationAction.OnEnrollMeClick) },
             modifier = Modifier.fillMaxWidth()
                 .padding(horizontal = 30.dp)
                 .padding(bottom = 24.dp),

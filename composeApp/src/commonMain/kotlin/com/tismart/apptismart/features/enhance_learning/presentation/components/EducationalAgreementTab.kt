@@ -44,7 +44,7 @@ import org.jetbrains.compose.resources.painterResource
 @Composable
 fun EducationalAgreementTab(
     onSubmitApplicationClick: () -> Unit,
-    onHistoryItemClick: () -> Unit
+    onHistoryItemClick: (String, RegistrationStatus) -> Unit
 ) {
     Text(
         text = "Formulario de postulación",
@@ -153,7 +153,7 @@ private fun RegistrationTab(
 
 @Composable
 private fun HistoryTab(
-    onItemClick: () -> Unit
+    onItemClick: (String, RegistrationStatus) -> Unit
 ) {
     LazyColumn(
         modifier = Modifier.heightIn(max = 500.dp)
@@ -162,7 +162,7 @@ private fun HistoryTab(
             ProposalHistoryItem(
                 agreementName = "Interaction Design Foundation",
                 status = RegistrationStatus.SENT,
-                onItemClick = onItemClick
+                onItemClick = { onItemClick("Interaction Design Foundation", RegistrationStatus.SENT) }
             )
             HorizontalDivider(color = NeutralLight)
         }
@@ -170,7 +170,7 @@ private fun HistoryTab(
             ProposalHistoryItem(
                 agreementName = "Interaction Design Foundation",
                 status = RegistrationStatus.UNDER_REVIEW,
-                onItemClick = onItemClick
+                onItemClick = { onItemClick("Interaction Design Foundation", RegistrationStatus.UNDER_REVIEW) }
             )
             HorizontalDivider(color = NeutralLight)
         }
@@ -178,7 +178,7 @@ private fun HistoryTab(
             ProposalHistoryItem(
                 agreementName = "Interaction Design Foundation",
                 status = RegistrationStatus.APPROVED,
-                onItemClick = onItemClick
+                onItemClick = { onItemClick("Interaction Design Foundation", RegistrationStatus.APPROVED) }
             )
             HorizontalDivider(color = NeutralLight)
         }
@@ -186,7 +186,7 @@ private fun HistoryTab(
             ProposalHistoryItem(
                 agreementName = "Interaction Design Foundation",
                 status = RegistrationStatus.NOT_APPROVED,
-                onItemClick = onItemClick
+                onItemClick = { onItemClick("Interaction Design Foundation", RegistrationStatus.NOT_APPROVED) }
             )
         }
     }

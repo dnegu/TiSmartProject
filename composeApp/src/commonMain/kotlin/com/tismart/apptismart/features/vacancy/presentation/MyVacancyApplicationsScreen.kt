@@ -17,7 +17,28 @@ import com.tismart.apptismart.core.presentation.components.TiSmartHeader
 import com.tismart.apptismart.features.vacancy.presentation.components.VacancyCard
 
 @Composable
-fun VacancyApplicationsScreen() {
+fun MyVacancyApplicationsScreenRoot(
+    onProfileClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
+    onBackClick: () -> Unit,
+    onVacancyCardClick: () -> Unit
+) {
+    MyVacancyApplicationsScreen(
+        onAction = { action ->
+            when (action) {
+                VacancyAction.OnProfileClick -> onProfileClick()
+                VacancyAction.OnNotificationsClick -> onNotificationsClick()
+                VacancyAction.OnBackClick -> onBackClick()
+                VacancyAction.OnVacancyCardClick -> onVacancyCardClick()
+            }
+        }
+    )
+}
+
+@Composable
+fun MyVacancyApplicationsScreen(
+    onAction: (VacancyAction) -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -25,9 +46,10 @@ fun VacancyApplicationsScreen() {
     ) {
         TiSmartHeader(
             title = "Mis postulaciones",
-            onMenuClick = {},
-            onNotificationsClick = {},
-            onBackClick = {}
+            notificationCount = 0,
+            onMenuClick = { onAction(VacancyAction.OnProfileClick) },
+            onNotificationsClick = { onAction(VacancyAction.OnNotificationsClick) },
+            onBackClick = { onAction(VacancyAction.OnBackClick) }
         )
 
         LazyColumn(
@@ -42,7 +64,7 @@ fun VacancyApplicationsScreen() {
                     jobNumber = "N° de puesto: 0023",
                     announcementDate = "12/04/24",
                     receptionDate = "15/04/24",
-                    onCardClick = {}
+                    onCardClick = { onAction(VacancyAction.OnVacancyCardClick) }
                 )
                 HorizontalDivider(color = NeutralMedium)
             }

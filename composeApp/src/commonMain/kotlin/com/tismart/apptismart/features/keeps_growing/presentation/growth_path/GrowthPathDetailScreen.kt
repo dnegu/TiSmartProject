@@ -37,9 +37,30 @@ import tismartproject.composeapp.generated.resources.growth_path_man
 import tismartproject.composeapp.generated.resources.growth_path_woman
 
 @Composable
+fun GrowthPathDetailScreenRoot(
+    onProfileClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
+    onBackClick: () -> Unit
+) {
+    GrowthPathDetailScreen(
+        isAMan = true,
+        growthPath = GrowthPath.SemiSenior,
+        onAction = { action ->
+            when (action) {
+                GrowthPathAction.OnProfileClick -> onProfileClick()
+                GrowthPathAction.OnNotificationsClick -> onNotificationsClick()
+                GrowthPathAction.OnBackClick -> onBackClick()
+                else -> Unit
+            }
+        }
+    )
+}
+
+@Composable
 fun GrowthPathDetailScreen(
     isAMan: Boolean,
-    growthPath: GrowthPath
+    growthPath: GrowthPath,
+    onAction: (GrowthPathAction) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -49,9 +70,10 @@ fun GrowthPathDetailScreen(
     ) {
         TiSmartHeader(
             title = growthPath.title,
-            onMenuClick = {},
-            onNotificationsClick = {},
-            onBackClick = {}
+            notificationCount = 0,
+            onMenuClick = { onAction(GrowthPathAction.OnProfileClick) },
+            onNotificationsClick = { onAction(GrowthPathAction.OnNotificationsClick) },
+            onBackClick = { onAction(GrowthPathAction.OnBackClick) }
         )
 
         Column(

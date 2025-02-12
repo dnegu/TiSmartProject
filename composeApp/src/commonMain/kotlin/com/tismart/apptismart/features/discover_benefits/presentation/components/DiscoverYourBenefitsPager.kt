@@ -71,7 +71,8 @@ fun DiscoverYourBenefitsDisplayPager() {
 @Composable
 fun DiscoverYourBenefitsListPager(
     title: String,
-    onSeeAllClick: () -> Unit
+    onSeeAllClick: () -> Unit,
+    onCardClick: () -> Unit
 ) {
     DiscoverYourBenefitsListPagerHeader(
         title = title,
@@ -89,7 +90,7 @@ fun DiscoverYourBenefitsListPager(
                 image = Res.drawable.discover_benefits_card,
                 discount = 50,
                 name = "La Tarumba",
-                onCardClick = {}
+                onCardClick = onCardClick
             )
         }
     }

@@ -11,14 +11,37 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.tismart.apptismart.features.profile.presentation.components.ProfileHeader
+import com.tismart.apptismart.features.profile.presentation.home.ProfileAction
+import com.tismart.apptismart.features.profile.presentation.home.ProfileScreen
+import com.tismart.apptismart.features.profile.presentation.home.ProfileViewModel
 import com.tismart.apptismart.features.profile.presentation.my_data.components.ProfileMyDataImageAndName
 import com.tismart.apptismart.features.profile.presentation.my_data.components.ProfilePersonalInformation
 import com.tismart.apptismart.features.profile.presentation.my_data.components.ProfileProfessionalInformation
+import org.koin.compose.viewmodel.koinViewModel
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.profile_avatar
 
 @Composable
-fun ProfileMyDataScreen() {
+fun ProfileMyDataScreenRoot(
+    onCloseClick: () -> Unit,
+    onBackClick: () -> Unit,
+    onEditProfilePictureClick: () -> Unit,
+) {
+    ProfileMyDataScreen(
+        onAction = { action ->
+            when (action) {
+                ProfileMyDataAction.OnCloseClick -> onCloseClick()
+                ProfileMyDataAction.OnBackClick -> onBackClick()
+                ProfileMyDataAction.OnEditProfilePictureClick -> onEditProfilePictureClick()
+            }
+        }
+    )
+}
+
+@Composable
+fun ProfileMyDataScreen(
+    onAction: (ProfileMyDataAction) -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -27,14 +50,14 @@ fun ProfileMyDataScreen() {
     ) {
         ProfileHeader(
             title = "Mis datos",
-            onCloseClick = {},
-            onBackClick = {}
+            onCloseClick = { onAction(ProfileMyDataAction.OnCloseClick) },
+            onBackClick = { onAction(ProfileMyDataAction.OnBackClick) }
         )
 
         ProfileMyDataImageAndName(
             image = Res.drawable.profile_avatar,
             name = "Ronald Andia",
-            onEditClick = {}
+            onEditClick = { onAction(ProfileMyDataAction.OnEditProfilePictureClick) }
         )
 
         ProfilePersonalInformation(

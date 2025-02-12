@@ -28,7 +28,27 @@ import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.tismart_university_card
 
 @Composable
-fun TiSmartLoversCourseDetailScreen() {
+fun TiSmartLoversCourseDetailScreenRoot(
+    onProfileClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
+    onBackClick: () -> Unit
+) {
+    TiSmartLoversCourseDetailScreen(
+        onAction = { action ->
+            when (action) {
+                TiSmartLoversAction.OnProfileClick -> onProfileClick()
+                TiSmartLoversAction.OnNotificationsClick -> onNotificationsClick()
+                TiSmartLoversAction.OnBackClick -> onBackClick()
+                else -> Unit
+            }
+        }
+    )
+}
+
+@Composable
+fun TiSmartLoversCourseDetailScreen(
+    onAction: (TiSmartLoversAction) -> Unit
+) {
     var showDialog by remember { mutableStateOf(false) }
     Column(
         modifier = Modifier
@@ -37,9 +57,10 @@ fun TiSmartLoversCourseDetailScreen() {
             .verticalScroll(rememberScrollState())
     ) {
         TiSmartHeader(
-            onMenuClick = {},
-            onNotificationsClick = {},
-            onBackClick = {}
+            notificationCount = 0,
+            onMenuClick = { onAction(TiSmartLoversAction.OnProfileClick) },
+            onNotificationsClick = { onAction(TiSmartLoversAction.OnNotificationsClick) },
+            onBackClick = { onAction(TiSmartLoversAction.OnBackClick) }
         )
 
         TiSmartLoversCourseDetailHeader(

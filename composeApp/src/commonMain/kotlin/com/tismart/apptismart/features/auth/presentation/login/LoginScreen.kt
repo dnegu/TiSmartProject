@@ -58,7 +58,9 @@ fun LoginScreenRoot(
         onAction = { action ->
             when (action) {
                 LoginAction.OnLoginClick -> {
-                    onLoginSuccess()
+                    if (viewModel.state.user == "47474747" && viewModel.state.password == "Admin123") {
+                        onLoginSuccess()
+                    }
                 }
                 else -> Unit
             }

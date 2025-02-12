@@ -5,6 +5,7 @@ import com.tismart.apptismart.features.auth.presentation.login.LoginViewModel
 import com.tismart.apptismart.features.home.presentation.HomeViewModel
 import com.tismart.apptismart.features.news.presentation.news_detail.NewsDetailViewModel
 import com.tismart.apptismart.features.news.presentation.news_list.NewsListViewModel
+import com.tismart.apptismart.features.profile.presentation.home.ProfileViewModel
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
@@ -18,4 +19,5 @@ val sharedModule = module {
     viewModelOf(::HomeViewModel)
     viewModelOf(::NewsListViewModel)
     viewModelOf(::NewsDetailViewModel)
+    viewModelOf(::ProfileViewModel)
 }

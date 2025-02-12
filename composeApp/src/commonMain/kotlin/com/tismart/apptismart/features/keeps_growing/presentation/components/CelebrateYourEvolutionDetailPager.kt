@@ -46,7 +46,9 @@ import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.keeps_growing_card
 
 @Composable
-fun CelebrateYourEvolutionDetailPager() {
+fun CelebrateYourEvolutionDetailPager(
+    onCardClick: () -> Unit
+) {
     Column(
         modifier = Modifier.background(HomeBackground).padding(vertical = 30.dp),
         verticalArrangement = Arrangement.spacedBy(20.dp)
@@ -72,7 +74,7 @@ fun CelebrateYourEvolutionDetailPager() {
                     label = "UX Designer",
                     name = "Carlina del Pilar",
                     description = "Por haber obtenido un buen rendimiento y haber brindado una buena propuesta, te felicitamos en este ascenso de Technical Leader a Support Analyst.",
-                    onCardClick = {}
+                    onCardClick = onCardClick
                 )
             }
         }

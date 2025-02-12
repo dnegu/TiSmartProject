@@ -39,7 +39,9 @@ import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.finanzas
 
 @Composable
-fun DiscoverYourBenefitsCategoryList() {
+fun DiscoverYourBenefitsCategoryList(
+    onItemClick: (String) -> Unit
+) {
     Text(
         text = "Mis categorías",
         modifier = Modifier.padding(start = 30.dp, top = 36.dp, bottom = 16.dp),
@@ -56,7 +58,7 @@ fun DiscoverYourBenefitsCategoryList() {
             DiscoverYourBenefitsCategoryListItem(
                 icon = Res.drawable.finanzas,
                 name = "Finanzas",
-                onItemClick = {}
+                onItemClick = { onItemClick("Finanzas") }
             )
         }
     }

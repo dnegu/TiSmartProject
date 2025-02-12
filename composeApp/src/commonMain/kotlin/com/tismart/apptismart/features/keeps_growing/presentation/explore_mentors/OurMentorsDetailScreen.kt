@@ -15,7 +15,29 @@ import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.explore_mentors_card
 
 @Composable
-fun OurMentorsDetailScreen() {
+fun OurMentorsDetailScreenRoot(
+    onProfileClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
+    onBackClick: () -> Unit,
+    onMentorCardClick: () -> Unit
+) {
+    OurMentorsDetailScreen(
+        onAction = { action ->
+            when (action) {
+                ExploreMentorsAction.OnProfileClick -> onProfileClick()
+                ExploreMentorsAction.OnNotificationsClick -> onNotificationsClick()
+                ExploreMentorsAction.OnBackClick -> onBackClick()
+                ExploreMentorsAction.OnMentorCardClick -> onMentorCardClick()
+                else -> Unit
+            }
+        }
+    )
+}
+
+@Composable
+fun OurMentorsDetailScreen(
+    onAction: (ExploreMentorsAction) -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -23,9 +45,10 @@ fun OurMentorsDetailScreen() {
             .verticalScroll(rememberScrollState())
     ) {
         TiSmartHeader(
-            onMenuClick = {},
-            onNotificationsClick = {},
-            onBackClick = {}
+            notificationCount = 0,
+            onMenuClick = { onAction(ExploreMentorsAction.OnProfileClick) },
+            onNotificationsClick = { onAction(ExploreMentorsAction.OnNotificationsClick) },
+            onBackClick = { onAction(ExploreMentorsAction.OnBackClick) }
         )
 
         OurMentorsDetailHeader(
@@ -35,6 +58,8 @@ fun OurMentorsDetailScreen() {
             description = "Experiencia de 3 años en UX, con un enfoque en crear interfaces intuitivas y centradas en el usuario. Amplio manejo de Angular para desarrollar aplicaciones web dinámicas y escalables, además de experiencia en la aplicación de inteligencia artificial para mejorar la personalización y optimización de la experiencia del usuario."
         )
 
-        OurMentorsDetailPager()
+        OurMentorsDetailPager(
+            onCardClick = { onAction(ExploreMentorsAction.OnMentorCardClick) },
+        )
     }
 }

@@ -58,7 +58,7 @@ fun InnovateAndTransformTab(
     onFileUploadClick: () -> Unit,
     onFileDeleteClick: () -> Unit,
     onProposalSentClick: () -> Unit,
-    onHistoryItemClick: () -> Unit
+    onHistoryItemClick: (String, ProposalStatus) -> Unit
 ) {
     Text(
         text = "Ideas que transforman",
@@ -243,7 +243,7 @@ private fun SubmitIdeaTab(
 
 @Composable
 private fun HistoryTab(
-    onItemClick: () -> Unit
+    onItemClick: (String, ProposalStatus) -> Unit
 ) {
     LazyColumn(
         modifier = Modifier.heightIn(max = 500.dp)
@@ -252,7 +252,7 @@ private fun HistoryTab(
             ProposalHistoryItem(
                 projectName = "Mi proyecto",
                 status = ProposalStatus.SENT,
-                onItemClick = onItemClick
+                onItemClick = { onItemClick("Mi proyecto", ProposalStatus.SENT) }
             )
             HorizontalDivider(color = NeutralLight)
         }
@@ -260,7 +260,7 @@ private fun HistoryTab(
             ProposalHistoryItem(
                 projectName = "Mi proyecto",
                 status = ProposalStatus.UNDER_REVIEW,
-                onItemClick = onItemClick
+                onItemClick = { onItemClick("Mi proyecto", ProposalStatus.UNDER_REVIEW) }
             )
             HorizontalDivider(color = NeutralLight)
         }
@@ -268,7 +268,7 @@ private fun HistoryTab(
             ProposalHistoryItem(
                 projectName = "Mi proyecto",
                 status = ProposalStatus.APPROVED,
-                onItemClick = onItemClick
+                onItemClick = { onItemClick("Mi proyecto", ProposalStatus.APPROVED) }
             )
             HorizontalDivider(color = NeutralLight)
         }
@@ -276,7 +276,7 @@ private fun HistoryTab(
             ProposalHistoryItem(
                 projectName = "Mi proyecto",
                 status = ProposalStatus.IN_PROGRESS,
-                onItemClick = onItemClick
+                onItemClick = { onItemClick("Mi proyecto", ProposalStatus.IN_PROGRESS) }
             )
             HorizontalDivider(color = NeutralLight)
         }
@@ -284,7 +284,7 @@ private fun HistoryTab(
             ProposalHistoryItem(
                 projectName = "Mi proyecto",
                 status = ProposalStatus.COMPLETED,
-                onItemClick = onItemClick
+                onItemClick = { onItemClick("Mi proyecto", ProposalStatus.COMPLETED) }
             )
         }
     }

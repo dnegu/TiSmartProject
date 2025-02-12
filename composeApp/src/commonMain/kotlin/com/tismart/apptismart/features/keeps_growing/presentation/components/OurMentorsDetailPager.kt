@@ -34,7 +34,9 @@ import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.keeps_growing_card
 
 @Composable
-fun OurMentorsDetailPager() {
+fun OurMentorsDetailPager(
+    onCardClick: () -> Unit
+) {
     Column(
         modifier = Modifier.background(HomeBackground).padding(vertical = 30.dp),
         verticalArrangement = Arrangement.spacedBy(30.dp)
@@ -59,7 +61,7 @@ fun OurMentorsDetailPager() {
                     label = "UX Designer",
                     name = "Angela Ramos",
                     description = "Experiencia de 3 años en UX, Angular e inteligencia.",
-                    onCardClick = {}
+                    onCardClick = onCardClick
                 )
             }
         }

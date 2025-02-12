@@ -1,4 +1,4 @@
-package com.tismart.apptismart.features.keeps_growing.presentation.status_of_my_idea
+package com.tismart.apptismart.features.keeps_growing.presentation.innovate_and_transform
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -25,13 +25,37 @@ import com.tismart.apptismart.core.presentation.NeutralDark
 import com.tismart.apptismart.core.presentation.NeutralDarkest
 import com.tismart.apptismart.core.presentation.components.TiSmartHeader
 import com.tismart.apptismart.features.keeps_growing.presentation.components.StatusOfMyIdeaTracking
-import com.tismart.apptismart.features.keeps_growing.presentation.innovate_and_transform.ProposalStatus
+import com.tismart.apptismart.features.keeps_growing.presentation.growth_path.GrowthPathAction
+import com.tismart.apptismart.features.keeps_growing.presentation.growth_path.GrowthPathScreen
 import org.jetbrains.compose.resources.painterResource
+
+@Composable
+fun StatusOfMyIdeaScreenRoot(
+    projectName: String,
+    status: ProposalStatus,
+    onProfileClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
+    onBackClick: () -> Unit
+) {
+    StatusOfMyIdeaScreen(
+        projectName = projectName,
+        status = status,
+        onAction = { action ->
+            when (action) {
+                InnovateAndTransformAction.OnProfileClick -> onProfileClick()
+                InnovateAndTransformAction.OnNotificationsClick -> onNotificationsClick()
+                InnovateAndTransformAction.OnBackClick -> onBackClick()
+                else -> Unit
+            }
+        }
+    )
+}
 
 @Composable
 fun StatusOfMyIdeaScreen(
     projectName: String,
-    status: ProposalStatus
+    status: ProposalStatus,
+    onAction: (InnovateAndTransformAction) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -41,9 +65,10 @@ fun StatusOfMyIdeaScreen(
     ) {
         TiSmartHeader(
             title = "Estado de mi idea",
-            onMenuClick = {},
-            onNotificationsClick = {},
-            onBackClick = {}
+            notificationCount = 0,
+            onMenuClick = { onAction(InnovateAndTransformAction.OnProfileClick) },
+            onNotificationsClick = { onAction(InnovateAndTransformAction.OnNotificationsClick) },
+            onBackClick = { onAction(InnovateAndTransformAction.OnBackClick) }
         )
 
         Column(
@@ -98,7 +123,7 @@ fun StatusOfMyIdeaScreen(
             }
 
             StatusOfMyIdeaTracking(
-                projectStatus = ProposalStatus.UNDER_REVIEW
+                projectStatus = status
             )
         }
     }

@@ -119,14 +119,15 @@ private fun ApplicationProgressTrackingItem(
             )
 
             if (agreementStatus.ordinal == status.ordinal) {
-                Text(
-                    text = "Tu solicitud se encuentra en revisión. Recibirás una notificación cuando pase a la siguiente etapa.",
-                    modifier = Modifier.padding(top = 8.dp),
-                    color = NeutralDark,
-                    style = MaterialTheme.typography.bodyMedium
-                )
+                status.detail?.let {
+                    Text(
+                        text = it,
+                        modifier = Modifier.padding(top = 8.dp),
+                        color = NeutralDark,
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                }
             }
-
         }
     }
 }

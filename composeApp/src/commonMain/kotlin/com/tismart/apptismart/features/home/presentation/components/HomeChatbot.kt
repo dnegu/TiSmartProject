@@ -11,15 +11,21 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.SheetState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -27,6 +33,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.tismart.apptismart.core.presentation.HomeBackground
+import com.tismart.apptismart.core.presentation.NeutralDarkest
 import com.tismart.apptismart.core.presentation.PrimarioLightest
 import com.tismart.apptismart.core.presentation.SecundarioDark
 import com.tismart.apptismart.core.presentation.SecundarioLightest
@@ -34,51 +41,69 @@ import org.jetbrains.compose.resources.painterResource
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.robot
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeChatBot(modifier: Modifier = Modifier) {
-    Column(
-        modifier = Modifier.fillMaxSize()
-    ) {
-
-        Row(
+fun HomeChatbot(
+    showChatbot: Boolean,
+    sheetState: SheetState,
+    onDismiss: () -> Unit,
+    onCloseClick: () -> Unit
+) {
+    if (showChatbot) {
+        ModalBottomSheet(
+            onDismissRequest = onDismiss,
             modifier = Modifier
-                .fillMaxWidth()
-                .background(SecundarioDark)
-                .padding(horizontal = 18.dp, vertical = 20.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
+                .statusBarsPadding()
+                .padding(top = 96.dp),
+            sheetState = sheetState,
+            dragHandle = null
         ) {
-            Text(text = "Chatea con TiBot", color = Color.White)
+            // Sheet content
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(SecundarioDark)
+                    .padding(horizontal = 24.dp, vertical = 6.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(text = "Chatea con TiBot", color = Color.White)
 
-            Icon(
-                imageVector = Icons.Default.KeyboardArrowDown,
-                contentDescription = null,
-                tint = Color.White
-            )
-        }
-        LazyColumn(
-            modifier = Modifier.fillMaxWidth().weight(1f),
-            contentPadding = PaddingValues(18.dp),
-            verticalArrangement = Arrangement.spacedBy(15.dp),
-        ) {
-            item {
-                Message(
-                    msg = "¡Buen día! \uD83D\uDE0A ¿En qué puedo ayudarte hoy?",
-                    isUserMe = false
-                )
+                IconButton(
+                    onClick = onCloseClick
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.KeyboardArrowDown,
+                        contentDescription = null,
+                        tint = Color.White
+                    )
+                }
             }
+            LazyColumn(
+                modifier = Modifier.fillMaxWidth().weight(1f).background(Color.White),
+                contentPadding = PaddingValues(18.dp),
+                verticalArrangement = Arrangement.spacedBy(15.dp),
+            ) {
+                item {
+                    Message(
+                        msg = "¡Buen día! \uD83D\uDE0A ¿En qué puedo ayudarte hoy?",
+                        isUserMe = false
+                    )
+                }
 
-            item {
-                Message(
-                    msg = "¿Cuántos días de vacaciones tengo pendientes?",
-                    isUserMe = true
-                )
-            }
+                item {
+                    Message(
+                        msg = "¿Cuántos días de vacaciones tengo pendientes?",
+                        isUserMe = true
+                    )
+                }
 
-            item {
-                Message(
-                    msg = "Al día de hoy, tienes 15 días de vacaciones pendientes, que vencerán el 18 de enero de 2026.",
-                    isUserMe = false
-                )
+                item {
+                    Message(
+                        msg = "Al día de hoy, tienes 15 días de vacaciones pendientes, que vencerán el 18 de enero de 2026.",
+                        isUserMe = false
+                    )
+                }
             }
         }
     }
@@ -112,7 +137,6 @@ fun Message(
             )
         }
 
-
         val chatModifier = if (isUserMe) Modifier.fillMaxSize(0.8f) else Modifier.fillMaxWidth(0.9f)
         ChatItemBubble(
             modifier = chatModifier,
@@ -142,6 +166,7 @@ fun ChatItemBubble(
     ) {
         Text(
             text = message,
+            color = NeutralDarkest,
             modifier = Modifier.padding(12.dp),
             fontWeight = FontWeight.Normal,
             style = MaterialTheme.typography.bodyMedium

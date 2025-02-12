@@ -29,10 +29,10 @@ import com.tismart.apptismart.features.explore_courses.presentation.ExploreCours
 import com.tismart.apptismart.features.explore_courses.presentation.ExploreNewCoursesScreen
 import com.tismart.apptismart.features.home.presentation.HomeScreen
 import com.tismart.apptismart.features.home.presentation.HomeState
-import com.tismart.apptismart.features.home.presentation.components.HomeChatBot
+import com.tismart.apptismart.features.home.presentation.components.HomeChatbot
 import com.tismart.apptismart.features.keeps_growing.presentation.celebrate_your_evolution.CelebrateYourEvolutionDetailScreen
 import com.tismart.apptismart.features.keeps_growing.presentation.celebrate_your_evolution.CelebrateYourEvolutionListScreen
-import com.tismart.apptismart.features.keeps_growing.presentation.explore_mentors.ApplicationFormScreen
+import com.tismart.apptismart.features.keeps_growing.presentation.explore_mentors.MentorApplicationFormScreen
 import com.tismart.apptismart.features.keeps_growing.presentation.explore_mentors.ExploreMentorsScreen
 import com.tismart.apptismart.features.keeps_growing.presentation.explore_mentors.OurMentorsDetailScreen
 import com.tismart.apptismart.features.keeps_growing.presentation.explore_mentors.OurMentorsListScreen
@@ -42,14 +42,14 @@ import com.tismart.apptismart.features.keeps_growing.presentation.growth_path.Gr
 import com.tismart.apptismart.features.keeps_growing.presentation.home.KeepsGrowingScreen
 import com.tismart.apptismart.features.keeps_growing.presentation.innovate_and_transform.InnovateAndTransformScreen
 import com.tismart.apptismart.features.keeps_growing.presentation.innovate_and_transform.ProposalStatus
-import com.tismart.apptismart.features.keeps_growing.presentation.status_of_my_idea.StatusOfMyIdeaScreen
+import com.tismart.apptismart.features.keeps_growing.presentation.innovate_and_transform.StatusOfMyIdeaScreen
 import com.tismart.apptismart.features.news.News
 import com.tismart.apptismart.features.news.presentation.news_detail.NewsDetailScreen
 import com.tismart.apptismart.features.news.presentation.news_detail.NewsDetailState
 import com.tismart.apptismart.features.news.presentation.news_list.NewsListScreen
 import com.tismart.apptismart.features.news.presentation.news_list.NewsListState
 import com.tismart.apptismart.features.notifications.presentation.NotificationsScreen
-import com.tismart.apptismart.features.profile.presentation.edit_photo.ProfileEditPhotoScreen
+import com.tismart.apptismart.features.profile.presentation.edit_picture.EditProfilePictureScreen
 import com.tismart.apptismart.features.profile.presentation.home.ProfileScreen
 import com.tismart.apptismart.features.profile.presentation.home.ProfileState
 import com.tismart.apptismart.features.profile.presentation.my_data.ProfileMyDataScreen
@@ -57,7 +57,7 @@ import com.tismart.apptismart.features.search.presentation.SearchScreen
 import com.tismart.apptismart.features.search.presentation.SearchType
 import com.tismart.apptismart.features.vacancy.presentation.NewVacanciesScreen
 import com.tismart.apptismart.features.vacancy.presentation.VacanciesRecommendedForYouScreen
-import com.tismart.apptismart.features.vacancy.presentation.VacancyApplicationsScreen
+import com.tismart.apptismart.features.vacancy.presentation.MyVacancyApplicationsScreen
 import com.tismart.apptismart.features.vacancy.presentation.VacancyDashboardScreen
 import com.tismart.apptismart.features.vacancy.presentation.VacancyDetailScreen
 import com.tismart.apptismart.features.vacancy.presentation.VacancyListScreen
@@ -153,22 +153,6 @@ private fun NewsDetailScreenPreview() {
 
 @Preview
 @Composable
-private fun HomeChatBotScreenPreview() {
-    MaterialTheme(
-        typography = PoppinsTypography()
-    ) {
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
-        ) {
-            HomeChatBot()
-
-        }
-    }
-}
-
-@Preview
-@Composable
 private fun ProfileScreenPreview() {
     MaterialTheme(
         typography = PoppinsTypography()
@@ -195,7 +179,9 @@ private fun ProfileMyDataScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            ProfileMyDataScreen()
+            ProfileMyDataScreen(
+                onAction = {}
+            )
         }
     }
 }
@@ -210,7 +196,9 @@ private fun ProfileEditPhotoScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            ProfileEditPhotoScreen()
+            EditProfilePictureScreen(
+                onAction = {}
+            )
         }
     }
 }
@@ -245,7 +233,9 @@ private fun NotificationsScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            NotificationsScreen()
+            NotificationsScreen(
+                onAction = {}
+            )
         }
     }
 }
@@ -260,7 +250,9 @@ private fun KeepsGrowingScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            KeepsGrowingScreen()
+            KeepsGrowingScreen(
+                onAction = {}
+            )
         }
     }
 }
@@ -275,7 +267,9 @@ private fun CelebrateYourEvolutionListScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            CelebrateYourEvolutionListScreen()
+            CelebrateYourEvolutionListScreen(
+                onAction = {}
+            )
         }
     }
 }
@@ -290,7 +284,9 @@ private fun CelebrateYourEvolutionDetailScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            CelebrateYourEvolutionDetailScreen()
+            CelebrateYourEvolutionDetailScreen(
+                onAction = {}
+            )
         }
     }
 }
@@ -305,7 +301,9 @@ private fun GrowthPathScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            GrowthPathScreen()
+            GrowthPathScreen(
+                onAction = {}
+            )
         }
     }
 }
@@ -322,7 +320,8 @@ private fun GrowthPathDetailScreenPreview() {
         ) {
             GrowthPathDetailScreen(
                 isAMan = true,
-                growthPath = GrowthPath.SemiSenior
+                growthPath = GrowthPath.SemiSenior,
+                onAction = {}
             )
         }
     }
@@ -338,7 +337,9 @@ private fun InnovateAndTransformScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            InnovateAndTransformScreen()
+            InnovateAndTransformScreen(
+                onAction = {}
+            )
         }
     }
 }
@@ -355,7 +356,8 @@ private fun StatusOfMyIdeaScreenPreview() {
         ) {
             StatusOfMyIdeaScreen(
                 projectName = "Mi proyecto",
-                status = ProposalStatus.UNDER_REVIEW
+                status = ProposalStatus.UNDER_REVIEW,
+                onAction = {}
             )
         }
     }
@@ -371,7 +373,9 @@ private fun ExploreMentorsScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            ExploreMentorsScreen()
+            ExploreMentorsScreen(
+                onAction = {}
+            )
         }
     }
 }
@@ -386,7 +390,9 @@ private fun OurMentorsScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            OurMentorsListScreen()
+            OurMentorsListScreen(
+                onAction = {}
+            )
         }
     }
 }
@@ -401,7 +407,9 @@ private fun OurMentorsDetailScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            OurMentorsDetailScreen()
+            OurMentorsDetailScreen(
+                onAction = {}
+            )
         }
     }
 }
@@ -416,7 +424,9 @@ private fun ApplicationFormScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            ApplicationFormScreen()
+            MentorApplicationFormScreen(
+                onAction = {}
+            )
         }
     }
 }
@@ -431,7 +441,9 @@ private fun VacancyDashboardScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            VacancyDashboardScreen()
+            VacancyDashboardScreen(
+                onAction = {}
+            )
         }
     }
 }
@@ -446,7 +458,9 @@ private fun VacancyListScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            VacancyListScreen()
+            VacancyListScreen(
+                onAction = {}
+            )
         }
     }
 }
@@ -461,7 +475,9 @@ private fun VacancyDetailScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            VacancyDetailScreen()
+            VacancyDetailScreen(
+                onAction = {}
+            )
         }
     }
 }
@@ -476,7 +492,9 @@ private fun VacancyApplicationsScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            VacancyApplicationsScreen()
+            MyVacancyApplicationsScreen(
+                onAction = {}
+            )
         }
     }
 }
@@ -491,7 +509,9 @@ private fun NewVacanciesScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            NewVacanciesScreen()
+            NewVacanciesScreen(
+                onAction = {}
+            )
         }
     }
 }
@@ -506,7 +526,9 @@ private fun VacanciesRecommendedForYouScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            VacanciesRecommendedForYouScreen()
+            VacanciesRecommendedForYouScreen(
+                onAction = {}
+            )
         }
     }
 }
@@ -522,7 +544,8 @@ private fun SearchVacanciesScreenPreview() {
             color = MaterialTheme.colorScheme.background
         ) {
             SearchScreen(
-                searchType = SearchType.VACANCIES
+                searchType = SearchType.VACANCIES,
+                onAction = {}
             )
         }
     }
@@ -538,7 +561,9 @@ private fun EnhanceYourLearningScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            EnhanceYourLearningScreen()
+            EnhanceYourLearningScreen(
+                onAction = {}
+            )
         }
     }
 }
@@ -553,7 +578,9 @@ private fun ExploreNewCoursesScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            ExploreNewCoursesScreen()
+            ExploreNewCoursesScreen(
+                onAction = {}
+            )
         }
     }
 }
@@ -569,7 +596,8 @@ private fun ExploreCoursesSkillsListScreenPreview() {
             color = MaterialTheme.colorScheme.background
         ) {
             ExploreCoursesSkillsListScreen(
-                title = "Frontend"
+                title = "Frontend",
+                onAction = {}
             )
         }
     }
@@ -585,7 +613,9 @@ private fun ExploreCoursesSkillDetailScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            ExploreCoursesSkillDetailScreen()
+            ExploreCoursesSkillDetailScreen(
+                onAction = {}
+            )
         }
     }
 }
@@ -600,7 +630,9 @@ private fun ExploreCoursesRecommendedForYouScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            ExploreCoursesRecommendedForYouScreen()
+            ExploreCoursesRecommendedForYouScreen(
+                onAction = {}
+            )
         }
     }
 }
@@ -616,7 +648,8 @@ private fun SearchCoursesScreenPreview() {
             color = MaterialTheme.colorScheme.background
         ) {
             SearchScreen(
-                searchType = SearchType.COURSES
+                searchType = SearchType.COURSES,
+                onAction = {}
             )
         }
     }
@@ -632,7 +665,9 @@ private fun TiSmartUniversityScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            TiSmartUniversityScreen()
+            TiSmartUniversityScreen(
+                onAction = {}
+            )
         }
     }
 }
@@ -647,7 +682,9 @@ private fun TiSmartLoversCourseListScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            TiSmartLoversCourseListScreen()
+            TiSmartLoversCourseListScreen(
+                onAction = {}
+            )
         }
     }
 }
@@ -662,7 +699,9 @@ private fun TiSmartLoversCourseDetailScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            TiSmartLoversCourseDetailScreen()
+            TiSmartLoversCourseDetailScreen(
+                onAction = {}
+            )
         }
     }
 }
@@ -677,7 +716,9 @@ private fun EventRegistrationScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            EventRegistrationScreen()
+            EventRegistrationScreen(
+                onAction = {}
+            )
         }
     }
 }
@@ -692,7 +733,9 @@ private fun EventRegistrationFormScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            EventRegistrationFormScreen()
+            EventRegistrationFormScreen(
+                onAction = {}
+            )
         }
     }
 }
@@ -707,7 +750,9 @@ private fun EducationalAgreementScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            EducationalAgreementScreen()
+            EducationalAgreementScreen(
+                onAction = {}
+            )
         }
     }
 }
@@ -724,7 +769,8 @@ private fun ApplicationProgressScreenPreview() {
         ) {
             ApplicationProgressScreen(
                 agreementName = "Interaction Design Foundation",
-                status = RegistrationStatus.UNDER_REVIEW
+                status = RegistrationStatus.UNDER_REVIEW,
+                onAction = {}
             )
         }
     }
@@ -741,7 +787,7 @@ private fun DiscoverYourBenefitsScreenPreview() {
             color = MaterialTheme.colorScheme.background
         ) {
             DiscoverYourBenefitsScreen(
-                onSearchBarClick = {}
+                onAction = {}
             )
         }
     }
@@ -758,7 +804,8 @@ private fun DiscoverBenefitsCategoryListScreenPreview() {
             color = MaterialTheme.colorScheme.background
         ) {
             DiscoverBenefitsCategoryListScreen(
-                title = "Finanzas"
+                title = "Finanzas",
+                onAction = {}
             )
         }
     }
@@ -774,7 +821,9 @@ private fun DiscoverBenefitsCategoryDetailScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            DiscoverBenefitsCategoryDetailScreen()
+            DiscoverBenefitsCategoryDetailScreen(
+                onAction = {}
+            )
         }
     }
 }
@@ -789,7 +838,9 @@ private fun DiscoverMyFavoriteBenefitsScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            DiscoverMyFavoriteBenefitsScreen()
+            DiscoverMyFavoriteBenefitsScreen(
+                onAction = {}
+            )
         }
     }
 }
@@ -804,7 +855,9 @@ private fun DiscoverNewBenefitsScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            DiscoverNewBenefitsScreen()
+            DiscoverNewBenefitsScreen(
+                onAction = {}
+            )
         }
     }
 }
@@ -820,7 +873,8 @@ private fun SearchBenefitsScreenPreview() {
             color = MaterialTheme.colorScheme.background
         ) {
             SearchScreen(
-                searchType = SearchType.BENEFITS
+                searchType = SearchType.BENEFITS,
+                onAction = {}
             )
         }
     }

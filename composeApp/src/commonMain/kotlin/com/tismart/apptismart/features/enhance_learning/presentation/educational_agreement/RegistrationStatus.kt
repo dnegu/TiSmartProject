@@ -16,9 +16,9 @@ import tismartproject.composeapp.generated.resources.not_approved_status
 import tismartproject.composeapp.generated.resources.sent_status
 import tismartproject.composeapp.generated.resources.under_review_status
 
-enum class RegistrationStatus(val label: String, val icon: DrawableResource, val backgroundColor: Color, val textColor: Color) {
+enum class RegistrationStatus(val label: String, val detail: String? = null, val icon: DrawableResource, val backgroundColor: Color, val textColor: Color) {
     SENT(label = "Enviado", icon = Res.drawable.sent_status, backgroundColor = CelesteClaro, textColor = CelesteOscuro),
-    UNDER_REVIEW(label = "En revisión", icon = Res.drawable.under_review_status, backgroundColor = AmarilloClaro, textColor = AmarilloOscuro),
+    UNDER_REVIEW(label = "En revisión", detail = "Tu solicitud se encuentra en revisión. Recibirás una notificación cuando pase a la siguiente etapa.", icon = Res.drawable.under_review_status, backgroundColor = AmarilloClaro, textColor = AmarilloOscuro),
     APPROVED(label = "Aprobado", icon = Res.drawable.approved_status, backgroundColor = VerdeClaro, textColor = VerdeOscuro),
     NOT_APPROVED(label = "No aprobado", icon = Res.drawable.not_approved_status, backgroundColor = RojoClaro, textColor = RojoOscuro)
 }

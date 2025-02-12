@@ -17,7 +17,29 @@ import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.discover_benefits_card
 
 @Composable
-fun DiscoverNewBenefitsScreen() {
+fun DiscoverNewBenefitsScreenRoot(
+    onProfileClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
+    onBackClick: () -> Unit,
+    onBenefitCardClick: () -> Unit
+) {
+    DiscoverNewBenefitsScreen(
+        onAction = { action ->
+            when (action) {
+                DiscoverBenefitsAction.OnProfileClick -> onProfileClick()
+                DiscoverBenefitsAction.OnNotificationsClick -> onNotificationsClick()
+                DiscoverBenefitsAction.OnBackClick -> onBackClick()
+                DiscoverBenefitsAction.OnBenefitCardClick -> onBenefitCardClick()
+                else -> Unit
+            }
+        }
+    )
+}
+
+@Composable
+fun DiscoverNewBenefitsScreen(
+    onAction: (DiscoverBenefitsAction) -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -25,9 +47,10 @@ fun DiscoverNewBenefitsScreen() {
     ) {
         TiSmartHeader(
             title = "Nuevos",
-            onMenuClick = {},
-            onNotificationsClick = {},
-            onBackClick = {}
+            notificationCount = 0,
+            onMenuClick = { onAction(DiscoverBenefitsAction.OnProfileClick) },
+            onNotificationsClick = { onAction(DiscoverBenefitsAction.OnNotificationsClick) },
+            onBackClick = { onAction(DiscoverBenefitsAction.OnBackClick) }
         )
 
         LazyColumn(
@@ -41,7 +64,7 @@ fun DiscoverNewBenefitsScreen() {
                     discount = 50,
                     name = "La Tarumba",
                     description = "Aprovecha esta oportunidad única para vivir tus eventos favoritos blab blal blalssls blla lblddldl",
-                    onCardClick = {}
+                    onCardClick = { onAction(DiscoverBenefitsAction.OnBenefitCardClick) }
                 )
             }
         }

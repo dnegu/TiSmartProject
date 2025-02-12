@@ -39,14 +39,38 @@ import com.tismart.apptismart.core.presentation.NeutralLight
 import com.tismart.apptismart.core.presentation.PrimarioMedium
 import com.tismart.apptismart.core.presentation.SecundarioDark
 import com.tismart.apptismart.core.presentation.components.TiSmartHeader
+import com.tismart.apptismart.features.keeps_growing.presentation.growth_path.GrowthPathAction
+import com.tismart.apptismart.features.keeps_growing.presentation.growth_path.GrowthPathScreen
 import org.jetbrains.compose.resources.painterResource
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.search
 
+@Composable
+fun SearchScreenRoot(
+    searchType: SearchType,
+    onProfileClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
+    onBackClick: () -> Unit,
+    onSearchResultClick: (String) -> Unit
+) {
+    SearchScreen(
+        searchType = searchType,
+        onAction = { action ->
+            when (action) {
+                SearchAction.OnProfileClick -> onProfileClick()
+                SearchAction.OnNotificationsClick -> onNotificationsClick()
+                SearchAction.OnBackClick -> onBackClick()
+                is SearchAction.OnSearchResultClick -> onSearchResultClick(action.result)
+            }
+        }
+    )
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchScreen(
-    searchType: SearchType
+    searchType: SearchType,
+    onAction: (SearchAction) -> Unit
 ) {
     var text by rememberSaveable { mutableStateOf("") }
     var expanded by rememberSaveable { mutableStateOf(false) }
@@ -61,9 +85,10 @@ fun SearchScreen(
     ) {
         TiSmartHeader(
             title = searchType.title,
-            onMenuClick = {},
-            onNotificationsClick = {},
-            onBackClick = {}
+            notificationCount = 0,
+            onMenuClick = { onAction(SearchAction.OnProfileClick) },
+            onNotificationsClick = { onAction(SearchAction.OnNotificationsClick) },
+            onBackClick = { onAction(SearchAction.OnBackClick) }
         )
 
         searchType.description?.let {
@@ -133,6 +158,7 @@ fun SearchScreen(
                                                 backgroundColor = Color.Transparent
                                                 text = resultText
                                                 expanded = false
+                                                onAction(SearchAction.OnSearchResultClick(resultText))
                                             }
                                         }
                                     )

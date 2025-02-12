@@ -21,9 +21,32 @@ import com.tismart.apptismart.core.presentation.NeutralDarkest
 import com.tismart.apptismart.core.presentation.components.TiSmartHeader
 import com.tismart.apptismart.features.enhance_learning.presentation.components.ApplicationSubmittedDialog
 import com.tismart.apptismart.features.enhance_learning.presentation.components.EducationalAgreementTab
+import com.tismart.apptismart.features.vacancy.presentation.NewVacanciesScreen
+import com.tismart.apptismart.features.vacancy.presentation.VacancyAction
 
 @Composable
-fun EducationalAgreementScreen() {
+fun EducationalAgreementScreenRoot(
+    onProfileClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
+    onBackClick: () -> Unit,
+    onApplicationClick: (String, RegistrationStatus) -> Unit
+) {
+    EducationalAgreementScreen(
+        onAction = { action ->
+            when (action) {
+                EducationalAgreementAction.OnProfileClick -> onProfileClick()
+                EducationalAgreementAction.OnNotificationsClick -> onNotificationsClick()
+                EducationalAgreementAction.OnBackClick -> onBackClick()
+                is EducationalAgreementAction.OnApplicationClick -> onApplicationClick(action.agreementName, action.status)
+            }
+        }
+    )
+}
+
+@Composable
+fun EducationalAgreementScreen(
+    onAction: (EducationalAgreementAction) -> Unit
+) {
     var showProposalSentDialog by remember { mutableStateOf(false) }
     Column(
         modifier = Modifier
@@ -33,9 +56,10 @@ fun EducationalAgreementScreen() {
     ) {
         TiSmartHeader(
             title = "Convenio educativo",
-            onMenuClick = {},
-            onNotificationsClick = {},
-            onBackClick = {}
+            notificationCount = 0,
+            onMenuClick = { onAction(EducationalAgreementAction.OnProfileClick) },
+            onNotificationsClick = { onAction(EducationalAgreementAction.OnNotificationsClick) },
+            onBackClick = { onAction(EducationalAgreementAction.OnBackClick) }
         )
 
         Column(
@@ -50,7 +74,9 @@ fun EducationalAgreementScreen() {
 
             EducationalAgreementTab(
                 onSubmitApplicationClick = { showProposalSentDialog = true },
-                onHistoryItemClick = {}
+                onHistoryItemClick = { agreementName, status ->
+                    onAction(EducationalAgreementAction.OnApplicationClick(agreementName, status))
+                }
             )
         }
     }

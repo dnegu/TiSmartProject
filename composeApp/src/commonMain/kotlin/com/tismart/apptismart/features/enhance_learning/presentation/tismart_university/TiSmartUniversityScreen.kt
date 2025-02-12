@@ -12,9 +12,36 @@ import com.tismart.apptismart.core.presentation.components.TiSmartHeader
 import com.tismart.apptismart.features.discover_benefits.presentation.components.TiSmartUniversityCertificates
 import com.tismart.apptismart.features.enhance_learning.presentation.components.EnhanceLearningListPager
 import com.tismart.apptismart.features.enhance_learning.presentation.components.TiSmartUniversityPager
+import com.tismart.apptismart.features.vacancy.presentation.NewVacanciesScreen
+import com.tismart.apptismart.features.vacancy.presentation.VacancyAction
 
 @Composable
-fun TiSmartUniversityScreen() {
+fun TiSmartUniversityScreenRoot(
+    onProfileClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
+    onBackClick: () -> Unit,
+    onEventClick: () -> Unit,
+    onSeeAllTiSmartLoversCoursesClick: () -> Unit,
+    onTiSmartLoversCourseCardClick: () -> Unit
+) {
+    TiSmartUniversityScreen(
+        onAction = { action ->
+            when (action) {
+                TiSmartUniversityAction.OnProfileClick -> onProfileClick()
+                TiSmartUniversityAction.OnNotificationsClick -> onNotificationsClick()
+                TiSmartUniversityAction.OnBackClick -> onBackClick()
+                TiSmartUniversityAction.OnEventClick -> onEventClick()
+                TiSmartUniversityAction.OnSeeAllTiSmartLoversCoursesClick -> onSeeAllTiSmartLoversCoursesClick()
+                TiSmartUniversityAction.OnTiSmartLoversCourseCardClick -> onTiSmartLoversCourseCardClick()
+            }
+        }
+    )
+}
+
+@Composable
+fun TiSmartUniversityScreen(
+    onAction: (TiSmartUniversityAction) -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -23,16 +50,20 @@ fun TiSmartUniversityScreen() {
     ) {
         TiSmartHeader(
             title = "TISmart University",
-            onMenuClick = {},
-            onNotificationsClick = {},
-            onBackClick = {}
+            notificationCount = 0,
+            onMenuClick = { onAction(TiSmartUniversityAction.OnProfileClick) },
+            onNotificationsClick = { onAction(TiSmartUniversityAction.OnNotificationsClick) },
+            onBackClick = { onAction(TiSmartUniversityAction.OnBackClick) }
         )
 
-        TiSmartUniversityPager()
+        TiSmartUniversityPager(
+            onItemClick = { onAction(TiSmartUniversityAction.OnEventClick) }
+        )
 
         EnhanceLearningListPager(
             title = "Cursos TiSmartLovers",
-            onSeeAllClick = {}
+            onSeeAllClick = { onAction(TiSmartUniversityAction.OnSeeAllTiSmartLoversCoursesClick) },
+            onCardClick = { onAction(TiSmartUniversityAction.OnTiSmartLoversCourseCardClick) }
         )
 
         TiSmartUniversityCertificates(

@@ -2,6 +2,7 @@ package com.tismart.apptismart.features.enhance_learning.presentation.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -42,7 +43,9 @@ import tismartproject.composeapp.generated.resources.tismart_university_avatar
 import tismartproject.composeapp.generated.resources.tismart_university_display
 
 @Composable
-fun TiSmartUniversityPager() {
+fun TiSmartUniversityPager(
+    onItemClick: () -> Unit
+) {
     val pagerState = rememberPagerState(pageCount = {
         3
     })
@@ -59,6 +62,7 @@ fun TiSmartUniversityPager() {
             Box(
                 modifier = Modifier
                     .fillMaxSize()
+                    .clickable(onClick = onItemClick)
             ) {
                 Image(
                     painter = painterResource(Res.drawable.tismart_university_display),

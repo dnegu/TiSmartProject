@@ -14,12 +14,36 @@ import androidx.compose.ui.unit.dp
 import com.tismart.apptismart.core.presentation.components.TiSmartHeader
 import com.tismart.apptismart.features.discover_benefits.presentation.CourseLevel
 import com.tismart.apptismart.features.enhance_learning.presentation.components.TiSmartLoversCourseListCard
+import com.tismart.apptismart.features.vacancy.presentation.NewVacanciesScreen
+import com.tismart.apptismart.features.vacancy.presentation.VacancyAction
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.explore_courses_skills_card
 
 @Composable
+fun ExploreCoursesSkillsListScreenRoot(
+    title: String,
+    onProfileClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
+    onBackClick: () -> Unit,
+    onCourseCardClick: () -> Unit
+) {
+    ExploreCoursesSkillsListScreen(
+        title = title,
+        onAction = { action ->
+            when (action) {
+                ExploreCoursesSkillsAction.OnProfileClick -> onProfileClick()
+                ExploreCoursesSkillsAction.OnNotificationsClick -> onNotificationsClick()
+                ExploreCoursesSkillsAction.OnBackClick -> onBackClick()
+                ExploreCoursesSkillsAction.OnCourseCardClick -> onCourseCardClick()
+            }
+        }
+    )
+}
+
+@Composable
 fun ExploreCoursesSkillsListScreen(
-    title: String
+    title: String,
+    onAction: (ExploreCoursesSkillsAction) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -28,9 +52,10 @@ fun ExploreCoursesSkillsListScreen(
     ) {
         TiSmartHeader(
             title = title,
-            onMenuClick = {},
-            onNotificationsClick = {},
-            onBackClick = {}
+            notificationCount = 0,
+            onMenuClick = { onAction(ExploreCoursesSkillsAction.OnProfileClick) },
+            onNotificationsClick = { onAction(ExploreCoursesSkillsAction.OnNotificationsClick) },
+            onBackClick = { onAction(ExploreCoursesSkillsAction.OnBackClick) }
         )
 
         LazyColumn(
@@ -45,7 +70,7 @@ fun ExploreCoursesSkillsListScreen(
                     description = "Mejora tus habilidades en Oracle PL/SQL. Avanza de nivel con lecciones y ejercicios prácticos diseñados para ti.",
                     author = "Duración: 2h",
                     courseLevel = CourseLevel.BEGINNER,
-                    onCardClick = {}
+                    onCardClick = { onAction(ExploreCoursesSkillsAction.OnCourseCardClick) }
                 )
             }
         }

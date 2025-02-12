@@ -19,7 +19,27 @@ import com.tismart.apptismart.features.vacancy.presentation.components.VacancyDe
 import com.tismart.apptismart.features.vacancy.presentation.components.VacancyDetailInfo
 
 @Composable
-fun VacancyDetailScreen() {
+fun VacancyDetailScreenRoot(
+    onProfileClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
+    onBackClick: () -> Unit
+) {
+    VacancyDetailScreen(
+        onAction = { action ->
+            when (action) {
+                VacancyAction.OnProfileClick -> onProfileClick()
+                VacancyAction.OnNotificationsClick -> onNotificationsClick()
+                VacancyAction.OnBackClick -> onBackClick()
+                else -> Unit
+            }
+        }
+    )
+}
+
+@Composable
+fun VacancyDetailScreen(
+    onAction: (VacancyAction) -> Unit
+) {
     var isShared by remember { mutableStateOf(false) }
     var showApplyNowDialog by remember { mutableStateOf(false) }
     Column(
@@ -29,9 +49,10 @@ fun VacancyDetailScreen() {
             .verticalScroll(rememberScrollState())
     ) {
         TiSmartHeader(
-            onMenuClick = {},
-            onNotificationsClick = {},
-            onBackClick = {}
+            notificationCount = 0,
+            onMenuClick = { onAction(VacancyAction.OnProfileClick) },
+            onNotificationsClick = { onAction(VacancyAction.OnNotificationsClick) },
+            onBackClick = { onAction(VacancyAction.OnBackClick) }
         )
 
         VacancyDetailHeader(

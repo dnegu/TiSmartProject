@@ -2,6 +2,7 @@ package com.tismart.apptismart.features.home.presentation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,12 +20,20 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -38,9 +47,11 @@ import com.tismart.apptismart.core.presentation.NeutralDarkest
 import com.tismart.apptismart.core.presentation.PrimarioMedium
 import com.tismart.apptismart.core.presentation.SecundarioMedium
 import com.tismart.apptismart.core.presentation.components.TiSmartTopBar
+import com.tismart.apptismart.features.home.presentation.components.HomeChatbot
 import com.tismart.apptismart.features.home.presentation.components.HomeGridWithCards
 import com.tismart.apptismart.features.home.presentation.components.HomePager
 import com.tismart.apptismart.features.home.presentation.components.HomeTiSmartBuddyDialog
+import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.viewmodel.koinViewModel
 import tismartproject.composeapp.generated.resources.Res
@@ -50,19 +61,44 @@ import tismartproject.composeapp.generated.resources.visibility_on
 
 @Composable
 fun HomeScreenRoot(
-    viewModel: HomeViewModel = koinViewModel(),
+    onProfileClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
+    onSeeAllNewsClick: () -> Unit,
+    onKeepGrowingClick: () -> Unit,
+    onSearchForNewVacanciesClick: () -> Unit,
+    onEnhanceLearningClick: () -> Unit,
+    onDiscoverMyBenefitsClick: () -> Unit,
+    viewModel: HomeViewModel = koinViewModel()
 ) {
     HomeScreen(
         state = viewModel.state,
-        onAction = viewModel::onAction
+        onAction = { action ->
+            when (action) {
+                HomeAction.OnProfileClick -> onProfileClick()
+                HomeAction.OnNotificationsClick -> onNotificationsClick()
+                HomeAction.OnSeeAllNewsClick -> onSeeAllNewsClick()
+                HomeAction.OnKeepGrowingClick -> onKeepGrowingClick()
+                HomeAction.OnSearchForNewVacanciesClick -> onSearchForNewVacanciesClick()
+                HomeAction.OnEnhanceLearningClick -> onEnhanceLearningClick()
+                HomeAction.OnDiscoverMyBenefitsClick -> onDiscoverMyBenefitsClick()
+                else -> Unit
+            }
+            viewModel.onAction(action)
+        }
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
     state: HomeState,
     onAction: (HomeAction) -> Unit
 ) {
+    val sheetState = rememberModalBottomSheetState(
+        skipPartiallyExpanded = true,
+    )
+    val scope = rememberCoroutineScope()
+    var showChatbot by remember { mutableStateOf(false) }
 
     Box(
         modifier = Modifier.fillMaxSize()
@@ -70,10 +106,12 @@ fun HomeScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .background(Color.White)
                 .verticalScroll(rememberScrollState())
         ) {
             TiSmartTopBar(
-                onMenuClick = { onAction(HomeAction.OnBackClick) },
+                notificationCount = state.notificationCount,
+                onMenuClick = { onAction(HomeAction.OnProfileClick) },
                 onNotificationsClick = { onAction(HomeAction.OnNotificationsClick) }
             )
 
@@ -83,6 +121,7 @@ fun HomeScreen(
                 modifier = Modifier
                     .fillMaxWidth(0.7f)
                     .clip(RoundedCornerShape(bottomEnd = 12.dp, bottomStart = 12.dp))
+                    .clickable(onClick = { onAction(HomeAction.OnSeeAllNewsClick) })
                     .background(PrimarioMedium)
                     .padding(vertical = 9.dp)
                     .align(Alignment.CenterHorizontally),
@@ -125,7 +164,7 @@ fun HomeScreen(
                 )
 
                 TextButton(
-                    onClick = {},
+                    onClick = { onAction(HomeAction.OnTiSmartBuddyClick) },
                     colors = ButtonDefaults.textButtonColors(
                         contentColor = PrimarioMedium
                     )
@@ -144,16 +183,15 @@ fun HomeScreen(
 
                 HomeGridWithCards(
                     onKeepGrowingClick = { onAction(HomeAction.OnKeepGrowingClick) },
+                    onSearchForNewVacanciesClick = { onAction(HomeAction.OnSearchForNewVacanciesClick) },
                     onEnhanceLearningClick = { onAction(HomeAction.OnEnhanceLearningClick) },
-                    onDiscoverNewVacanciesClick = { onAction(HomeAction.OnDiscoverNewVacanciesClick) },
                     onDiscoverMyBenefitsClick = { onAction(HomeAction.OnDiscoverMyBenefitsClick) }
                 )
-
             }
         }
 
         FloatingActionButton(
-            onClick = {},
+            onClick = { showChatbot = true },
             modifier = Modifier.align(Alignment.BottomEnd).padding(18.dp),
             shape = CircleShape,
             containerColor = SecundarioMedium
@@ -167,12 +205,25 @@ fun HomeScreen(
         }
     }
 
+    HomeChatbot(
+        showChatbot = showChatbot,
+        sheetState = sheetState,
+        onDismiss = { showChatbot = false },
+        onCloseClick = {
+            scope.launch { sheetState.hide() }.invokeOnCompletion {
+                if (!sheetState.isVisible) {
+                    showChatbot = false
+                }
+            }
+        }
+    )
+
     HomeTiSmartBuddyDialog(
         showDialog = state.showTiSmartBuddyDialog,
         image = Res.drawable.profile_avatar,
         name = "Daniel Varillas",
         description = "Daniel es súper divertido; le encanta ir al cine, jugar videojuegos con sus amigos y sumergirse en un buen libro. Además, es hincha de la “U”.",
-        onDismiss = {},
-        onCommunicateClick = {}
+        onDismiss = { onAction(HomeAction.DismissTiSmartBuddyDialog) },
+        onCommunicateClick = { onAction(HomeAction.DismissTiSmartBuddyDialog) }
     )
 }

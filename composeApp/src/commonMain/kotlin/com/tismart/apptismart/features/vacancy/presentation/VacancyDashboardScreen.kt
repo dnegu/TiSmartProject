@@ -25,6 +25,8 @@ import androidx.compose.ui.unit.dp
 import com.tismart.apptismart.core.presentation.SecundarioDark
 import com.tismart.apptismart.core.presentation.components.TiSmartHeader
 import com.tismart.apptismart.features.discover_benefits.presentation.components.DiscoverBenefitsSearchBar
+import com.tismart.apptismart.features.keeps_growing.presentation.growth_path.GrowthPathAction
+import com.tismart.apptismart.features.keeps_growing.presentation.growth_path.GrowthPathScreen
 import com.tismart.apptismart.features.vacancy.presentation.components.VacancyDashboardRecommendedList
 import org.jetbrains.compose.resources.painterResource
 import tismartproject.composeapp.generated.resources.Res
@@ -32,7 +34,36 @@ import tismartproject.composeapp.generated.resources.add_box
 import tismartproject.composeapp.generated.resources.share_copy
 
 @Composable
-fun VacancyDashboardScreen() {
+fun VacancyDashboardScreenRoot(
+    onProfileClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
+    onBackClick: () -> Unit,
+    onSearchForVacanciesClick: () -> Unit,
+    onMyApplicationsClick: () -> Unit,
+    onNewVacanciesClick: () -> Unit,
+    onSeeAllRecommendedVacanciesClick: () -> Unit,
+    onRecommendedVacancyCardClick: () -> Unit
+) {
+    VacancyDashboardScreen(
+        onAction = { action ->
+            when (action) {
+                VacancyDashboardAction.OnProfileClick -> onProfileClick()
+                VacancyDashboardAction.OnNotificationsClick -> onNotificationsClick()
+                VacancyDashboardAction.OnBackClick -> onBackClick()
+                VacancyDashboardAction.OnSearchForVacanciesClick -> onSearchForVacanciesClick()
+                VacancyDashboardAction.OnMyApplicationsClick -> onMyApplicationsClick()
+                VacancyDashboardAction.OnNewVacanciesClick -> onNewVacanciesClick()
+                VacancyDashboardAction.OnSeeAllRecommendedVacanciesClick -> onSeeAllRecommendedVacanciesClick()
+                VacancyDashboardAction.OnRecommendedVacancyCardClick -> onRecommendedVacancyCardClick()
+            }
+        }
+    )
+}
+
+@Composable
+fun VacancyDashboardScreen(
+    onAction: (VacancyDashboardAction) -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -41,9 +72,10 @@ fun VacancyDashboardScreen() {
     ) {
         TiSmartHeader(
             title = "Busca nuevas vacantes",
-            onMenuClick = {},
-            onNotificationsClick = {},
-            onBackClick = {}
+            notificationCount = 0,
+            onMenuClick = { onAction(VacancyDashboardAction.OnProfileClick) },
+            onNotificationsClick = { onAction(VacancyDashboardAction.OnNotificationsClick) },
+            onBackClick = { onAction(VacancyDashboardAction.OnBackClick) }
         )
 
         Text(
@@ -56,7 +88,7 @@ fun VacancyDashboardScreen() {
 
         DiscoverBenefitsSearchBar(
             text = "Buscar vacantes",
-            onSearchBarClick = {}
+            onSearchBarClick = { onAction(VacancyDashboardAction.OnSearchForVacanciesClick) }
         )
 
         LazyRow(
@@ -70,7 +102,7 @@ fun VacancyDashboardScreen() {
         ) {
             item {
                 OutlinedButton(
-                    onClick = { /*TODO*/ },
+                    onClick = { onAction(VacancyDashboardAction.OnMyApplicationsClick) },
                     contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
                 ) {
                     Icon(
@@ -90,7 +122,7 @@ fun VacancyDashboardScreen() {
 
             item {
                 OutlinedButton(
-                    onClick = { /*TODO*/ },
+                    onClick = { onAction(VacancyDashboardAction.OnNewVacanciesClick) },
                     contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
                 ) {
                     Icon(
@@ -109,7 +141,8 @@ fun VacancyDashboardScreen() {
         }
 
         VacancyDashboardRecommendedList(
-            onSeeAllClick = {}
+            onSeeAllClick = { onAction(VacancyDashboardAction.OnSeeAllRecommendedVacanciesClick) },
+            onCardClick = { onAction(VacancyDashboardAction.OnRecommendedVacancyCardClick) }
         )
     }
 }

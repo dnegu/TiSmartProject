@@ -24,52 +24,9 @@ fun App() {
         typography = PoppinsTypography()
     ) {
         val navController = rememberNavController()
-        NavHost(
+        NavigationRoot(
             navController = navController,
-            startDestination = Route.AuthGraph
-        ) {
-            navigation<Route.AuthGraph>(
-                startDestination = Route.Login
-            ) {
-                composable<Route.Login> {
-
-                    LoginScreenRoot(
-                        onLoginSuccess = {
-                            navController.navigate(Route.HomeGraph) {
-                                popUpTo(Route.AuthGraph) {
-                                    inclusive = true
-                                }
-                            }
-                        }
-                    )
-                }
-            }
-            navigation<Route.HomeGraph>(
-                startDestination = Route.Home
-            ) {
-                composable<Route.Home> {
-                    HomeScreenRoot()
-                }
-                composable<Route.NewsList> {
-                    NewsListScreenRoot()
-                }
-                composable<Route.NewsDetail> {
-                }
-            }
-        }
-
+            isLoggedIn = true
+        )
     }
-}
-
-@Composable
-private inline fun <reified T: ViewModel> NavBackStackEntry.sharedKoinViewModel(
-    navController: NavController
-): T {
-    val navGraphRoute = destination.parent?.route ?: return koinViewModel<T>()
-    val parentEntry = remember(this) {
-        navController.getBackStackEntry(navGraphRoute)
-    }
-    return koinViewModel(
-        viewModelStoreOwner = parentEntry
-    )
 }

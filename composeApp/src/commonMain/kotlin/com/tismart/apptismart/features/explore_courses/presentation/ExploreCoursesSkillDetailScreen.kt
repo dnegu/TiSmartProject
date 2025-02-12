@@ -24,11 +24,33 @@ import com.tismart.apptismart.core.presentation.components.TiSmartHeader
 import com.tismart.apptismart.features.discover_benefits.presentation.CourseLevel
 import com.tismart.apptismart.features.enhance_learning.presentation.components.TiSmartLoversCourseDetailHeader
 import com.tismart.apptismart.features.explore_courses.presentation.components.UdemyDialog
+import com.tismart.apptismart.features.vacancy.presentation.NewVacanciesScreen
+import com.tismart.apptismart.features.vacancy.presentation.VacancyAction
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.explore_courses_skills_card
 
 @Composable
-fun ExploreCoursesSkillDetailScreen() {
+fun ExploreCoursesSkillDetailScreenRoot(
+    onProfileClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
+    onBackClick: () -> Unit
+) {
+    ExploreCoursesSkillDetailScreen(
+        onAction = { action ->
+            when (action) {
+                ExploreCoursesSkillsAction.OnProfileClick -> onProfileClick()
+                ExploreCoursesSkillsAction.OnNotificationsClick -> onNotificationsClick()
+                ExploreCoursesSkillsAction.OnBackClick -> onBackClick()
+                else -> Unit
+            }
+        }
+    )
+}
+
+@Composable
+fun ExploreCoursesSkillDetailScreen(
+    onAction: (ExploreCoursesSkillsAction) -> Unit
+) {
     var showDialog by remember { mutableStateOf(false) }
     Column(
         modifier = Modifier
@@ -37,9 +59,10 @@ fun ExploreCoursesSkillDetailScreen() {
             .verticalScroll(rememberScrollState())
     ) {
         TiSmartHeader(
-            onMenuClick = {},
-            onNotificationsClick = {},
-            onBackClick = {}
+            notificationCount = 0,
+            onMenuClick = { onAction(ExploreCoursesSkillsAction.OnProfileClick) },
+            onNotificationsClick = { onAction(ExploreCoursesSkillsAction.OnNotificationsClick) },
+            onBackClick = { onAction(ExploreCoursesSkillsAction.OnBackClick) }
         )
 
         TiSmartLoversCourseDetailHeader(

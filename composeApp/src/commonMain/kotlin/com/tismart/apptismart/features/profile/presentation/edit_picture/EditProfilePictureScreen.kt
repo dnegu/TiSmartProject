@@ -1,4 +1,4 @@
-package com.tismart.apptismart.features.profile.presentation.edit_photo
+package com.tismart.apptismart.features.profile.presentation.edit_picture
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -20,14 +20,34 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
+import com.tismart.apptismart.app.Route
 import com.tismart.apptismart.core.presentation.PrimarioMedium
 import com.tismart.apptismart.features.profile.presentation.components.ProfileHeader
+import com.tismart.apptismart.features.profile.presentation.my_data.ProfileMyDataAction
+import com.tismart.apptismart.features.profile.presentation.my_data.ProfileMyDataScreen
 import org.jetbrains.compose.resources.painterResource
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.profile_avatar
 
 @Composable
-fun ProfileEditPhotoScreen() {
+fun EditProfilePictureScreenRoot(
+    onCloseClick: () -> Unit,
+    onBackClick: () -> Unit
+) {
+    EditProfilePictureScreen(
+        onAction = { action ->
+            when (action) {
+                EditProfilePictureAction.OnCloseClick -> onCloseClick()
+                EditProfilePictureAction.OnBackClick -> onBackClick()
+            }
+        }
+    )
+}
+
+@Composable
+fun EditProfilePictureScreen(
+    onAction: (EditProfilePictureAction) -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -35,8 +55,8 @@ fun ProfileEditPhotoScreen() {
     ) {
         ProfileHeader(
             title = "Editar foto de perfil",
-            onCloseClick = {},
-            onBackClick = {}
+            onCloseClick = { onAction(EditProfilePictureAction.OnCloseClick) },
+            onBackClick = { onAction(EditProfilePictureAction.OnBackClick) }
         )
 
         Column(

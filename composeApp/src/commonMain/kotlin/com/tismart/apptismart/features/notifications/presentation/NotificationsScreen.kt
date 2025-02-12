@@ -12,17 +12,36 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.tismart.apptismart.features.notifications.presentation.components.NotificationListItem
 import com.tismart.apptismart.features.notifications.presentation.components.NotificationsHeader
+import com.tismart.apptismart.features.profile.presentation.edit_picture.EditProfilePictureAction
+import com.tismart.apptismart.features.profile.presentation.edit_picture.EditProfilePictureScreen
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.notifications_icon
 
 @Composable
-fun NotificationsScreen() {
+fun NotificationsScreenRoot(
+    onProfileClick: () -> Unit,
+    onBackClick: () -> Unit
+) {
+    NotificationsScreen(
+        onAction = { action ->
+            when (action) {
+                NotificationsAction.OnProfileClick -> onProfileClick()
+                NotificationsAction.OnBackClick -> onBackClick()
+            }
+        }
+    )
+}
+
+@Composable
+fun NotificationsScreen(
+    onAction: (NotificationsAction) -> Unit
+) {
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
         NotificationsHeader(
-            onMenuClick = {},
-            onBackClick = {}
+            onMenuClick = { onAction(NotificationsAction.OnProfileClick) },
+            onBackClick = { onAction(NotificationsAction.OnBackClick) }
         )
 
         // TODO: When notifications are empty, add this:

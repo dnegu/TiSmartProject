@@ -26,7 +26,8 @@ import tismartproject.composeapp.generated.resources.tismart_university_card
 @Composable
 fun EnhanceLearningListPager(
     title: String,
-    onSeeAllClick: () -> Unit
+    onSeeAllClick: () -> Unit,
+    onCardClick: () -> Unit
 ) {
     EnhanceLearningListPagerHeader(
         title = title,
@@ -46,7 +47,7 @@ fun EnhanceLearningListPager(
                 description = "Testing de Software y automatización bla blallalal blasdsd bllb",
                 author = "Ricardo Montaner",
                 courseLevel = CourseLevel.INTERMEDIATE,
-                onCardClick = {}
+                onCardClick = onCardClick
             )
         }
     }

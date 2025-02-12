@@ -40,7 +40,8 @@ import tismartproject.composeapp.generated.resources.explore_mentors_card
 
 @Composable
 fun ExploreMentorsPager(
-    onSeeAllClick: () -> Unit
+    onSeeAllClick: () -> Unit,
+    onCardClick: () -> Unit
 ) {
     ExploreMentorsPagerHeader(
         onSeeAllClick = onSeeAllClick
@@ -58,7 +59,7 @@ fun ExploreMentorsPager(
                 name = "Angela Ramos",
                 description = "Experiencia de 3 años en UX, Angular e inteligencia.",
                 label = "UX Designer",
-                onCardClick = {}
+                onCardClick = onCardClick
             )
         }
     }

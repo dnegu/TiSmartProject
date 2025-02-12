@@ -18,13 +18,40 @@ import com.tismart.apptismart.core.presentation.NeutralDark
 import com.tismart.apptismart.core.presentation.SecundarioDark
 import com.tismart.apptismart.core.presentation.components.TiSmartHeader
 import com.tismart.apptismart.features.keeps_growing.presentation.components.KeepsGrowingCard
+import com.tismart.apptismart.features.vacancy.presentation.NewVacanciesScreen
+import com.tismart.apptismart.features.vacancy.presentation.VacancyAction
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.enhance_your_learning_card1
 import tismartproject.composeapp.generated.resources.enhance_your_learning_card2
 import tismartproject.composeapp.generated.resources.enhance_your_learning_card3
 
 @Composable
-fun EnhanceYourLearningScreen() {
+fun EnhanceYourLearningScreenRoot(
+    onProfileClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
+    onBackClick: () -> Unit,
+    onExploreNewCoursesClick: () -> Unit,
+    onTiSmartUniversityClick: () -> Unit,
+    onEducationalAgreementClick: () -> Unit
+) {
+    EnhanceYourLearningScreen(
+        onAction = { action ->
+            when (action) {
+                EnhanceLearningAction.OnProfileClick -> onProfileClick()
+                EnhanceLearningAction.OnNotificationsClick -> onNotificationsClick()
+                EnhanceLearningAction.OnBackClick -> onBackClick()
+                EnhanceLearningAction.OnExploreNewCoursesClick -> onExploreNewCoursesClick()
+                EnhanceLearningAction.OnTiSmartUniversityClick -> onTiSmartUniversityClick()
+                EnhanceLearningAction.OnEducationalAgreementClick -> onEducationalAgreementClick()
+            }
+        }
+    )
+}
+
+@Composable
+fun EnhanceYourLearningScreen(
+    onAction: (EnhanceLearningAction) -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -32,9 +59,10 @@ fun EnhanceYourLearningScreen() {
     ) {
         TiSmartHeader(
             title = "Potencia tu aprendizaje",
-            onMenuClick = {},
-            onNotificationsClick = {},
-            onBackClick = {}
+            notificationCount = 0,
+            onMenuClick = { onAction(EnhanceLearningAction.OnProfileClick) },
+            onNotificationsClick = { onAction(EnhanceLearningAction.OnNotificationsClick) },
+            onBackClick = { onAction(EnhanceLearningAction.OnBackClick) }
         )
 
         Text(
@@ -64,19 +92,19 @@ fun EnhanceYourLearningScreen() {
             KeepsGrowingCard(
                 icon = Res.drawable.enhance_your_learning_card1,
                 text = "Explora nuevos cursos",
-                onClick = {}
+                onClick = { onAction(EnhanceLearningAction.OnExploreNewCoursesClick) }
             )
 
             KeepsGrowingCard(
                 icon = Res.drawable.enhance_your_learning_card2,
                 text = "TiSmart University",
-                onClick = {}
+                onClick = { onAction(EnhanceLearningAction.OnTiSmartUniversityClick) }
             )
 
             KeepsGrowingCard(
                 icon = Res.drawable.enhance_your_learning_card3,
                 text = "Convenio Educativo",
-                onClick = {}
+                onClick = { onAction(EnhanceLearningAction.OnEducationalAgreementClick) }
             )
         }
     }

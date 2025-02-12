@@ -14,11 +14,34 @@ import androidx.compose.ui.unit.dp
 import com.tismart.apptismart.core.presentation.components.TiSmartHeader
 import com.tismart.apptismart.features.discover_benefits.presentation.CourseLevel
 import com.tismart.apptismart.features.enhance_learning.presentation.components.TiSmartLoversCourseListCard
+import com.tismart.apptismart.features.vacancy.presentation.NewVacanciesScreen
+import com.tismart.apptismart.features.vacancy.presentation.VacancyAction
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.tismart_university_card
 
 @Composable
-fun TiSmartLoversCourseListScreen() {
+fun TiSmartLoversCourseListScreenRoot(
+    onProfileClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
+    onBackClick: () -> Unit,
+    onTiSmartLoversCourseCardClick: () -> Unit
+) {
+    TiSmartLoversCourseListScreen(
+        onAction = { action ->
+            when (action) {
+                TiSmartLoversAction.OnProfileClick -> onProfileClick()
+                TiSmartLoversAction.OnNotificationsClick -> onNotificationsClick()
+                TiSmartLoversAction.OnBackClick -> onBackClick()
+                TiSmartLoversAction.OnTiSmartLoversCourseCardClick -> onTiSmartLoversCourseCardClick()
+            }
+        }
+    )
+}
+
+@Composable
+fun TiSmartLoversCourseListScreen(
+    onAction: (TiSmartLoversAction) -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -26,9 +49,10 @@ fun TiSmartLoversCourseListScreen() {
     ) {
         TiSmartHeader(
             title = "Cursos TiSmartLovers",
-            onMenuClick = {},
-            onNotificationsClick = {},
-            onBackClick = {}
+            notificationCount = 0,
+            onMenuClick = { onAction(TiSmartLoversAction.OnProfileClick) },
+            onNotificationsClick = { onAction(TiSmartLoversAction.OnNotificationsClick) },
+            onBackClick = { onAction(TiSmartLoversAction.OnBackClick) }
         )
 
         LazyColumn(
@@ -43,7 +67,7 @@ fun TiSmartLoversCourseListScreen() {
                     description = "Testing de Software y automatización",
                     author = "Franco Muschi",
                     courseLevel = CourseLevel.INTERMEDIATE,
-                    onCardClick = {}
+                    onCardClick = { onAction(TiSmartLoversAction.OnTiSmartLoversCourseCardClick) }
                 )
             }
         }

@@ -27,7 +27,27 @@ import com.tismart.apptismart.features.keeps_growing.presentation.components.App
 import com.tismart.apptismart.features.keeps_growing.presentation.components.ApplicationFormCurrentPosition
 
 @Composable
-fun EventRegistrationFormScreen() {
+fun EventRegistrationFormScreenRoot(
+    onProfileClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
+    onBackClick: () -> Unit
+) {
+    EventRegistrationFormScreen(
+        onAction = { action ->
+            when (action) {
+                EventRegistrationAction.OnProfileClick -> onProfileClick()
+                EventRegistrationAction.OnNotificationsClick -> onNotificationsClick()
+                EventRegistrationAction.OnBackClick -> onBackClick()
+                else -> Unit
+            }
+        }
+    )
+}
+
+@Composable
+fun EventRegistrationFormScreen(
+    onAction: (EventRegistrationAction) -> Unit
+) {
     val options = listOf("Staff administrativo", "Servicio al cliente")
     var area by remember { mutableStateOf("") }
     var currentPosition by remember { mutableStateOf("") }
@@ -44,9 +64,10 @@ fun EventRegistrationFormScreen() {
     ) {
         TiSmartHeader(
             title = "Formulario de inscripción",
-            onMenuClick = {},
-            onNotificationsClick = {},
-            onBackClick = {}
+            notificationCount = 0,
+            onMenuClick = { onAction(EventRegistrationAction.OnProfileClick) },
+            onNotificationsClick = { onAction(EventRegistrationAction.OnNotificationsClick) },
+            onBackClick = { onAction(EventRegistrationAction.OnBackClick) }
         )
 
         Column(

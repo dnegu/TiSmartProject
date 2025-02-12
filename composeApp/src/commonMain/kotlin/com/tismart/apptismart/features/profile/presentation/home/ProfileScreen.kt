@@ -17,11 +17,29 @@ import tismartproject.composeapp.generated.resources.profile_avatar
 
 @Composable
 fun ProfileScreenRoot(
+    onCloseClick: () -> Unit,
+    onMyDataClick: () -> Unit,
+    onKeepGrowingClick: () -> Unit,
+    onSearchForNewVacanciesClick: () -> Unit,
+    onEnhanceLearningClick: () -> Unit,
+    onDiscoverMyBenefitsClick: () -> Unit,
+    onLogoutClick: () -> Unit,
     viewModel: ProfileViewModel = koinViewModel(),
 ) {
     ProfileScreen(
         state = viewModel.state,
-        onAction = viewModel::onAction
+        onAction = { action ->
+            when (action) {
+                ProfileAction.OnCloseClick -> onCloseClick()
+                ProfileAction.OnMyDataClick -> onMyDataClick()
+                ProfileAction.OnKeepGrowingClick -> onKeepGrowingClick()
+                ProfileAction.OnSearchForNewVacanciesClick -> onSearchForNewVacanciesClick()
+                ProfileAction.OnEnhanceLearningClick -> onEnhanceLearningClick()
+                ProfileAction.OnDiscoverMyBenefitsClick -> onDiscoverMyBenefitsClick()
+                ProfileAction.OnLogoutClick -> onLogoutClick()
+            }
+            viewModel.onAction(action)
+        }
     )
 }
 
@@ -35,7 +53,7 @@ fun ProfileScreen(
         modifier = Modifier.fillMaxSize().background(Color.White)
     ) {
         ProfileHeader(
-            onCloseClick = {}
+            onCloseClick = { onAction(ProfileAction.OnCloseClick) }
         )
 
         ProfileImageAndName(
@@ -44,20 +62,19 @@ fun ProfileScreen(
         )
 
         ProfileMyDataButton(
-            onClick = {}
+            onClick = { onAction(ProfileAction.OnMyDataClick) }
         )
 
         ProfileItemsCard(
-            onItem1Click = {},
-            onItem2Click = {},
-            onItem3Click = {},
-            onItem4Click = {}
+            onKeepGrowingClick = { onAction(ProfileAction.OnKeepGrowingClick) },
+            onEnhanceLearningClick = { onAction(ProfileAction.OnEnhanceLearningClick) },
+            onSearchForNewVacanciesClick = { onAction(ProfileAction.OnSearchForNewVacanciesClick) },
+            onDiscoverMyBenefitsClick = { onAction(ProfileAction.OnDiscoverMyBenefitsClick) }
         )
 
         ProfileLogoutButton(
-            onLogoutClick = {}
+            onLogoutClick = { onAction(ProfileAction.OnLogoutClick) }
         )
 
     }
-
 }

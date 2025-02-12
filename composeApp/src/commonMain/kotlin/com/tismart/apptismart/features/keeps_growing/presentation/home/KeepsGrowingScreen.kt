@@ -27,7 +27,34 @@ import tismartproject.composeapp.generated.resources.keeps_growing_card2
 import tismartproject.composeapp.generated.resources.keeps_growing_card3
 
 @Composable
-fun KeepsGrowingScreen() {
+fun KeepsGrowingScreenRoot(
+    onProfileClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
+    onBackClick: () -> Unit,
+    onSeeAllColleaguesClick: () -> Unit,
+    onGrowthPathClick: () -> Unit,
+    onInnovateAndTransformClick: () -> Unit,
+    onExploreMentorsClick: () -> Unit
+) {
+    KeepsGrowingScreen(
+        onAction = { action ->
+            when (action) {
+                KeepsGrowingAction.OnProfileClick -> onProfileClick()
+                KeepsGrowingAction.OnNotificationsClick -> onNotificationsClick()
+                KeepsGrowingAction.OnBackClick -> onBackClick()
+                KeepsGrowingAction.OnSeeAllColleaguesClick -> onSeeAllColleaguesClick()
+                KeepsGrowingAction.OnGrowthPathClick -> onGrowthPathClick()
+                KeepsGrowingAction.OnInnovateAndTransformClick -> onInnovateAndTransformClick()
+                KeepsGrowingAction.OnExploreMentorsClick -> onExploreMentorsClick()
+            }
+        }
+    )
+}
+
+@Composable
+fun KeepsGrowingScreen(
+    onAction: (KeepsGrowingAction) -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -36,9 +63,10 @@ fun KeepsGrowingScreen() {
     ) {
         TiSmartHeader(
             title = "Sigue creciendo",
-            onMenuClick = {},
-            onNotificationsClick = {},
-            onBackClick = {}
+            notificationCount = 0,
+            onMenuClick = { onAction(KeepsGrowingAction.OnProfileClick) },
+            onNotificationsClick = { onAction(KeepsGrowingAction.OnNotificationsClick) },
+            onBackClick = { onAction(KeepsGrowingAction.OnBackClick) }
         )
 
         Text(
@@ -49,7 +77,7 @@ fun KeepsGrowingScreen() {
         )
 
         KeepsGrowingPager(
-            onSeeAllClick = {}
+            onSeeAllClick = { onAction(KeepsGrowingAction.OnSeeAllColleaguesClick) }
         )
 
         Column(
@@ -72,19 +100,19 @@ fun KeepsGrowingScreen() {
             KeepsGrowingCard(
                 icon = Res.drawable.keeps_growing_card1,
                 text = "Tu ruta de crecimiento",
-                onClick = {}
+                onClick = { onAction(KeepsGrowingAction.OnGrowthPathClick) }
             )
 
             KeepsGrowingCard(
                 icon = Res.drawable.keeps_growing_card2,
                 text = "Innova y Transforma",
-                onClick = {}
+                onClick = { onAction(KeepsGrowingAction.OnInnovateAndTransformClick) }
             )
 
             KeepsGrowingCard(
                 icon = Res.drawable.keeps_growing_card3,
                 text = "Explora mentores",
-                onClick = {}
+                onClick = { onAction(KeepsGrowingAction.OnExploreMentorsClick) }
             )
         }
     }

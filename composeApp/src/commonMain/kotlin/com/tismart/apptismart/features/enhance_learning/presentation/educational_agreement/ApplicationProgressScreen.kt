@@ -28,9 +28,32 @@ import com.tismart.apptismart.features.enhance_learning.presentation.components.
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
+fun ApplicationProgressScreenRoot(
+    agreementName: String,
+    status: RegistrationStatus,
+    onProfileClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
+    onBackClick: () -> Unit
+) {
+    ApplicationProgressScreen(
+        agreementName = agreementName,
+        status = status,
+        onAction = { action ->
+            when (action) {
+                EducationalAgreementAction.OnProfileClick -> onProfileClick()
+                EducationalAgreementAction.OnNotificationsClick -> onNotificationsClick()
+                EducationalAgreementAction.OnBackClick -> onBackClick()
+                else -> Unit
+            }
+        }
+    )
+}
+
+@Composable
 fun ApplicationProgressScreen(
     agreementName: String,
-    status: RegistrationStatus
+    status: RegistrationStatus,
+    onAction: (EducationalAgreementAction) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -40,9 +63,10 @@ fun ApplicationProgressScreen(
     ) {
         TiSmartHeader(
             title = "Progreso de solicitud",
-            onMenuClick = {},
-            onNotificationsClick = {},
-            onBackClick = {}
+            notificationCount = 0,
+            onMenuClick = { onAction(EducationalAgreementAction.OnProfileClick) },
+            onNotificationsClick = { onAction(EducationalAgreementAction.OnNotificationsClick) },
+            onBackClick = { onAction(EducationalAgreementAction.OnBackClick) }
         )
 
         Column(
@@ -97,7 +121,7 @@ fun ApplicationProgressScreen(
             }
 
             ApplicationProgressTracking(
-                agreementStatus = RegistrationStatus.UNDER_REVIEW
+                agreementStatus = status
             )
         }
     }

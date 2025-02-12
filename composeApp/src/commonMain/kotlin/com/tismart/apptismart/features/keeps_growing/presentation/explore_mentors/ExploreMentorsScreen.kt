@@ -27,12 +27,39 @@ import com.tismart.apptismart.core.presentation.NeutralDarkest
 import com.tismart.apptismart.core.presentation.components.TISmartActionButton
 import com.tismart.apptismart.core.presentation.components.TiSmartHeader
 import com.tismart.apptismart.features.keeps_growing.presentation.components.ExploreMentorsPager
+import com.tismart.apptismart.features.keeps_growing.presentation.growth_path.GrowthPathAction
+import com.tismart.apptismart.features.keeps_growing.presentation.growth_path.GrowthPathScreen
 import org.jetbrains.compose.resources.painterResource
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.business_man
 
 @Composable
-fun ExploreMentorsScreen() {
+fun ExploreMentorsScreenRoot(
+    onProfileClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
+    onBackClick: () -> Unit,
+    onSeeAllMentorsClick: () -> Unit,
+    onMentorCardClick: () -> Unit,
+    onApplyHereClick: () -> Unit
+) {
+    ExploreMentorsScreen(
+        onAction = { action ->
+            when (action) {
+                ExploreMentorsAction.OnProfileClick -> onProfileClick()
+                ExploreMentorsAction.OnNotificationsClick -> onNotificationsClick()
+                ExploreMentorsAction.OnBackClick -> onBackClick()
+                ExploreMentorsAction.OnSeeAllMentorsClick -> onSeeAllMentorsClick()
+                ExploreMentorsAction.OnMentorCardClick -> onMentorCardClick()
+                ExploreMentorsAction.OnApplyHereClick -> onApplyHereClick()
+            }
+        }
+    )
+}
+
+@Composable
+fun ExploreMentorsScreen(
+    onAction: (ExploreMentorsAction) -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -41,9 +68,10 @@ fun ExploreMentorsScreen() {
     ) {
         TiSmartHeader(
             title = "Explora mentores",
-            onMenuClick = {},
-            onNotificationsClick = {},
-            onBackClick = {}
+            notificationCount = 0,
+            onMenuClick = { onAction(ExploreMentorsAction.OnProfileClick) },
+            onNotificationsClick = { onAction(ExploreMentorsAction.OnNotificationsClick) },
+            onBackClick = { onAction(ExploreMentorsAction.OnBackClick) }
         )
 
         Text(
@@ -54,7 +82,8 @@ fun ExploreMentorsScreen() {
         )
 
         ExploreMentorsPager(
-            onSeeAllClick = {}
+            onSeeAllClick = { onAction(ExploreMentorsAction.OnSeeAllMentorsClick) },
+            onCardClick = { onAction(ExploreMentorsAction.OnMentorCardClick) }
         )
 
         Column(
@@ -89,7 +118,7 @@ fun ExploreMentorsScreen() {
             TISmartActionButton(
                 text = "Postula aquí",
                 isLoading = false,
-                onClick = {}
+                onClick = { onAction(ExploreMentorsAction.OnApplyHereClick) }
             )
         }
     }

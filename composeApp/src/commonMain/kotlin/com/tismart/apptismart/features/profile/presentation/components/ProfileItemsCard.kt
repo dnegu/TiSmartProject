@@ -27,10 +27,10 @@ import tismartproject.composeapp.generated.resources.star_badge
 
 @Composable
 fun ProfileItemsCard(
-    onItem1Click: () -> Unit,
-    onItem2Click: () -> Unit,
-    onItem3Click: () -> Unit,
-    onItem4Click: () -> Unit
+    onKeepGrowingClick: () -> Unit,
+    onEnhanceLearningClick: () -> Unit,
+    onSearchForNewVacanciesClick: () -> Unit,
+    onDiscoverMyBenefitsClick: () -> Unit
 ) {
     ElevatedCard(
         modifier = Modifier
@@ -46,7 +46,7 @@ fun ProfileItemsCard(
         ProfileItem(
             title = "Seguir creciendo",
             icon = Res.drawable.star_badge,
-            onItemClick = onItem1Click
+            onItemClick = onKeepGrowingClick
         )
 
         ProfileDivider()
@@ -54,7 +54,7 @@ fun ProfileItemsCard(
         ProfileItem(
             title = "Potenciar mi aprendizaje",
             icon = Res.drawable.graduation_hat,
-            onItemClick = onItem2Click
+            onItemClick = onEnhanceLearningClick
         )
 
         ProfileDivider()
@@ -62,7 +62,7 @@ fun ProfileItemsCard(
         ProfileItem(
             title = "Buscar nuevas vacantes",
             icon = Res.drawable.profile_new_vancancies,
-            onItemClick = onItem3Click
+            onItemClick = onSearchForNewVacanciesClick
         )
 
         ProfileDivider()
@@ -70,7 +70,7 @@ fun ProfileItemsCard(
         ProfileItem(
             title = "Descubrir mis beneficios",
             icon = Res.drawable.profile_benefits,
-            onItemClick = onItem4Click
+            onItemClick = onDiscoverMyBenefitsClick
         )
     }
 }

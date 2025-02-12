@@ -14,11 +14,34 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.tismart.apptismart.core.presentation.SecundarioDark
 import com.tismart.apptismart.core.presentation.components.TiSmartHeader
+import com.tismart.apptismart.features.keeps_growing.presentation.celebrate_your_evolution.CelebrateYourEvolutionAction
+import com.tismart.apptismart.features.keeps_growing.presentation.celebrate_your_evolution.CelebrateYourEvolutionDetailScreen
 import com.tismart.apptismart.features.keeps_growing.presentation.components.GrowthPathMap
 import com.tismart.apptismart.features.keeps_growing.presentation.components.GrowthPathMesh
 
 @Composable
-fun GrowthPathScreen() {
+fun GrowthPathScreenRoot(
+    onProfileClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
+    onBackClick: () -> Unit,
+    onItemClick: () -> Unit
+) {
+    GrowthPathScreen(
+        onAction = { action ->
+            when (action) {
+                GrowthPathAction.OnProfileClick -> onProfileClick()
+                GrowthPathAction.OnNotificationsClick -> onNotificationsClick()
+                GrowthPathAction.OnBackClick -> onBackClick()
+                GrowthPathAction.OnItemClick -> onItemClick()
+            }
+        }
+    )
+}
+
+@Composable
+fun GrowthPathScreen(
+    onAction: (GrowthPathAction) -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -27,9 +50,10 @@ fun GrowthPathScreen() {
     ) {
         TiSmartHeader(
             title = "Tu ruta de crecimiento",
-            onMenuClick = {},
-            onNotificationsClick = {},
-            onBackClick = {}
+            notificationCount = 0,
+            onMenuClick = { onAction(GrowthPathAction.OnProfileClick) },
+            onNotificationsClick = { onAction(GrowthPathAction.OnNotificationsClick) },
+            onBackClick = { onAction(GrowthPathAction.OnBackClick) }
         )
 
         Text(
@@ -40,7 +64,7 @@ fun GrowthPathScreen() {
         )
 
         GrowthPathMap(
-            onItemClick = {}
+            onItemClick = { onAction(GrowthPathAction.OnItemClick) }
         )
 
         GrowthPathMesh()

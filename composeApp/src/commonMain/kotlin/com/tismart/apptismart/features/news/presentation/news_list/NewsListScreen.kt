@@ -25,11 +25,24 @@ import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun NewsListScreenRoot(
+    onProfileClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
+    onBackClick: () -> Unit,
+    onNewsDetailClick: () -> Unit,
     viewModel: NewsListViewModel = koinViewModel(),
 ) {
     NewsListScreen(
         state = viewModel.state,
-        onAction = viewModel::onAction
+        onAction = { action ->
+            when (action) {
+                NewsListAction.OnProfileClick -> onProfileClick()
+                NewsListAction.OnNotificationsClick -> onNotificationsClick()
+                NewsListAction.OnBackClick -> onBackClick()
+                NewsListAction.OnNewsDetailClick -> onNewsDetailClick()
+                else -> Unit
+            }
+            viewModel.onAction(action)
+        }
     )
 }
 
@@ -44,7 +57,8 @@ fun NewsListScreen(
             .background(Color.White)
     ) {
         TiSmartTopBar(
-            onMenuClick = { onAction(NewsListAction.OnBackClick) },
+            notificationCount = 0,
+            onMenuClick = { onAction(NewsListAction.OnProfileClick) },
             onNotificationsClick = { onAction(NewsListAction.OnNotificationsClick) }
         )
         NewsListHeader(
@@ -73,7 +87,8 @@ fun NewsListScreen(
                         label = it.label,
                         title = it.title,
                         description = it.description,
-                        supporting = it.supporting
+                        supporting = it.supporting,
+                        onClick = { onAction(NewsListAction.OnNewsDetailClick) }
                     )
                     HorizontalDivider(
                         modifier = Modifier.padding(horizontal = 16.dp)

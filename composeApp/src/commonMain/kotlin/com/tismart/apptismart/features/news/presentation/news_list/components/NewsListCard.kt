@@ -34,7 +34,8 @@ fun NewsListCard(
     label: String?,
     title: String,
     description: String,
-    supporting: String
+    supporting: String,
+    onClick: () -> Unit
 ) {
     ListItem(
         headlineContent = {
@@ -74,7 +75,7 @@ fun NewsListCard(
             }
         },
         modifier = Modifier
-            .clickable(onClick = {})
+            .clickable(onClick = onClick)
             .padding(top = 12.dp),
         overlineContent = label?.let {
             {

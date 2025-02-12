@@ -21,7 +21,29 @@ import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.discover_benefits_card
 
 @Composable
-fun DiscoverBenefitsCategoryDetailScreen() {
+fun DiscoverBenefitsCategoryDetailScreenRoot(
+    onProfileClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
+    onBackClick: () -> Unit,
+    onBenefitCardClick: () -> Unit
+) {
+    DiscoverBenefitsCategoryDetailScreen(
+        onAction = { action ->
+            when (action) {
+                DiscoverBenefitsAction.OnProfileClick -> onProfileClick()
+                DiscoverBenefitsAction.OnNotificationsClick -> onNotificationsClick()
+                DiscoverBenefitsAction.OnBackClick -> onBackClick()
+                DiscoverBenefitsAction.OnBenefitCardClick -> onBenefitCardClick()
+                else -> Unit
+            }
+        }
+    )
+}
+
+@Composable
+fun DiscoverBenefitsCategoryDetailScreen(
+    onAction: (DiscoverBenefitsAction) -> Unit
+) {
     var showDialog by remember { mutableStateOf(false) }
     Column(
         modifier = Modifier
@@ -30,9 +52,10 @@ fun DiscoverBenefitsCategoryDetailScreen() {
             .verticalScroll(rememberScrollState())
     ) {
         TiSmartHeader(
-            onMenuClick = {},
-            onNotificationsClick = {},
-            onBackClick = {}
+            notificationCount = 0,
+            onMenuClick = { onAction(DiscoverBenefitsAction.OnProfileClick) },
+            onNotificationsClick = { onAction(DiscoverBenefitsAction.OnNotificationsClick) },
+            onBackClick = { onAction(DiscoverBenefitsAction.OnBackClick) }
         )
 
         DiscoverBenefitsCategoryDetailHeader(
@@ -50,7 +73,9 @@ fun DiscoverBenefitsCategoryDetailScreen() {
             onGoToBenefitClick = { showDialog = true }
         )
 
-        DiscoverBenefitsCategoryDetailPager()
+        DiscoverBenefitsCategoryDetailPager(
+            onCardClick = { onAction(DiscoverBenefitsAction.OnBenefitCardClick) }
+        )
     }
 
     ClaimBenefitDialog(

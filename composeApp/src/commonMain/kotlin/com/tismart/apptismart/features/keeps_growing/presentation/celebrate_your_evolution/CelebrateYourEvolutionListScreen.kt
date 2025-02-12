@@ -17,7 +17,28 @@ import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.keeps_growing_card
 
 @Composable
-fun CelebrateYourEvolutionListScreen() {
+fun CelebrateYourEvolutionListScreenRoot(
+    onProfileClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
+    onBackClick: () -> Unit,
+    onColleagueCardClick: () -> Unit
+) {
+    CelebrateYourEvolutionListScreen(
+        onAction = { action ->
+            when (action) {
+                CelebrateYourEvolutionAction.OnProfileClick -> onProfileClick()
+                CelebrateYourEvolutionAction.OnNotificationsClick -> onNotificationsClick()
+                CelebrateYourEvolutionAction.OnBackClick -> onBackClick()
+                CelebrateYourEvolutionAction.OnColleagueCardClick -> onColleagueCardClick()
+            }
+        }
+    )
+}
+
+@Composable
+fun CelebrateYourEvolutionListScreen(
+    onAction: (CelebrateYourEvolutionAction) -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -25,9 +46,10 @@ fun CelebrateYourEvolutionListScreen() {
     ) {
         TiSmartHeader(
             title = "Celebramos tu evolución \uD83C\uDF89",
-            onMenuClick = {},
-            onNotificationsClick = {},
-            onBackClick = {}
+            notificationCount = 0,
+            onMenuClick = { onAction(CelebrateYourEvolutionAction.OnProfileClick) },
+            onNotificationsClick = { onAction(CelebrateYourEvolutionAction.OnNotificationsClick) },
+            onBackClick = { onAction(CelebrateYourEvolutionAction.OnBackClick) }
         )
 
         LazyColumn(
@@ -42,7 +64,7 @@ fun CelebrateYourEvolutionListScreen() {
                     label = "UX Designer",
                     name = "Carlina del Pilar",
                     description = "Por haber obtenido un buen rendimiento y haber brindado una buena propuesta, te felicitamos en este ascenso de Technical Leader a Support Analyst.",
-                    onCardClick = {}
+                    onCardClick = { onAction(CelebrateYourEvolutionAction.OnColleagueCardClick) }
                 )
             }
         }

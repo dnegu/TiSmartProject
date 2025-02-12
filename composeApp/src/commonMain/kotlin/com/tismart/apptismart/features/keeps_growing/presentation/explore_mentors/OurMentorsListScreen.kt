@@ -13,11 +13,35 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.tismart.apptismart.core.presentation.components.TiSmartHeader
 import com.tismart.apptismart.features.keeps_growing.presentation.components.OurMentorsListCard
+import com.tismart.apptismart.features.keeps_growing.presentation.growth_path.GrowthPathAction
+import com.tismart.apptismart.features.keeps_growing.presentation.growth_path.GrowthPathScreen
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.explore_mentors_card
 
 @Composable
-fun OurMentorsListScreen() {
+fun OurMentorsListScreenRoot(
+    onProfileClick: () -> Unit,
+    onNotificationsClick: () -> Unit,
+    onBackClick: () -> Unit,
+    onMentorCardClick: () -> Unit
+) {
+    OurMentorsListScreen(
+        onAction = { action ->
+            when (action) {
+                ExploreMentorsAction.OnProfileClick -> onProfileClick()
+                ExploreMentorsAction.OnNotificationsClick -> onNotificationsClick()
+                ExploreMentorsAction.OnBackClick -> onBackClick()
+                ExploreMentorsAction.OnMentorCardClick -> onMentorCardClick()
+                else -> Unit
+            }
+        }
+    )
+}
+
+@Composable
+fun OurMentorsListScreen(
+    onAction: (ExploreMentorsAction) -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -25,9 +49,10 @@ fun OurMentorsListScreen() {
     ) {
         TiSmartHeader(
             title = "Nuestros mentores",
-            onMenuClick = {},
-            onNotificationsClick = {},
-            onBackClick = {}
+            notificationCount = 0,
+            onMenuClick = { onAction(ExploreMentorsAction.OnProfileClick) },
+            onNotificationsClick = { onAction(ExploreMentorsAction.OnNotificationsClick) },
+            onBackClick = { onAction(ExploreMentorsAction.OnBackClick) }
         )
 
         LazyColumn(
@@ -41,7 +66,7 @@ fun OurMentorsListScreen() {
                     name = "Angela Ramos",
                     description = "Experiencia de 3 años en UX, Angular e inteligencia.",
                     label = "UX Designer",
-                    onCardClick = {}
+                    onCardClick = { onAction(ExploreMentorsAction.OnMentorCardClick) }
                 )
             }
         }
