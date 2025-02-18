@@ -3,8 +3,11 @@ package com.tismart.apptismart.app
 import com.tismart.apptismart.features.enhance_learning.presentation.educational_agreement.RegistrationStatus
 import com.tismart.apptismart.features.keeps_growing.presentation.innovate_and_transform.ProposalStatus
 import com.tismart.apptismart.features.search.presentation.SearchType
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
 
+@Serializable
 sealed interface Route {
 
     @Serializable
@@ -55,8 +58,20 @@ sealed interface Route {
     @Serializable
     data object InnovateAndTransform: Route
 
+    @SerialName("StatusOfMyIdea")
     @Serializable
-    data class StatusOfMyIdea(val projectName: String, val status: ProposalStatus): Route
+    data class StatusOfMyIdea(
+        val projectName: String,
+        val status: ProposalStatus): Route{
+        companion object {
+            const val PROJECT_NAME = "projectName"
+            const val STATUS = "status"
+            const val ROUTE = "StatusOfMyIdea/{$PROJECT_NAME}/{$STATUS}"
+            fun createRoute(projectName: String, status: ProposalStatus): String {
+                return "StatusOfMyIdea/$projectName/${Json.encodeToString(status)}"
+            }
+        }
+    }
 
     @Serializable
     data object ExploreMentors: Route
@@ -71,7 +86,15 @@ sealed interface Route {
     data object MentorApplicationForm: Route
 
     @Serializable
-    data class Search(val searchType: SearchType): Route
+    data class Search(val searchType: SearchType): Route{
+        companion object {
+            const val SEARCH_TYPE = "searchType"
+            const val ROUTE = "Search/{$SEARCH_TYPE}"
+            fun createRoute(searchType: SearchType): String {
+                return "Search/${Json.encodeToString(searchType)}"
+            }
+        }
+    }
 
     @Serializable
     data object VacancyDashboard: Route
@@ -125,7 +148,19 @@ sealed interface Route {
     data object EducationAgreement: Route
 
     @Serializable
-    data class ApplicationProgress(val agreementName: String, val status: RegistrationStatus): Route
+    data class ApplicationProgress(
+        val agreementName: String,
+        val status: RegistrationStatus
+    ): Route{
+        companion object {
+            const val AGREEMENT_NAME = "agreementName"
+            const val STATUS = "status"
+            const val ROUTE = "ApplicationProgress/{$AGREEMENT_NAME}/{$STATUS}"
+            fun createRoute(agreementName: String, status: RegistrationStatus): String {
+                return "ApplicationProgress/$agreementName/${Json.encodeToString(status)}"
+            }
+        }
+    }
 
     @Serializable
     data object DiscoverYourBenefits: Route

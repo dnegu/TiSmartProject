@@ -7,9 +7,11 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
+import androidx.navigation.navArgument
 import androidx.navigation.toRoute
 import com.tismart.apptismart.features.auth.presentation.login.LoginScreenRoot
 import com.tismart.apptismart.features.discover_benefits.presentation.DiscoverBenefitsCategoryDetailScreenRoot
@@ -19,6 +21,7 @@ import com.tismart.apptismart.features.discover_benefits.presentation.DiscoverNe
 import com.tismart.apptismart.features.discover_benefits.presentation.DiscoverYourBenefitsScreenRoot
 import com.tismart.apptismart.features.enhance_learning.presentation.educational_agreement.ApplicationProgressScreenRoot
 import com.tismart.apptismart.features.enhance_learning.presentation.educational_agreement.EducationalAgreementScreenRoot
+import com.tismart.apptismart.features.enhance_learning.presentation.educational_agreement.RegistrationStatusNavType
 import com.tismart.apptismart.features.enhance_learning.presentation.event.EventRegistrationFormScreenRoot
 import com.tismart.apptismart.features.enhance_learning.presentation.event.EventRegistrationScreenRoot
 import com.tismart.apptismart.features.enhance_learning.presentation.home.EnhanceYourLearningScreenRoot
@@ -40,6 +43,7 @@ import com.tismart.apptismart.features.keeps_growing.presentation.growth_path.Gr
 import com.tismart.apptismart.features.keeps_growing.presentation.growth_path.GrowthPathScreenRoot
 import com.tismart.apptismart.features.keeps_growing.presentation.home.KeepsGrowingScreenRoot
 import com.tismart.apptismart.features.keeps_growing.presentation.innovate_and_transform.InnovateAndTransformScreenRoot
+import com.tismart.apptismart.features.keeps_growing.presentation.innovate_and_transform.ProposalStatusNavType
 import com.tismart.apptismart.features.keeps_growing.presentation.innovate_and_transform.StatusOfMyIdeaScreenRoot
 import com.tismart.apptismart.features.news.presentation.news_detail.NewsDetailScreenRoot
 import com.tismart.apptismart.features.news.presentation.news_list.NewsListScreenRoot
@@ -49,6 +53,7 @@ import com.tismart.apptismart.features.profile.presentation.home.ProfileScreenRo
 import com.tismart.apptismart.features.profile.presentation.my_data.ProfileMyDataScreenRoot
 import com.tismart.apptismart.features.search.presentation.SearchScreenRoot
 import com.tismart.apptismart.features.search.presentation.SearchType
+import com.tismart.apptismart.features.search.presentation.SearchTypeNavType
 import com.tismart.apptismart.features.vacancy.presentation.VacancyDashboardScreenRoot
 import com.tismart.apptismart.features.vacancy.presentation.VacancyDetailScreenRoot
 import com.tismart.apptismart.features.vacancy.presentation.VacancyListScreenRoot
@@ -313,7 +318,13 @@ private fun NavGraphBuilder.homeGraph(
                 }
             )
         }
-        composable<Route.StatusOfMyIdea> { backStackEntry ->
+        composable(
+            route = Route.StatusOfMyIdea.ROUTE,
+            arguments = listOf(
+                navArgument(Route.StatusOfMyIdea.PROJECT_NAME) { type = NavType.StringType },
+                navArgument(Route.StatusOfMyIdea.STATUS) { type = ProposalStatusNavType() }
+            )
+        ){ backStackEntry ->
             val statusOfMyIdea: Route.StatusOfMyIdea = backStackEntry.toRoute()
             StatusOfMyIdeaScreenRoot(
                 projectName = statusOfMyIdea.projectName,
@@ -399,7 +410,12 @@ private fun NavGraphBuilder.homeGraph(
                 }
             )
         }
-        composable<Route.Search> { backStackEntry ->
+        composable(
+            route = Route.Search.ROUTE,
+            arguments = listOf(
+                navArgument(Route.Search.SEARCH_TYPE) { type = SearchTypeNavType() }
+            )
+        ) { backStackEntry ->
             val search: Route.Search = backStackEntry.toRoute()
             SearchScreenRoot(
                 searchType = search.searchType,
@@ -722,7 +738,13 @@ private fun NavGraphBuilder.homeGraph(
                 }
             )
         }
-        composable<Route.ApplicationProgress> { backStackEntry ->
+        composable(
+            route = Route.ApplicationProgress.ROUTE,
+            arguments = listOf(
+                navArgument(Route.ApplicationProgress.AGREEMENT_NAME) { type = NavType.StringType },
+                navArgument(Route.ApplicationProgress.STATUS) { type = RegistrationStatusNavType() }
+            )
+        ) { backStackEntry ->
             val applicationProgress: Route.ApplicationProgress = backStackEntry.toRoute()
             ApplicationProgressScreenRoot(
                 agreementName = applicationProgress.agreementName,

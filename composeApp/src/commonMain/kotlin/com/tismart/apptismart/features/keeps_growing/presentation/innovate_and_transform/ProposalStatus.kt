@@ -1,6 +1,8 @@
 package com.tismart.apptismart.features.keeps_growing.presentation.innovate_and_transform
 
 import androidx.compose.ui.graphics.Color
+import androidx.core.bundle.Bundle
+import androidx.navigation.NavType
 import com.tismart.apptismart.core.presentation.AmarilloClaro
 import com.tismart.apptismart.core.presentation.AmarilloOscuro
 import com.tismart.apptismart.core.presentation.CelesteClaro
@@ -11,6 +13,7 @@ import com.tismart.apptismart.core.presentation.TurquesaClaro
 import com.tismart.apptismart.core.presentation.TurquesaOscuro
 import com.tismart.apptismart.core.presentation.VerdeClaro
 import com.tismart.apptismart.core.presentation.VerdeOscuro
+import kotlinx.serialization.json.Json
 import org.jetbrains.compose.resources.DrawableResource
 import tismartproject.composeapp.generated.resources.Res
 import tismartproject.composeapp.generated.resources.approved_status
@@ -24,4 +27,18 @@ enum class ProposalStatus(val label: String, val detail: String? = null, val ico
     APPROVED(label = "Aprobado", icon = Res.drawable.approved_status, backgroundColor = VerdeClaro, textColor = VerdeOscuro),
     IN_PROGRESS(label = "En ejecución", icon = Res.drawable.in_progress_status, backgroundColor = MoradoClaro, textColor = MoradoOscuro),
     COMPLETED(label = "Finalizado", icon = Res.drawable.approved_status, backgroundColor = TurquesaClaro, textColor = TurquesaOscuro)
+}
+
+class ProposalStatusNavType : NavType<ProposalStatus>(isNullableAllowed = false) {
+    override fun get(bundle: Bundle, key: String): ProposalStatus? {
+        return bundle.getString(key)?.let { Json.decodeFromString(it) }
+    }
+
+    override fun parseValue(value: String): ProposalStatus {
+        return Json.decodeFromString(value)
+    }
+
+    override fun put(bundle: Bundle, key: String, value: ProposalStatus) {
+        bundle.putString(key, Json.encodeToString(value))
+    }
 }
